@@ -21,6 +21,7 @@ class Layanan extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_layanan = $this->input->post('nama_layanan');
 		$where = array(
 			'nama_layanan' => $nama_layanan
@@ -40,6 +41,7 @@ class Layanan extends CI_Controller {
 				'nama_layanan' => $nama_layanan,
 				'id_jabatan' => $id_jabatan,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 	
@@ -72,6 +74,7 @@ class Layanan extends CI_Controller {
 
 	public function editData()
 	{	
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_layananAsli = $this->input->post('nama_layananAsli');
 		$nama_layananUbah = $this->input->post('nama_layananUbah');
 
@@ -100,6 +103,7 @@ class Layanan extends CI_Controller {
 		$data = array(
 			'nama_layanan' => $nama_layanan,
 			'id_jabatan' => $id_jabatan,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -109,6 +113,7 @@ class Layanan extends CI_Controller {
 
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_layanan' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -116,6 +121,7 @@ class Layanan extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_Layanan->deleteRecord($where, 'Layanan', $data);

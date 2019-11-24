@@ -20,6 +20,7 @@ class KategoriBarang extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_kategori_barang = $this->input->post('nama_kategori_barang');
 		$where = array(
 			'nama_kategori_barang' => $nama_kategori_barang
@@ -37,6 +38,7 @@ class KategoriBarang extends CI_Controller {
 			$data = array(
 				'nama_kategori_barang' => $nama_kategori_barang,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 	
@@ -67,6 +69,7 @@ class KategoriBarang extends CI_Controller {
 
 	public function editData()
 	{	
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_kategori_barangAsli = $this->input->post('nama_kategori_barangAsli');
 		$nama_kategori_barangUbah = $this->input->post('nama_kategori_barangUbah');
 
@@ -93,6 +96,7 @@ class KategoriBarang extends CI_Controller {
 
 		$data = array(
 			'nama_kategori_barang' => $nama_kategori_barang,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -102,6 +106,7 @@ class KategoriBarang extends CI_Controller {
 
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_kategori_barang' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -109,6 +114,7 @@ class KategoriBarang extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_KategoriBarang->deleteRecord($where, 'kategori_barang', $data);

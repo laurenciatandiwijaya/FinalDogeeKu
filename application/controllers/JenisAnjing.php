@@ -20,6 +20,7 @@ class JenisAnjing extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_jenis_anjing = $this->input->post('nama_jenis_anjing');
 		$where = array(
 			'nama_jenis_anjing' => $nama_jenis_anjing
@@ -37,6 +38,7 @@ class JenisAnjing extends CI_Controller {
 			$data = array(
 				'nama_jenis_anjing' => $nama_jenis_anjing,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 	
@@ -67,6 +69,7 @@ class JenisAnjing extends CI_Controller {
 
 	public function editData()
 	{	
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_jenis_anjingAsli = $this->input->post('nama_jenis_anjingAsli');
 		$nama_jenis_anjingUbah = $this->input->post('nama_jenis_anjingUbah');
 
@@ -93,6 +96,7 @@ class JenisAnjing extends CI_Controller {
 
 		$data = array(
 			'nama_jenis_anjing' => $nama_jenis_anjing,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -102,6 +106,7 @@ class JenisAnjing extends CI_Controller {
 
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_jenis_anjing' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -109,6 +114,7 @@ class JenisAnjing extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_JenisAnjing->deleteRecord($where, 'jenis_anjing', $data);

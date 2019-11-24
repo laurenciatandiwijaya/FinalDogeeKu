@@ -87,12 +87,12 @@
 											<input type="hidden" name="id_pelangganAsli" value="<?php echo $list->id_pelanggan; ?>" class="form-control"/>
 											<select required name="id_pelangganUbah" data-plugin-selectTwo class="form-control populate">
 												<?php foreach($pelanggan as $listPelanggan){ ?>
-													<option value="<?php echo $list->id_pelanggan; ?>" 
+													<option value="<?php echo $listPelanggan->id_pelanggan; ?>" 
 													<?php if($listPelanggan->id_pelanggan == $list->id_pelanggan){
 														echo "selected";
 														}
 													?>>
-														<?php echo $list->id_pelanggan ." / ". $listPelanggan->nama_lengkap;?>
+														<?php echo $listPelanggan->nama_lengkap;?>
 													</option>
 												<?php 
 												}?>
@@ -105,15 +105,23 @@
 											<input type="hidden" name="id_barangAsli" value="<?php echo $list->id_barang; ?>" class="form-control"/>
 											<select required name="id_barangUbah" data-plugin-selectTwo class="form-control populate">
 												<?php foreach($barang as $listBarang){ ?>
-													<option value="<?php echo $list->id_barang; ?>"
+													<option value="<?php echo $listBarang->id_barang; ?>"
 													<?php if($listBarang->id_barang == $list->id_barang){
 														echo "selected";
 														}
 													?>>
-														<?php echo $list->id_barang ." / ". $listBarang->nama_barang?>
+														<?php echo $listBarang->nama_barang ." / Stok: ".$listBarang->jumlah_barang ." / Warna: ".$listBarang->warna ." / "
+														.$listBarang->ukuran ." ".$listBarang->satuan ;?>
 													</option>
 												<?php }?>
 											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Jumlah Barang</label>
+										<div class="col-sm-6">
+											<input type="number" min="1" max="30" step="1" value="<?php echo $list->jumlah_barang; ?>" 
+											name="jumlah_barang" class="spinner-input form-control" title="Isi jumlah barang">
 										</div>
 									</div>
 									<div class="form-group">

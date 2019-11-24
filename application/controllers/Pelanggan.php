@@ -22,6 +22,7 @@ class Pelanggan extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$email = $this->input->post('email');
 		$where = array(
 			'email' => $email
@@ -54,6 +55,7 @@ class Pelanggan extends CI_Controller {
 				'password' => $passwordEnkrip,
 				'id_tipe_pengguna' => "7",
 				'status_delete' => "Aktif",
+				'user_delete' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 
@@ -68,6 +70,7 @@ class Pelanggan extends CI_Controller {
 				'id_pengguna' => $id_penggunaInt,
 				'tanggal_registrasi' => $tanggal_registrasi,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 
@@ -100,6 +103,7 @@ class Pelanggan extends CI_Controller {
 
 	public function editData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$emailAsli = $this->input->post('emailAsli');
 		$emailUbah = $this->input->post('emailUbah');
 
@@ -142,6 +146,7 @@ class Pelanggan extends CI_Controller {
 			'no_hp' => $no_hp,
 			'email' => $email,
 			'password' => $password,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 		$this->M_Pengguna->editRecord($wherePengguna,'pengguna',$dataPengguna);
@@ -149,6 +154,7 @@ class Pelanggan extends CI_Controller {
 		$wherePelanggan = array('id_pelanggan' => $id_pelanggan);
 		$dataPelanggan = array (
 			'tanggal_registrasi' => $tanggal_registrasi,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -158,6 +164,7 @@ class Pelanggan extends CI_Controller {
 
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$wherePelanggan = array('id_pelanggan' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -165,6 +172,7 @@ class Pelanggan extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_Pelanggan->deleteRecord($wherePelanggan, 'pelanggan', $data);

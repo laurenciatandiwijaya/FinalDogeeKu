@@ -24,6 +24,7 @@ class InvoiceToko extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_add = date("Y-m-d H:i:s");
 
@@ -50,6 +51,7 @@ class InvoiceToko extends CI_Controller {
 					'id_barang' => $id_barang[$i],
 					'jumlah_barang' => $jumlah_barang[$i],
 					'status_delete' => "Aktif",
+					'user_add' => $id_pengguna,
 					'waktu_add' => $waktu_add
 				);	
 				$this->M_InvoiceToko->tambahRecord('detail_invoice_barang',$dataDetailInvoice);
@@ -73,6 +75,7 @@ class InvoiceToko extends CI_Controller {
 			'total' => $harga_total,
 			'status_invoice' => "Lunas",
 			'status_delete' => "Aktif",
+			'user_add' => $id_pengguna,
 			'waktu_add' => $waktu_add
 		);
 
@@ -103,6 +106,7 @@ class InvoiceToko extends CI_Controller {
 
 	public function editData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_invoice = $this->input->post('id_invoice');
 		$tanggal = $this->input->post('tanggal');
 		$jam = $this->input->post('jam');
@@ -119,6 +123,7 @@ class InvoiceToko extends CI_Controller {
 			'tanggal' => $tanggal,
 			'jam' => $jam,
 			'status_invoice' => $status_invoice,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -128,6 +133,7 @@ class InvoiceToko extends CI_Controller {
 
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_invoice' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -135,6 +141,7 @@ class InvoiceToko extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_InvoiceToko->deleteRecord($where, 'invoice', $data);

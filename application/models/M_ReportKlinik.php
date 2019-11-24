@@ -109,6 +109,24 @@ class M_ReportKlinik extends CI_Model {
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
 		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
 		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
-		WHERE a.id_pekerja = '$id_pekerja' ORDER BY a.tanggal ASC, a.jam ASC");
+		WHERE a.id_pekerja = '$id_pekerja' AND a.status_report = 'Menunggu'
+		ORDER BY a.tanggal ASC, a.jam ASC");
+	}
+
+	function ambilReportFinished($id_pekerja){
+		return $this->db->query("select a.id_report_klinik as id_report, a.tanggal, a.jam, a.status_report, c.id_anjing, d.nama_anjing, f.nama_lengkap 
+		FROM report_klinik a JOIN pekerja b ON a.id_pekerja = b.id_pekerja
+		JOIN pelanggan_klinik c ON a.id_report_klinik = c.id_report_klinik
+		JOIN anjing d ON c.id_anjing = d.id_anjing 
+		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
+		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
+		WHERE a.id_pekerja = '$id_pekerja' AND NOT a.status_report = 'Menunggu'
+		ORDER BY a.tanggal ASC, a.jam ASC");
+	}
+
+	function ambilInvoice($id_report){
+		return $this->db->query("select a.id_invoice, b.total 
+		FROM detail_invoice_layanan a JOIN invoice b ON a.id_invoice = b.id_invoice 
+		WHERE a.id_report = '$id_report' ");
 	}
 }

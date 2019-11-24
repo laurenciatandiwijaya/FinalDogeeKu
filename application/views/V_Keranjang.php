@@ -80,10 +80,10 @@
 										<tr>
 											<th width="25%">Action</th>
 											<th width="10%">ID Keranjang</th>
-											<th width="10%">ID Pelanggan</th>	
 											<th width="20%">Nama Pelanggan</th>
-											<th width="10%">ID Barang</th>
 											<th width="20%">Nama Barang</th>
+											<th width="20%">Detail Barang</th>
+											<th width="10%">Jumlah Barang</th>
 											<th width="20%">Status</th>
 										</tr>
 									</thead>
@@ -107,10 +107,10 @@
 												</a>
 											</td>
 											<td><?php echo $list->id_keranjang; ?></td>
-											<td><?php echo $list->id_pelanggan; ?></td>
 											<td><?php echo $list->nama_lengkap; ?></td>
-											<td><?php echo $list->id_barang; ?></td>
 											<td><?php echo $list->nama_barang; ?></td>
+											<td><?php echo "Warna: " .$list->warna ." / Ukuran: " .$list->ukuran ." " .$list->satuan; ?></td>
+											<td><?php echo $list->jumlah_barang; ?></td>
 											<td><?php echo $list->status_delete; ?></td>
 										</tr>
 										<?php

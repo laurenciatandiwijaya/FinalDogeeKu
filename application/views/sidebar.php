@@ -196,13 +196,13 @@
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo base_url().'HomePekerjaLayanan' ?>">
+						<a href="<?php echo base_url().'HomePekerjaLayanan/tampilanReportUpcoming' ?>">
 							<i class="fa fa-home" aria-hidden="true"></i>
 							<span>Upcoming Report</span>
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo base_url().'HomePekerjaLayanan' ?>">
+						<a href="<?php echo base_url().'HomePekerjaLayanan/tampilanReportFinished' ?>">
 							<i class="fa fa-home" aria-hidden="true"></i>
 							<span>Finished Report</span>
 						</a>

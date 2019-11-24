@@ -30,6 +30,7 @@ class ReportKlinik extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_anjing = $this->input->post('id_anjing');
 		$tanggal = $this->input->post('tanggal');
 		$jam = $this->input->post('jam');
@@ -72,6 +73,7 @@ class ReportKlinik extends CI_Controller {
 						'id_report_klinik' => $id_report_klinik,
 						'id_detail_layanan' => $id_detail_layanan[$i],
 						'status_delete' => "Aktif",
+						'user_add' => $id_pengguna,
 						'waktu_add' => $waktu_add
 					);	
 					$this->M_ReportKlinik->tambahRecord('detail_layanan_report_klinik',$dataDetailLayanan);
@@ -99,6 +101,7 @@ class ReportKlinik extends CI_Controller {
 						'id_barang' => $id_barang[$i],
 						'jumlah_barang' => $jumlah_barang[$i],
 						'status_delete' => "Aktif",
+						'user_add' => $id_pengguna,
 						'waktu_add' => $waktu_add
 					);	
 					$this->M_ReportKlinik->tambahRecord('detail_obat_report_klinik',$dataDetailObat);
@@ -108,6 +111,7 @@ class ReportKlinik extends CI_Controller {
 						'id_barang' => $id_barang[$i],
 						'jumlah_barang' => $jumlah_barang[$i],
 						'status_delete' => "Aktif",
+						'user_add' => $id_pengguna,
 						'waktu_add' => $waktu_add
 					);	
 					$this->M_InvoiceOnline->tambahRecord('detail_invoice_barang',$dataDetailInvoice);
@@ -130,6 +134,7 @@ class ReportKlinik extends CI_Controller {
 				'keterangan' => $keterangan,
 				'status_report' => $status_report,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 			$this->M_ReportKlinik->tambahRecord('report_klinik',$dataReport);
@@ -138,6 +143,7 @@ class ReportKlinik extends CI_Controller {
 				'id_anjing' => $id_anjing,
 				'id_report_klinik' => $id_report_klinik,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 			$this->M_ReportKlinik->tambahRecord('pelanggan_klinik',$dataPelangganSalon);
@@ -157,6 +163,7 @@ class ReportKlinik extends CI_Controller {
 				'total' => $harga_total,
 				'status_invoice' => "Belum Lunas",
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 			$this->M_InvoiceOnline->tambahRecord('invoice',$dataInvoice);
@@ -165,6 +172,7 @@ class ReportKlinik extends CI_Controller {
 				'id_invoice' => $id_invoice,
 				'id_report' => $id_report_klinik,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 			$this->M_ReportKlinik->tambahRecord('detail_invoice_layanan',$dataDetailInvoiceLayanan);
@@ -190,7 +198,9 @@ class ReportKlinik extends CI_Controller {
 	}
 
 	public function editData()
-	{	$id_anjingAsli = $this->input->post('id_anjingAsli');
+	{	
+		$id_pengguna = $this->session->userdata("id_pengguna");
+		$id_anjingAsli = $this->input->post('id_anjingAsli');
 		$id_anjingUbah = $this->input->post('id_anjingUbah');
 		$tanggalAsli = $this->input->post('tanggalAsli');
 		$tanggalUbah = $this->input->post('tanggalUbah');
@@ -236,12 +246,14 @@ class ReportKlinik extends CI_Controller {
 			'jam' => $jam,
 			'keterangan' => $keterangan,
 			'status_report' => $status_report,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 		$this->M_ReportKlinik->editRecord($where,'report_klinik',$dataReport);
 
 		$dataPelangganKlinik = array(
 			'id_anjing' => $id_anjing,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 		$this->M_ReportKlinik->editRecord($where,'pelanggan_klinik',$dataPelangganKlinik);
@@ -251,6 +263,7 @@ class ReportKlinik extends CI_Controller {
 	
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_report_klinik' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -258,6 +271,7 @@ class ReportKlinik extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_ReportKlinik->deleteRecord($where, 'report_klinik', $data);

@@ -26,6 +26,7 @@ class HomeKasir extends CI_Controller {
 	}
 
 	public function tambahInvoiceToko(){
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_add = date("Y-m-d H:i:s");
 
@@ -52,6 +53,7 @@ class HomeKasir extends CI_Controller {
 					'id_barang' => $id_barang[$i],
 					'jumlah_barang' => $jumlah_barang[$i],
 					'status_delete' => "Aktif",
+					'user_add' => $id_pengguna,
 					'waktu_add' => $waktu_add
 				);	
 				$this->M_Invoice->tambahRecord('detail_invoice_barang',$dataDetailInvoice);
@@ -75,7 +77,7 @@ class HomeKasir extends CI_Controller {
 			'total' => $harga_total,
 			'status_invoice' => "Lunas",
 			'status_delete' => "Aktif",
-			'user_add' => $this->session->userdata("id_pengguna"),
+			'user_add' => $id_pengguna,
 			'waktu_add' => $waktu_add
 		);
 
@@ -99,6 +101,7 @@ class HomeKasir extends CI_Controller {
 	}
 
 	public function editDataTransfer(){
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_transfer = $this->input->post('id_transfer');
 		$tanggal = $this->input->post('tanggal');
 		$total = $this->input->post('total');
@@ -115,7 +118,7 @@ class HomeKasir extends CI_Controller {
 			'tanggal' => $tanggal,
 			'total' => $total,
 			'status_transfer' => $status_transfer,
-			'user_edit' => $this->session->userdata("id_pengguna"),
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 

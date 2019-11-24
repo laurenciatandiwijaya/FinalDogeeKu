@@ -20,6 +20,7 @@ class TipePengguna extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_tipe_pengguna = $this->input->post('nama_tipe_pengguna');
 		$where = array(
 			'nama_tipe_pengguna' => $nama_tipe_pengguna
@@ -37,6 +38,7 @@ class TipePengguna extends CI_Controller {
 			$data = array(
 				'nama_tipe_pengguna' => $nama_tipe_pengguna,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 	
@@ -67,6 +69,7 @@ class TipePengguna extends CI_Controller {
 
 	public function editData()
 	{	
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_tipe_penggunaAsli = $this->input->post('nama_tipe_penggunaAsli');
 		$nama_tipe_penggunaUbah = $this->input->post('nama_tipe_penggunaUbah');
 
@@ -92,6 +95,7 @@ class TipePengguna extends CI_Controller {
 
 		$data = array(
 			'nama_tipe_pengguna' => $nama_tipe_pengguna,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -101,6 +105,7 @@ class TipePengguna extends CI_Controller {
 	
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_tipe_pengguna' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -108,6 +113,7 @@ class TipePengguna extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_TipePengguna->deleteRecord($where, 'tipe_pengguna', $data);

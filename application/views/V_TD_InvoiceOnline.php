@@ -117,6 +117,7 @@
 												<option disabled value="" Selected>Pilih Status Invoice</option>
 												<option value="Lunas">Lunas</option>
 												<option value="Belum Lunas">Belum Lunas</option>
+												<option value="Batal">Batal</option>
 											</select>
 										</div>
 									</div><br>

@@ -8,6 +8,7 @@ class HomePekerjaLayanan extends CI_Controller {
 		$this->load->model('M_ReportKlinik');
 		$this->load->model('M_ReportSalon');
 		$this->load->model('M_ReportPenitipan');
+		$this->load->model('M_InvoiceOnline');
 	} 
 
 	public function index()
@@ -49,123 +50,167 @@ class HomePekerjaLayanan extends CI_Controller {
 			$data['report'] = $this->M_ReportKlinik->ambilReportUpcoming($id_pekerja)->result();
 		}
 		else if($id_tipe_pengguna == "5"){
-			$data['report'] = $this->M_ReportSalon->ambilReportSatuUpcoming($id_pekerja)->result();
+			$data['report'] = $this->M_ReportSalon->ambilReportUpcoming($id_pekerja)->result();
 		}
 		else{
-			$data['report'] = $this->M_ReportPenitipan->ambilReportSatuUpcoming($id_pekerja)->result();
+			$data['report'] = $this->M_ReportPenitipan->ambilReportUpcoming($id_pekerja)->result();
 		}
 		$this->load->view('V_Report_Upcoming', $data);
 	}
 
-	public function tampilanEditReport($id_report){
+	public function tampilanReportFinished()
+	{
+		$id_pekerja = $_SESSION['id_pekerja'];
+		$id_tipe_pengguna = $this->session->userdata("id_tipe_pengguna");
 
+		if($id_tipe_pengguna == "4"){
+			$data['report'] = $this->M_ReportKlinik->ambilReportFinished($id_pekerja)->result();
+		}
+		else if($id_tipe_pengguna == "5"){
+			$data['report'] = $this->M_ReportSalon->ambilReportFinished($id_pekerja)->result();
+		}
+		else{
+			$data['report'] = $this->M_ReportPenitipan->ambilReportFinished($id_pekerja)->result();
+		}
+		$this->load->view('V_Report_Finished', $data);
+	}
+
+	public function tampilanEditReport($id_report){
+		$id_tipe_pengguna = $this->session->userdata("id_tipe_pengguna");
+		
+		if($id_tipe_pengguna == "4"){		
+			$data['report']= $this->M_ReportKlinik->ambilDataSatuReport($id_report)->result();
+			$data['detailLayanan'] = $this->M_ReportKlinik->ambilDetailLayananSatuReport($id_report)->result();
+
+			$data['jumlahObat'] = $this->M_ReportKlinik->ambilObatSatuReport($id_report)->num_rows();
+
+			$data['obatDalamReport'] = $this->M_ReportKlinik->ambilObatSatuReport($id_report)->result();
+			$whereObat = array('id_kategori_barang' => "2");
+			$data['listSemuaObat'] = $this->M_ReportKlinik->ambilDataLain('barang', $whereObat)->result();
+		}
+		else if($id_tipe_pengguna == "5"){
+			$data['report']= $this->M_ReportSalon->ambilDataSatuReport($id)->result();
+			$data['detailLayanan'] = $this->M_ReportSalon->ambilDetailLayananSatuReport($id)->result();
+		}
+		else{
+			$data['report']= $this->M_ReportPenitipan->ambilDataSatuReport($id)->result();
+			$data['detailLayanan'] = $this->M_ReportPenitipan->ambilDetailLayananSatuReport($id)->result();
+		}
+		$this->load->view('V_Edit_ReportPL', $data);
 	}	
 
-	/*public function tampilanInvoiceToko(){
-		$data['invoice']=$this->M_InvoiceToko->ambilData()->result();
-		$this->load->view('VK_InvoiceToko',$data);
-	}
-
-	public function tampilanTambahInvoice(){
-		$data['barang']=$this->M_Barang->ambilData()->result();
-		$this->load->view('VK_TD_InvoiceToko', $data);
-	}
-
-	public function tambahInvoiceToko(){
-		date_default_timezone_set("Asia/Jakarta");
-		$waktu_add = date("Y-m-d H:i:s");
-
-		$tanggalHariIni = date("Y-m-d");
-		$tanggalTanpaStrip = date("Ymd", strtotime($tanggalHariIni));
+	public function editReport(){
+		$id_pengguna = $this->session->userdata("id_pengguna");
+		$id_tipe_pengguna = $this->session->userdata("id_tipe_pengguna");
+		$id_report = $this->input->post('id_report');
+		$keterangan = $this->input->post('keterangan');
+		$status_report = $this->input->post('status_report');
 		
-		$jumlahInvoice = $this->M_InvoiceToko->cekUrutan($tanggalTanpaStrip."TK");
-		$urutanInvoice = $jumlahInvoice+1;
-		$id_invoice = $tanggalTanpaStrip ."TK". $urutanInvoice;
+		if($id_tipe_pengguna == "4"){	
+			$jumlahObat = $this->M_ReportKlinik->ambilObatSatuReport($id_report)->num_rows();
+			if($jumlahObat < 1 ){
+				$i = 0;
+				$id_barang[0] = 0;
+				$jumlah_barang[0] = 0;
+				$jumlah = $this->input->post('jumlah_barang');
 
-		$i = 0;
-		$id_barang[0] = 0;
-		$jumlah_barang[0] = 0;
-		$harga_total = 0;
-		$jumlah = $this->input->post('jumlah_barang');
+				$dataInvoice = $this->M_ReportKlinik->ambilInvoice($id_report)->row_array();
+				$id_invoice = $dataInvoice['id_invoice'];
+				$total = $dataInvoice['total'];
 
-		foreach($this->input->post('id_barang') as $id_barangArr){
-			if($id_barangArr != ""){
-				$id_barang[$i] = $id_barangArr; 
-				$jumlah_barang[$i] = $jumlah[$i];
+				foreach($this->input->post('id_barang') as $id_barangArr){
+					if($id_barangArr != ""){
+						$id_barang[$i] = $id_barangArr; 
+						$jumlah_barang[$i] = $jumlah[$i];
+		
+						$dataDetailObat = array(
+							'id_report_klinik' => $id_report,
+							'id_barang' => $id_barang[$i],
+							'jumlah_barang' => $jumlah_barang[$i],
+							'status_delete' => "Aktif",
+							'user_add' => $id_pengguna,
+							'waktu_add' => $waktu_add
+						);	
+						$this->M_ReportKlinik->tambahRecord('detail_obat_report_klinik',$dataDetailObat);
+						
+						$dataDetailInvoice = array(
+							'id_invoice' => $id_invoice,
+							'id_barang' => $id_barang[$i],
+							'jumlah_barang' => $jumlah_barang[$i],
+							'status_delete' => "Aktif",
+							'user_add' => $id_pengguna,
+							'waktu_add' => $waktu_add
+						);	
+						$this->M_InvoiceOnline->tambahRecord('detail_invoice_barang',$dataDetailInvoice);
 
-				$dataDetailInvoice = array(
-					'id_invoice' => $id_invoice,
-					'id_barang' => $id_barang[$i],
-					'jumlah_barang' => $jumlah_barang[$i],
-					'status_delete' => "Aktif",
-					'waktu_add' => $waktu_add
-				);	
-				$this->M_Invoice->tambahRecord('detail_invoice_barang',$dataDetailInvoice);
-
-				$where = array('id_barang' => $id_barang[$i]);
-				$harga_barangArr['data'] = $this->M_Barang->tampilanEditrecord('barang', $where)->result();
-				foreach($harga_barangArr['data'] as $list){
-					$harga_barangInt = intval($list->harga);
-					$harga_total = $harga_total + ($harga_barangInt * $jumlah_barang[$i]);
+						$where = array('id_barang' => $id_barang[$i]);
+						$harga_obatArr['data'] = $this->M_ReportKlinik->tampilanEditrecord('barang', $where)->result();
+						foreach($harga_obatArr['data'] as $listObat){
+							$harga_obatInt = intval($listObat->harga);
+							$harga_total = $harga_total + ($harga_obatInt * $jumlah_barang[$i]);
+						}
+						$i++;
+					}
 				}
-				$i++;
+				if($i > 0){
+					$whereInvoice = array('id_invoice' => $id_invoice);
+					date_default_timezone_set("Asia/Jakarta");
+					$waktu_edit = date("Y-m-d H:i:s");
+					$dataInvoice = array(
+						'total' => $total+$harga_total,
+						'user_edit' => $id_pengguna,
+						'waktu_edit' => $waktu_edit
+					);
+					$this->M_InvoiceOnline->editRecord($whereInvoice,'invoice',$dataInvoice);
+				}
 			}
+
+			$whereReport = array(
+				'id_report_klinik' => $id_report
+			);
+			
+			$dataReport = array(
+				'keterangan' => $keterangan,
+				'status_report' => $status_report,
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_edit
+			);
+			$this->M_ReportKlinik->editRecord($whereReport,'report_klinik',$dataReport);
 		}
 
-		$dataInvoice = array(
-			'id_invoice' => $id_invoice,
-			'id_pelanggan' => "0",
-			'tanggal' => $tanggalHariIni,
-			'jam' => $waktu_add,
-			'metode_pembayaran' => "Cash",
-			'total' => $harga_total,
-			'status_invoice' => "Lunas",
-			'status_delete' => "Aktif",
-			'user_add' => $this->session->userdata("id_pengguna"),
-			'waktu_add' => $waktu_add
-		);
+		else if($id_tipe_pengguna == "5"){
+			$whereReport = array(
+				'id_report_salon' => $id_report
+			);
+			
+			$dataReport = array(
+				'keterangan' => $keterangan,
+				'status_report' => $status_report,
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_edit
+			);
+			$this->M_ReportSalon->editRecord($whereReport,'report_salon',$dataReport);
+		}
 
-		$this->M_InvoiceToko->tambahRecord('invoice',$dataInvoice);
-		redirect('HomeKasir');
+		else{
+			$whereReport = array(
+				'id_report_penitipan' => $id_report
+			);
+			
+			$dataReport = array(
+				'keterangan' => $keterangan,
+				'status_report' => $status_report,
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_edit
+			);
+			$this->M_ReportPenitipan->editRecord($whereReport,'report_penitipan',$dataReport);
+		}
+
+		if($status_report == "Menunggu"){
+			redirect('HomePekerjaLayanan/tampilanReportUpcoming');
+		}
+		else{
+			redirect('HomePekerjaLayanan/tampilanReportFinished');
+		}
 	}
-
-	public function tampilanTransfer(){
-		$data['transfer']=$this->M_Transfer->ambilDataMenunggu()->result();
-		$this->load->view('VK_VerifikasiTransfer',$data);
-	}
-
-	public function tampilanEditTransfer($id){
-		$where = array(
-			'id_transfer' => $id
-		);
-
-		$data['invoicePelanggan']=$this->M_Transfer->tampilanTambahRecord()->result();
-		$data['transfer']= $this->M_Transfer->tampilanEditRecord('transfer',$where)->result();
-		$this->load->view('VK_Edit_Transfer',$data);
-	}
-
-	public function editDataTransfer(){
-		$id_transfer = $this->input->post('id_transfer');
-		$tanggal = $this->input->post('tanggal');
-		$total = $this->input->post('total');
-		$status_transfer = $this->input->post('status_transfer');
-
-		date_default_timezone_set("Asia/Jakarta");
-		$waktu_edit = date("Y-m-d H:i:s");
-
-		$where = array(
-			'id_transfer' => $id_transfer
-		);
-
-		$data = array(
-			'tanggal' => $tanggal,
-			'total' => $total,
-			'status_transfer' => $status_transfer,
-			'user_edit' => $this->session->userdata("id_pengguna"),
-			'waktu_edit' => $waktu_edit
-		);
-
-		$this->M_Transfer->editRecord($where,'transfer',$data);
-		redirect('HomeKasir/tampilanTransfer');
-	}*/
 }

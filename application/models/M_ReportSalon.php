@@ -103,6 +103,18 @@ class M_ReportSalon extends CI_Model {
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
 		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
 		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
-		WHERE a.id_pekerja = '$id_pekerja' ORDER BY a.tanggal ASC, a.jam ASC");
+		WHERE a.id_pekerja = '$id_pekerja' AND a.status_report = 'Menunggu'
+		ORDER BY a.tanggal ASC, a.jam ASC");
+	}
+
+	function ambilReportFinished($id_pekerja){
+		return $this->db->query("select a.id_report_salon as id_report, a.tanggal, a.jam, a.status_report, c.id_anjing, d.nama_anjing, f.nama_lengkap 
+		FROM report_salon a JOIN pekerja b ON a.id_pekerja = b.id_pekerja
+		JOIN pelanggan_salon c ON a.id_report_salon = c.id_report_salon
+		JOIN anjing d ON c.id_anjing = d.id_anjing 
+		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
+		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
+		WHERE a.id_pekerja = '$id_pekerja' AND NOT a.status_report = 'Menunggu'
+		ORDER BY a.tanggal ASC, a.jam ASC");
 	}
 }

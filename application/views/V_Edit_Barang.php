@@ -88,7 +88,7 @@
 											<input type="hidden" name="id_kategori_barangAsli" value="<?php echo $list->id_kategori_barang; ?>" />
 											<select name="id_kategori_barangUbah" data-plugin-selectTwo class="form-control populate" required>
 												<?php foreach($kategori_barang as $listKB){ ?>
-													<option value="<?php echo $list->id_kategori_barang; ?>"
+													<option value="<?php echo $listKB->id_kategori_barang; ?>"
 													<?php if($listKB->id_kategori_barang == $list->id_kategori_barang){
 														echo "selected";
 													} ?>>

@@ -21,16 +21,17 @@ class Kegiatan extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_anjing = $this->input->post('id_anjing');
 		$nama_kegiatan = $this->input->post('nama_kegiatan');
-		$tanggal = $this->input->post('tanggal');
-		$jam = $this->input->post('jam');
+		$start_date = $this->input->post('tanggal_mulai');
+		$end_date = $this->input->post('tanggal_selesai');
 
 		$where = array(
 			'id_anjing' => $id_anjing,
 			'nama_kegiatan' => $nama_kegiatan,
-			'tanggal' => $tanggal,
-			'jam' => $jam
+			'start_date' => $start_date,
+			'end_date' => $end_date
 		);
 		
 		$hasil = $this->M_Kegiatan->cekKegiatan('kegiatan', $where);
@@ -39,16 +40,18 @@ class Kegiatan extends CI_Controller {
 			redirect('Kegiatan/tampilanTambahData');
 		}
 		else{
+			$color = $this->input->post('color');
 			date_default_timezone_set("Asia/Jakarta");
 			$waktu_add = date("Y-m-d H:i:s");
 
 			$data = array(
 				'id_anjing' => $id_anjing,
 				'nama_kegiatan' => $nama_kegiatan,
-				'tanggal' => $tanggal,
-				'jam' => $jam,
-				'status_kegiatan' => "Belum selesai",
+				'start_date' => $start_date,
+				'end_date' => $end_date,
+				'color' => $color,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 	
@@ -81,27 +84,28 @@ class Kegiatan extends CI_Controller {
 
 	public function editData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_anjingAsli = $this->input->post('id_anjingAsli');
 		$id_anjingUbah = $this->input->post('id_anjingUbah');
 		$nama_kegiatanAsli = $this->input->post('nama_kegiatanAsli');
 		$nama_kegiatanUbah = $this->input->post('nama_kegiatanUbah');
-		$tanggalAsli = $this->input->post('tanggalAsli');
-		$tanggalUbah = $this->input->post('tanggalUbah');
-		$jamAsli = $this->input->post('jamAsli');
-		$jamUbah = $this->input->post('jamUbah');
+		$tanggalMulaiAsli = $this->input->post('tanggalMulaiAsli');
+		$tanggalMulaiUbah = $this->input->post('tanggalMulaiUbah');
+		$tanggalSelesaiAsli = $this->input->post('tanggalSelesaiAsli');
+		$tanggalSelesaiUbah = $this->input->post('tanggalSelesaiUbah');
 
 		$id_anjing = $id_anjingAsli;
 		$nama_kegiatan = $nama_kegiatanAsli;
-		$tanggal = $tanggalAsli;
-		$jam = $jamAsli;
+		$tanggalMulai = $tanggalMulaiAsli;
+		$tanggalSelesai = $tanggalSelesaiAsli;
 
 		if($id_anjingAsli != $id_anjingUbah || $nama_kegiatanAsli != $nama_kegiatanUbah || 
-		$tanggalAsli != $tanggalUbah || $jamAsli != $jamUbah){
+		$tanggalMulaiAsli != $tanggalMulailUbah || $tanggalSelesaiAsli != $tanggalSelesaiUbah){
 			$whereCek = array(
 				'id_anjing' => $id_anjingUbah,
 				'nama_kegiatan' => $nama_kegiatanUbah,
-				'tanggal' => $tanggalUbah,
-				'jam' => $jamUbah
+				'start_date' => $tanggalMulaiUbah,
+				'end_date' => $tanggalSelesaiUbah
 			);
 			
 			$hasil = $this->M_Kegiatan->cekKegiatan('kegiatan', $whereCek);
@@ -110,11 +114,11 @@ class Kegiatan extends CI_Controller {
 			}
 			$id_anjing = $id_anjingUbah;
 			$nama_kegiatan = $nama_kegiatanUbah;
-			$tanggal = $tanggalUbah;
-			$jam = $jamUbah;
+			$tanggalMulai = $tanggalMulaiUbah;
+			$tanggalSelesai = $tanggalSelesaiUbah;
 		}
 		$id_kegiatan = $this->input->post('id_kegiatan');
-		$status_kegiatan = $this->input->post('status_kegiatan');
+		$color = $this->input->post('color');
 		
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_edit = date("Y-m-d H:i:s");
@@ -126,9 +130,10 @@ class Kegiatan extends CI_Controller {
 		$data = array(
 			'id_anjing' => $id_anjing,
 			'nama_kegiatan' => $nama_kegiatan,
-			'tanggal' => $tanggal,
-			'jam' => $jam,
-			'status_kegiatan' => $status_kegiatan,
+			'start_date' => $tanggalMulai,
+			'end_date' => $tanggalSelesai,
+			'color' => $color,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -138,6 +143,7 @@ class Kegiatan extends CI_Controller {
 
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_kegiatan' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -145,6 +151,7 @@ class Kegiatan extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_Kegiatan->deleteRecord($where, 'kegiatan', $data);

@@ -109,31 +109,38 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-3 control-label">Tanggal<span class="required">*</span></label>
+											<label class="col-md-3 control-label">Tanggal Mulai<span class="required">*</span></label>
 											<div class="col-md-9">
-												<input name="tanggalAsli" type="hidden" value="<?php echo $listKegiatan->tanggal; ?>">
-												<input class="col-md-7" id="datepicker" name="tanggalUbah" type="date" 
-												value="<?php echo $listKegiatan->tanggal; ?>" required>
+												<input name="tanggalMulaiAsli" type="hidden" value="<?php echo $listKegiatan->start_date; ?>">
+												<input class="col-md-7" id="datepicker" name="tanggalMulaiUbah" type="date" 
+												value="<?php echo $listKegiatan->start_date; ?>" required>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-3 control-label">Jam<span class="required">*</span></label>
+											<label class="col-md-3 control-label">Tanggal Selesai<span class="required">*</span></label>
 											<div class="col-md-9">
-												<input name="jamAsli" type="hidden" value="<?php echo $listKegiatan->jam; ?>">
-												<input class="col-md-7" id="timepicker" name="jamUbah" type="time" 
-												value="<?php echo $listKegiatan->jam; ?>" required>
+												<input name="tanggalSelesaiAsli" type="hidden" value="<?php echo $listKegiatan->end_date; ?>">
+												<input class="col-md-7" id="timepicker" name="tanggalSelesaiUbah" type="time" 
+												value="<?php echo $listKegiatan->end_date; ?>" required>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-sm-3 control-label">Status Kegiatan<span class="required">*</span></label>
-											<div class="col-sm-6">
-												<select name="status_kegiatan" class="form-control" required>
-													<option value="Selesai" <?php if($listKegiatan->status_kegiatan == "Selesai"){
-														echo "selected"; } ?>>Selesai</option>
-													<option value="Belum selesai" <?php if($listKegiatan->status_kegiatan == "Belum selesai"){
-														echo "selected"; } ?>>Belum selesai</option>
+											<label class="col-md-3 control-label">Warna<span class="required">*</span></label>
+											<div class="col-md-9">
+												<select name="color" class="form-control" readonly>
+													<option style="color:#40E0D0;" value="#40E0D0" 
+														<?php if($listKegiatan->color == "#40E0D0"){ echo "selected"; } ?>>&#9724; Turquoise</option>
+													<option style="color:#008000;" value="#008000"
+														<?php if($listKegiatan->color == "#008000"){ echo "selected"; } ?>>&#9724; Green</option>                       
+													<option style="color:#FFD700;" value="#FFD700"
+														<?php if($listKegiatan->color == "#FFD700"){ echo "selected"; } ?>>&#9724; Yellow</option>
+													<option style="color:#FF8C00;" value="#FF8C00"
+														<?php if($listKegiatan->color == "#FF8C00"){ echo "selected"; } ?>>&#9724; Orange</option>
+													<option style="color:#FF0000;" value="#FF0000"
+														<?php if($listKegiatan->color == "#FF0000"){ echo "selected"; } ?>>&#9724; Red</option>
+													<option style="color:#000;" value="#000"
+														<?php if($listKegiatan->color == "#000"){ echo "selected"; } ?>>&#9724; Black</option>
 												</select>
-												<label class="error" for="company"></label>
 											</div>
 										</div>
 										<div class="form-group">

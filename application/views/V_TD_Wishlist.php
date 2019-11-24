@@ -93,10 +93,18 @@
 												<option disabled value="" Selected>Pilih Barang</option>
 												<?php foreach($barang as $list){ ?>
 													<option value="<?php echo $list->id_barang; ?>">
-														<?php echo $listBarang->nama_barang; ?>
+														<?php echo $list->nama_barang ." / Stok: ".$list->jumlah_barang ." / Warna: ".$list->warna ." / "
+														.$list->ukuran ." ".$list->satuan ;?>
 													</option>
 												<?php }?>
 											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Jumlah Barang</label>
+										<div class="col-sm-6">
+											<input type="number" min="1" max="30" step="1" value="1" 
+											name="jumlah_barang" class="spinner-input form-control" title="Isi jumlah barang">
 										</div>
 									</div>
 								</div>

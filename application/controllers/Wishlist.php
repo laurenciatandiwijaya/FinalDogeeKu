@@ -24,6 +24,7 @@ class Wishlist extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_pelanggan = $this->input->post('id_pelanggan');
 		$id_barang = $this->input->post('id_barang');
 		$where = array(
@@ -37,13 +38,16 @@ class Wishlist extends CI_Controller {
 			redirect('Wishlist/tampilanTambahData');
 		}
 		else{
+			$jumlah_barang = $this->input->post('jumlah_barang');
 			date_default_timezone_set("Asia/Jakarta");
 			$waktu_add = date("Y-m-d H:i:s");
 
 			$data = array(
 				'id_pelanggan' => $id_pelanggan,
 				'id_barang' => $id_barang,
+				'jumlah_barang' => $jumlah_barang,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 
@@ -78,6 +82,7 @@ class Wishlist extends CI_Controller {
 
 	public function editData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_pelangganAsli = $this->input->post('id_pelangganAsli');
 		$id_pelangganUbah = $this->input->post('id_pelangganUbah');
 		$id_barangAsli = $this->input->post('id_barangAsli');
@@ -102,6 +107,7 @@ class Wishlist extends CI_Controller {
 		}
 
 		$id_wishlist = $this->input->post('id_wishlist');
+		$jumlah_barang = $this->input->post('jumlah_barang');
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_edit = date("Y-m-d H:i:s");
 
@@ -112,6 +118,8 @@ class Wishlist extends CI_Controller {
 		$data = array(
 			'id_pelanggan' => $id_pelanggan,
 			'id_barang' => $id_barang,
+			'jumlah_barang' => $jumlah_barang,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -121,6 +129,7 @@ class Wishlist extends CI_Controller {
 	
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_wishlist' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -128,6 +137,7 @@ class Wishlist extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_Wishlist->deleteRecord($where, 'wishlist', $data);

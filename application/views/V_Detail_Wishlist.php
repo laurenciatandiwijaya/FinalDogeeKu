@@ -84,12 +84,6 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label">ID Pelanggan</label>
-										<div class="col-sm-6">
-											<input type="text" name="id_pelanggan" value="<?php echo $list->id_pelanggan; ?>" class="form-control"readonly/>
-										</div>
-									</div>
-									<div class="form-group">
 										<label class="col-sm-3 control-label">Nama Pelanggan</label>
 										<div class="col-sm-6">
 											<?php
@@ -104,24 +98,24 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label">ID Barang</label>
-										<div class="col-sm-6">
-											<input type="text" name="id_barang" value="<?php echo $list->id_barang; ?>" class="form-control"readonly/>
-										</div>
-									</div>
-									<div class="form-group">
 										<label class="col-sm-3 control-label">Nama Barang</label>
 										<div class="col-sm-6">
 											<?php
 											foreach($barang as $listBarang){
 												if($listBarang->id_barang == $list->id_barang){ ?>
 													<input type="text" name="id_barang" 
-													value="<?php echo $listBarang->nama_barang ." / ". $listBarang->warna . " / ". $listBarang->ukuran; ?>" 
+													value="<?php echo $listBarang->nama_barang ." / Warna: ". $listBarang->warna . " / Ukuran: ". $listBarang->ukuran; ?>" 
 													class="form-control"readonly/>
 												<?php
 												}
 											}
 											?>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Jumlah Barang</label>
+										<div class="col-sm-6">
+											<input type="text" name="jumlah_barang" value="<?php echo $list->jumlah_barang; ?>" class="form-control" readonly/>
 										</div>
 									</div>
 									<div class="form-group">

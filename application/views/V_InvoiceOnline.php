@@ -5,7 +5,7 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>Transaksi Pembelian</title>
+		<title>Transaksi</title>
 		<meta name="keywords" content="HTML5 Admin Template" />
 		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
@@ -56,7 +56,7 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Transaksi Pembelian</span></li>
+								<li><span>Transaksi</span></li>
 								<li><span>Invoice Online .</span></li>
 							</ol>
 						</div>

@@ -5,7 +5,7 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>Schedule</title>
+		<title>DogeeKu</title>
 		<meta name="keywords" content="HTML5 Admin Template" />
 		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
@@ -47,7 +47,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Kegiatan Anjing</h2>
+						<h2>Home Kasir</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -56,65 +56,41 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Schedule</span></li>
-								<li><span>Kegiatan Anjing  .</span></li>
+								<li><span>Home .</span></li>
 							</ol>
 						</div>
 					</header>
 
 						<section class="panel" style="margin-top:-490px;">
 							<header class="panel-heading">
-								<div class="panel-actions">
-									<a  href="<?php echo base_url().'Kegiatan/tampilanTambahData' ?>">
-										<button type="Submit" class="mb-xs mt-xs mr-xs btn btn-primary">
-											Tambah Data Kegiatan Anjing
-										</button>
-									</a>
-								</div>
-						
-								<h2 class="panel-title">Data Kegiatan Anjing</h2>
+								<h2 class="panel-title">Data Barang</h2>
 							</header>
 							<div class="panel-body">
 								<table class="table table-bordered table-striped mb-none" id="datatable-default">
 									<thead>
 										<tr>
-											<th width="25%">Action</th>
-											<th width="10%">ID Kegiatan</th>
-											<th width="15%">Nama Anjing</th>
-											<th width="15%">Nama Pemilik</th>	
-											<th width="15%">Nama Kegiatan</th>
-											<th width="10%">Tanggal Mulai</th>
-											<th width="10%">Tanggal Selesai</th>
-											<th width="10%">Warna</th>
+											<th width="10%">Jumlah Barang</th>
+											<th width="10%">ID Barang</th>
+											<th width="15%">Nama Barang</th>	
+											<th width="15%">Nama Kategori Barang</th>
+											<th width="10%">Harga</th>
+											<th width="10%">Warna</th>	
+											<th width="10%">Ukuran</th>	
 										</tr>
 									</thead>
 									<tbody>
 										<?php
-											foreach($kegiatan as $list){
+											foreach($barang as $list){
 										?>
 
 										<tr>
-											<td>
-												<a href="<?php echo base_url().'Kegiatan/tampilanDetailData/'.$list->id_kegiatan;?> ">
-													<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-info">
-													<i class="fa fa-plus"></i>Detail</button>
-												</a>
-												<a href="<?php echo base_url().'Kegiatan/tampilanEditData/'.$list->id_kegiatan;?> ">
-													<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-warning">
-													<i class="fa fa-pencil"></i>Edit</button>
-												</a>
-												<a href="<?php echo base_url().'Kegiatan/deleteData/'.$list->id_kegiatan;?> ">
-													<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-danger">
-													<i class="fa fa-trash-o"></i>Delete</button>
-												</a>
-											</td>
-											<td><?php echo $list->id_kegiatan; ?></td>
-											<td><?php echo $list->nama_anjing; ?></td>
-											<td><?php echo $list->nama_lengkap; ?></td>
-											<td><?php echo $list->nama_kegiatan; ?></td>
-											<td><?php echo $list->start_date; ?></td>
-											<td><?php echo $list->end_date; ?></td>
-											<td><?php echo $list->color; ?></td>
+											<td><?php echo $list->jumlah_barang; ?></td>
+											<td><?php echo $list->id_barang; ?></td>
+											<td><?php echo $list->nama_barang; ?></td>
+											<td><?php echo $list->nama_kategori_barang; ?></td>
+											<td><?php echo $list->harga; ?></td>
+											<td><?php echo $list->warna; ?></td>
+											<td><?php echo $list->ukuran ." ".$list->satuan ; ?></td>
 										</tr>
 
 										<?php

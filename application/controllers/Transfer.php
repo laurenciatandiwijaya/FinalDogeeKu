@@ -21,12 +21,14 @@ class Transfer extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_invoice = $this->input->post('id_invoice');
 		$nama_bank = $this->input->post('nama_bank');
 		$nomor_rekening = $this->input->post('nomor_rekening');
 		$nama_pengirim = $this->input->post('nama_pengirim');
 		$tanggal = $this->input->post('tanggal');
 		$total = $this->input->post('total');
+		$status_transfer = $this->input->post('status_transfer');
 
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_add = date("Y-m-d H:i:s");
@@ -38,8 +40,9 @@ class Transfer extends CI_Controller {
 			'nama_pengirim' => $nama_pengirim,
 			'tanggal' => $tanggal,
 			'total' => $total,
-			'status_transfer' => "Menunggu",
+			'status_transfer' => $status_transfer,
 			'status_delete' => "Aktif",
+			'user_add' =>$id_pengguna,
 			'waktu_add' => $waktu_add
 		);
 
@@ -72,6 +75,7 @@ class Transfer extends CI_Controller {
 
 	public function editData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_transfer = $this->input->post('id_transfer');
 		$id_invoice = $this->input->post('id_invoice');
 		$nama_bank = $this->input->post('nama_bank');
@@ -96,6 +100,7 @@ class Transfer extends CI_Controller {
 			'tanggal' => $tanggal,
 			'total' => $total,
 			'status_transfer' => $status_transfer,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -105,6 +110,7 @@ class Transfer extends CI_Controller {
 	
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_transfer' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -112,6 +118,7 @@ class Transfer extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_Transfer->deleteRecord($where, 'transfer', $data);

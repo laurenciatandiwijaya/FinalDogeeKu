@@ -95,15 +95,28 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">Tanggal<span class="required">*</span></label>
+										<label class="col-md-3 control-label">Tanggal Mulai<span class="required">*</span></label>
 										<div class="col-md-9">
-											<input class="col-md-5" id="datepicker" name="tanggal" type="date" value="<?php date("Y-m-d"); ?>" required>
+											<input class="col-md-5" id="datepicker" name="tanggal_mulai" type="date" value="<?php date("Y-m-d"); ?>" required>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label">Jam<span class="required">*</span></label>
-										<div class="col-sm-9">
-											<input class="col-md-5" id="timepicker" name="jam" type="time" value="12:30" required>
+										<label class="col-md-3 control-label">Tanggal Selesai<span class="required">*</span></label>
+										<div class="col-md-9">
+											<input class="col-md-5" id="datepicker2" name="tanggal_selesai" type="date" value="<?php date("Y-m-d"); ?>" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Warna<span class="required">*</span></label>
+										<div class="col-md-9">
+											<select name="color" class="form-control">
+												<option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
+												<option style="color:#008000;" value="#008000">&#9724; Green</option>                       
+												<option style="color:#FFD700;" value="#FFD700">&#9724; Yellow</option>
+												<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
+												<option style="color:#FF0000;" value="#FF0000">&#9724; Red</option>
+												<option style="color:#000;" value="#000">&#9724; Black</option>
+											</select>
 										</div>
 									</div>
 								</div>

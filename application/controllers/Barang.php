@@ -22,6 +22,7 @@ class Barang extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_kategori_barang = $this->input->post('id_kategori_barang');
 		$nama_barang = $this->input->post('nama_barang');
 		$warna = $this->input->post('warna');
@@ -59,6 +60,7 @@ class Barang extends CI_Controller {
 				'satuan' => $satuan,
 				'keterangan' => $keterangan,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 	
@@ -91,6 +93,7 @@ class Barang extends CI_Controller {
 
 	public function editData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_kategori_barangAsli = $this->input->post('id_kategori_barangAsli');
 		$id_kategori_barangUbah = $this->input->post('id_kategori_barangUbah');
 		$nama_barangAsli = $this->input->post('nama_barangAsli');
@@ -149,6 +152,7 @@ class Barang extends CI_Controller {
 			'ukuran' => $ukuran,
 			'satuan' => $satuan,
 			'keterangan' => $keterangan,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -158,6 +162,7 @@ class Barang extends CI_Controller {
 
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_barang' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -165,6 +170,7 @@ class Barang extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_Barang->deleteRecord($where, 'barang', $data);

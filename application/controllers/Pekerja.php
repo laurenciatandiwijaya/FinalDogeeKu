@@ -25,6 +25,7 @@ class Pekerja extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$email = $this->input->post('email');
 		$where = array(
 			'email' => $email
@@ -59,6 +60,7 @@ class Pekerja extends CI_Controller {
 				'password' => $passwordEnkrip,
 				'id_tipe_pengguna' => $id_tipe_pengguna,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 
@@ -75,6 +77,7 @@ class Pekerja extends CI_Controller {
 				'alamat' => $alamat,
 				'tanggal_masuk' => $tanggal_masuk,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 
@@ -111,6 +114,7 @@ class Pekerja extends CI_Controller {
 
 	public function editData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$emailAsli = $this->input->post('emailAsli');
 		$emailUbah = $this->input->post('emailUbah');
 
@@ -157,6 +161,7 @@ class Pekerja extends CI_Controller {
 			'email' => $email,
 			'password' => $password,
 			'id_tipe_pengguna' => $id_tipe_pengguna,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 		$this->M_Pengguna->editRecord($wherePengguna,'pengguna',$dataPengguna);
@@ -166,6 +171,7 @@ class Pekerja extends CI_Controller {
 			'id_jabatan' => $id_jabatan,
 			'alamat' => $alamat,
 			'tanggal_masuk' => $tanggal_masuk,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -175,6 +181,7 @@ class Pekerja extends CI_Controller {
 
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$wherePekerja = array('id_pekerja' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -182,6 +189,7 @@ class Pekerja extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_edit' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_Pekerja->deleteRecord($wherePekerja, 'pekerja', $data);

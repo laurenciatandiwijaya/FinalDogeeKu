@@ -5,8 +5,8 @@ class M_Kegiatan extends CI_Model {
 
 	function ambilData()
 	{
-		return $this->db->query('select a.id_kegiatan, a.id_anjing, a.nama_kegiatan, a.tanggal, a.jam, 
-		a.status_kegiatan, b.nama_anjing, d.nama_lengkap 
+		return $this->db->query('select a.id_kegiatan, a.id_anjing, a.nama_kegiatan, a.start_date, 
+		a.end_date, a.color, b.nama_anjing, d.nama_lengkap 
 		FROM kegiatan a JOIN anjing b ON a.id_anjing = b.id_anjing 
 		JOIN pelanggan c ON b.id_pelanggan = c.id_pelanggan 
 		JOIN pengguna d ON c.id_pengguna = d.id_pengguna');

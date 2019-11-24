@@ -28,6 +28,7 @@ class ReportPenitipan extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_anjing = $this->input->post('id_anjing');
 		$tanggal = $this->input->post('tanggal');
 		$jam = $this->input->post('jam');
@@ -70,6 +71,7 @@ class ReportPenitipan extends CI_Controller {
 						'id_report_penitipan' => $id_report_penitipan,
 						'id_detail_layanan' => $id_detail_layanan[$i],
 						'status_delete' => "Aktif",
+						'user_add' => $id_pengguna,
 						'waktu_add' => $waktu_add
 					);	
 					$this->M_ReportPenitipan->tambahRecord('detail_layanan_report_penitipan',$dataDetailLayanan);
@@ -92,6 +94,7 @@ class ReportPenitipan extends CI_Controller {
 				'keterangan' => $keterangan,
 				'status_report' => $status_report,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 			$this->M_ReportPenitipan->tambahRecord('report_penitipan',$dataReport);
@@ -100,6 +103,7 @@ class ReportPenitipan extends CI_Controller {
 				'id_anjing' => $id_anjing,
 				'id_report_penitipan' => $id_report_penitipan,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 			$this->M_ReportPenitipan->tambahRecord('pelanggan_penitipan',$dataPelangganPenitipan);
@@ -119,6 +123,7 @@ class ReportPenitipan extends CI_Controller {
 				'total' => $harga_total,
 				'status_invoice' => "Belum Lunas",
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 			$this->M_InvoiceOnline->tambahRecord('invoice',$dataInvoice);
@@ -127,6 +132,7 @@ class ReportPenitipan extends CI_Controller {
 				'id_invoice' => $id_invoice,
 				'id_report' => $id_report_penitipan,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 			$this->M_ReportPenitipan->tambahRecord('detail_invoice_layanan',$dataDetailInvoiceLayanan);
@@ -151,7 +157,9 @@ class ReportPenitipan extends CI_Controller {
 	}
 
 	public function editData()
-	{	$id_anjingAsli = $this->input->post('id_anjingAsli');
+	{	
+		$id_pengguna = $this->session->userdata("id_pengguna");
+		$id_anjingAsli = $this->input->post('id_anjingAsli');
 		$id_anjingUbah = $this->input->post('id_anjingUbah');
 		$tanggalAsli = $this->input->post('tanggalAsli');
 		$tanggalUbah = $this->input->post('tanggalUbah');
@@ -197,12 +205,14 @@ class ReportPenitipan extends CI_Controller {
 			'jam' => $jam,
 			'keterangan' => $keterangan,
 			'status_report' => $status_report,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 		$this->M_ReportPenitipan->editRecord($where,'report_penitipan',$dataReport);
 
 		$dataPelangganPenitipan = array(
 			'id_anjing' => $id_anjing,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 		$this->M_ReportPenitipan->editRecord($where,'pelanggan_penitipan',$dataPelangganPenitipan);
@@ -212,6 +222,7 @@ class ReportPenitipan extends CI_Controller {
 	
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_report_penitipan' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -219,6 +230,7 @@ class ReportPenitipan extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_ReportPenitipan->deleteRecord($where, 'report_penitipan', $data);

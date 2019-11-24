@@ -20,6 +20,7 @@ class Jabatan extends CI_Controller {
 
 	public function tambahData()
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_jabatan = $this->input->post('nama_jabatan');
 		$where = array(
 			'nama_jabatan' => $nama_jabatan
@@ -39,6 +40,7 @@ class Jabatan extends CI_Controller {
 				'nama_jabatan' => $nama_jabatan,
 				'gaji' => $gaji,
 				'status_delete' => "Aktif",
+				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
 	
@@ -69,6 +71,7 @@ class Jabatan extends CI_Controller {
 
 	public function editData()
 	{	
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_jabatanAsli = $this->input->post('nama_jabatanAsli');
 		$nama_jabatanUbah = $this->input->post('nama_jabatanUbah');
 
@@ -97,6 +100,7 @@ class Jabatan extends CI_Controller {
 		$data = array(
 			'nama_jabatan' => $nama_jabatan,
 			'gaji ' => $gaji,
+			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
 
@@ -106,6 +110,7 @@ class Jabatan extends CI_Controller {
 	
 	public function deleteData($id)
 	{
+		$id_pengguna = $this->session->userdata("id_pengguna");
 		$where = array('id_jabatan' => $id);
 
 		date_default_timezone_set("Asia/Jakarta");
@@ -113,6 +118,7 @@ class Jabatan extends CI_Controller {
 
 		$data = array(
 			'status_delete' => "Tidak Aktif",
+			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
 		$this->M_Jabatan->deleteRecord($where, 'jabatan', $data);

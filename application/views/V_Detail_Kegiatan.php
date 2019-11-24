@@ -105,21 +105,21 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-sm-3 control-label">Tanggal</label>
+											<label class="col-sm-3 control-label">Tanggal Mulai</label>
 											<div class="col-sm-6">
-												<input type="text" name="tanggal" value="<?php echo $listKegiatan->tanggal; ?>" class="form-control"readonly/>
+												<input type="text" name="tanggal_mulai" value="<?php echo $listKegiatan->start_date; ?>" class="form-control"readonly/>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-sm-3 control-label">Jam</label>
+											<label class="col-sm-3 control-label">Tanggal Selesai</label>
 											<div class="col-sm-6">
-												<input type="text" name="jam" value="<?php echo $listKegiatan->jam; ?>" class="form-control"readonly/>
+												<input type="text" name="tangal_selesai" value="<?php echo $listKegiatan->end_date; ?>" class="form-control"readonly/>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-sm-3 control-label">Status Kegiatan</label>
+											<label class="col-sm-3 control-label">Warna</label>
 											<div class="col-sm-6">
-												<input type="text" name="status_kegiatan" value="<?php echo $listKegiatan->status_kegiatan; ?>" class="form-control"readonly/>
+												<input type="text" name="warna" value="<?php echo $listKegiatan->color; ?>" class="form-control"readonly/>
 											</div>
 										</div>
 										<div class="form-group">
