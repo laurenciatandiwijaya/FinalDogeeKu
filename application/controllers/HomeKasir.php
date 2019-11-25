@@ -6,6 +6,7 @@ class HomeKasir extends CI_Controller {
 		parent:: __construct();
 		$this->load->model('M_Barang');
 		$this->load->model('M_InvoiceToko');
+		$this->load->model('M_InvoiceOnline');
 		$this->load->model('M_Transfer');
 	} 
 
@@ -103,26 +104,65 @@ class HomeKasir extends CI_Controller {
 	public function editDataTransfer(){
 		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_transfer = $this->input->post('id_transfer');
-		$tanggal = $this->input->post('tanggal');
-		$total = $this->input->post('total');
+		$id_invoice = $this->input->post('id_invoice');
 		$status_transfer = $this->input->post('status_transfer');
 
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_edit = date("Y-m-d H:i:s");
 
-		$where = array(
-			'id_transfer' => $id_transfer
-		);
+		$where = array('id_transfer' => $id_transfer);
 
 		$data = array(
-			'tanggal' => $tanggal,
-			'total' => $total,
 			'status_transfer' => $status_transfer,
 			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
-
 		$this->M_Transfer->editRecord($where,'transfer',$data);
+
+		$whereInvoice = array('id_invoice' => $id_invoice);
+
+		if($status_transfer == "Berhasil"){
+			$dataInvoice = array(
+				'status_invoice' => "Lunas",
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_edit
+			);
+			$invoiceBarang_Arr['dataBarang'] = $this->M_Barang->tampilanEditrecord('detail_invoice_barang', $whereInvoice)->result();
+			foreach($invoiceBarang_Arr['dataBarang'] as $list){
+				$id_barang = $list->id_barang;
+				$jumlah_barang = $list->jumlah_barang;
+
+				$whereBarang = array(
+					'id_barang' => $id_barang,
+					'user_edit' => $id_pengguna,
+					'waktu_edit' => $waktu_edit
+				);
+				$barang_Arr = $this->M_Barang->tampilanEditrecord('barang', $whereBarang)->row_array();
+				$stok_barang = $barang_Arr['jumlah_barang'];
+
+				$sisa_barang = intval($stok_barang) - intval($jumlah_barang);
+
+				$dataUpdateBarang = array('jumlah_barang' => $sisa_barang);
+				$this->M_Barang->editRecord($whereBarang,'barang',$dataUpdateBarang);
+			}
+		} 
+		else if($status_transfer == "Batal"){
+			$dataInvoice = array(
+				'status_invoice' => "Batal",
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_edit
+			);
+		}
+		$this->M_InvoiceOnline->editRecord($whereInvoice,'invoice',$data);
 		redirect('HomeKasir/tampilanTransfer');
+	}
+
+	public function tampilanPengiriman(){
+		$data['invoice']=$this->M_InvoiceOnline->ambilDataLunas()->result();
+		$this->load->view('VK_KonfirmasiPengiriman',$data);
+	}
+
+	public function tampilanEditPengiriman($id_invoice){
+		
 	}
 }

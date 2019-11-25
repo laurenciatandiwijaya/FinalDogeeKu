@@ -48,7 +48,7 @@ class M_ReportPenitipan extends CI_Model {
 	}
 
 	function ambilDataSatuReport($id_report_penitipan){
-		return $this->db->query("select a.id_report_penitipan, a.id_pekerja, a.tanggal, a.jam, a.keterangan,
+		return $this->db->query("select a.id_report_penitipan as id_report, a.id_pekerja, a.tanggal, a.jam, a.keterangan,
 		a.status_report, a.user_add, a.waktu_add, a.user_edit, a.waktu_edit, a.user_delete, a.waktu_delete, 
 		a.status_delete, c.nama_lengkap as nama_pekerja, e.id_anjing, e.nama_anjing, g.nama_lengkap as nama_pelanggan
 		FROM report_penitipan a JOIN pekerja b ON a.id_pekerja = b.id_pekerja
@@ -57,7 +57,9 @@ class M_ReportPenitipan extends CI_Model {
 		JOIN anjing e ON d.id_anjing = e.id_anjing 
 		JOIN pelanggan f ON e.id_pelanggan = f.id_pelanggan 
 		JOIN pengguna g ON f.id_pengguna = g.id_pengguna 
-		WHERE a.id_report_penitipan = '$id_report_penitipan'");
+		JOIN detail_invoice_layanan g ON a.id_report_penitipan = g.id_report
+		JOIN invoice h ON g.id_invoice = h.id_invoice
+		WHERE a.id_report_penitipan = '$id_report_penitipan' AND h.status_invoice = 'Lunas'");
 	}
 
 	function ambilDetailLayananSatuReport($id_report_penitipan){

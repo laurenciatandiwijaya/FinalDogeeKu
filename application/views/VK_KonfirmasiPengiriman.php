@@ -5,7 +5,7 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>Verifikasi Transfer</title>
+		<title>Konfirmasi Pengiriman</title>
 		<meta name="keywords" content="HTML5 Admin Template" />
 		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
@@ -56,52 +56,48 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Verifikasi Transfer .</span></li>
+								<li><span>Konfirmasi Pengiriman .</span></li>
 							</ol>
 						</div>
 					</header>
 
 						<section class="panel" style="margin-top:-490px;">
 							<header class="panel-heading">
-								<h2 class="panel-title">Data Transfer</h2>
+								<h2 class="panel-title">Data Invoice Online</h2>
 							</header>
 							<div class="panel-body">
 								<table class="table table-bordered table-striped mb-none" id="datatable-default">
 									<thead>
 										<tr>
-											<th width="15%">Action</th>
-											<th width="10%">Status Transfer</th>
-											<th width="10%">Waktu Pemesanan</th>
-											<th width="10%">ID Transfer</th>
-											<th width="10%">ID Invoice</th>
-											<th width="15%">Nama Pelanggan</th>
-											<th width="10%">Nama Bank</th>
-											<th width="10%">Nomor Rekening</th>
-											<th width="10%">Nama Pengirim</th>
+											<th width="25%">Action</th>
+											<th width="10%">ID Invoice</th>	
+											<th width="10%">Nama Pelanggan</th>
+											<th width="10%">Tanggal</th>
+											<th width="10%">Jam</th>
+											<th width="20%">Alamat</th>
 											<th width="10%">Total</th>
+											<th width="10%">Status Invoice</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
-											foreach($transfer as $list){
+											foreach($invoice as $list){
 										?>
 
 										<tr>
 											<td>
-												<a href="<?php echo base_url().'HomeKasir/tampilanEditTransfer/'.$list->id_transfer;?> ">
+												<a href="<?php echo base_url().'HomeKasir/tampilanEditPengiriman/'.$list->id_invoice;?> ">
 													<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-warning">
 													<i class="fa fa-pencil"></i>Edit</button>
 												</a>
 											</td>
-											<td><?php echo $list->status_transfer; ?></td>
-											<td><?php echo $list->waktu_add; ?></td>
-											<td><?php echo $list->id_transfer; ?></td>
 											<td><?php echo $list->id_invoice; ?></td>
 											<td><?php echo $list->nama_lengkap; ?></td>
-											<td><?php echo $list->nama_bank; ?></td>
-											<td><?php echo $list->nomor_rekening; ?></td>
-											<td><?php echo $list->nama_pengirim; ?></td>
+											<td><?php echo $list->tanggal; ?></td>
+											<td><?php echo $list->jam; ?></td>
+											<td><?php echo $list->alamat; ?></td>
 											<td><?php echo $list->total; ?></td>
+											<td><?php echo $list->status_invoice; ?></td>
 										</tr>
 										<?php
 										}

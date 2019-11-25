@@ -184,6 +184,12 @@
 							<span>Verifikasi Transfer</span>
 						</a>
 					</li>
+					<li>
+						<a href="<?php echo base_url().'HomeKasir/tampilanPengiriman' ?>">
+							<i class="fa fa-home" aria-hidden="true"></i>
+							<span>Konfirmasi Pengiriman</span>
+						</a>
+					</li>
 				</ul>
 			<?php
 				}

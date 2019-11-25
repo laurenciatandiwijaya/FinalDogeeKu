@@ -86,43 +86,20 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label">ID Invoice / Pelanggan<span class="required">*</span></label>
 										<div class="col-md-6">
-											<select readonly name="id_invoice" data-plugin-selectTwo class="form-control populate">
-												<?php foreach($invoicePelanggan as $list){ ?>
-													<option value="<?php echo $list->id_invoice; ?>" 
-													<?php if($list->id_invoice == $listTransfer->id_invoice){
-														echo "selected";
-													} ?>>
-														<?php echo $list->id_invoice ." / ". $list->nama_lengkap;?>
-													</option>
-												<?php }?>
-											</select>
+											<?php foreach($invoicePelanggan as $list){ 
+												if($listTransfer->id_invoice == $list->id_invoice){?>
+												<input type="text" name="id_invoice" value="<?php echo $listTransfer->id_invoice; ?>" 
+												class="form-control" readonly/>
+											<?php
+												}
+										 	}?>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-md-3 control-label">Nama Bank<span class="required">*</span></label>
 										<div class="col-md-6">
-											<select readonly name="nama_bank" data-plugin-selectTwo class="form-control populate">
-												<option <?php if($listTransfer->nama_bank == "BCA"){
-														echo "selected";
-													} ?> value="BCA">BCA
-												</option>
-												<option <?php if($listTransfer->nama_bank == "Mandiri"){
-														echo "selected";
-													} ?> value="Mandiri">Mandiri
-												</option>
-												<option <?php if($listTransfer->nama_bank == "BNI"){
-														echo "selected";
-													} ?> value="BNI">BNI
-												</option>
-												<option <?php if($listTransfer->nama_bank == "Danamon"){
-														echo "selected";
-													} ?> value="Danamon">Danamon
-												</option>
-												<option <?php if($listTransfer->nama_bank == "BRI"){
-														echo "selected";
-													} ?> value="BRI">BRI
-												</option>
-											</select>
+											<input type="text" name="nama_bank" value="<?php echo $listTransfer->nama_bank; ?>" 
+											class="form-control" readonly/>
 										</div>
 									</div>
 									<div class="form-group">
@@ -141,29 +118,22 @@
 									</div>
 									<div class="form-group">
 										<label class="col-md-3 control-label">Tanggal<span class="required">*</span></label>
-										<div class="col-md-9">
-											<input required class="col-md-7" id="datepicker" name="tanggal" type="date" 
-											value="<?php echo $listTransfer->tanggal; ?>">
+										<div class="col-md-6">
+											<input type="text" name="tanggal" value="<?php echo $listTransfer->tanggal; ?>" 
+											class="form-control" readonly/>	
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Total Transfer<span class="required">*</span></label>
 										<div class="col-sm-6">
-											<div class="input-group mb-md">
-												<span class="input-group-addon">Rp</span>
-												<input required type="text" name="total" value="<?php echo $listTransfer->total; ?>" 
-												class="form-control"/>
-											</div>
+											<input type="text" name="total" value="<?php echo $listTransfer->total; ?>" 
+											class="form-control" readonly/>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-md-3 control-label">Status Transfer<span class="required">*</span></label>
 										<div class="col-md-6">
-											<select required name="status_delete" data-plugin-selectTwo class="form-control populate">
-												<option <?php if($listTransfer->status_transfer == "Menunggu"){
-														echo "selected";
-													} ?> value="Menunggu">Menunggu
-												</option>
+											<select required name="status_transfer" data-plugin-selectTwo class="form-control populate">
 												<option <?php if($listTransfer->status_transfer == "Berhasil"){
 														echo "selected";
 													} ?> value="Berhasil">Berhasil

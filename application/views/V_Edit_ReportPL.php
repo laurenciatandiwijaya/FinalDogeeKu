@@ -156,10 +156,8 @@
 														." / ".$listObat1->ukuran ." ".$listObat1->satuan; ?>" 
 														class="form-control"readonly/>
 													</div>
-													<label class="col-sm-1 control-label">Jumlah</label>
-													<div class="col-sm-2">
-														<input type="text" name="jumlah_barang" value="<?php echo $listObat1->jumlah_barang; ?>" readonly>
-													</div>
+													<label class="control-label">Jumlah : <?php echo $listObat1->jumlah_barang; ?></label>
+													
 												</div>
 												<?php
 												$i++;

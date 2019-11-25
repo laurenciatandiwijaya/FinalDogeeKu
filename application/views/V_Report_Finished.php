@@ -90,7 +90,7 @@
 
 										<tr>
 											<td>
-												<a href="<?php echo base_url().'HomePekerjaLayanan/tampilanEditReport'.$list->id_report;?> ">
+												<a href="<?php echo base_url().'HomePekerjaLayanan/tampilanEditReport/'.$list->id_report;?> ">
 													<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-warning">
 													<i class="fa fa-pencil"></i>Edit</button>
 												</a>

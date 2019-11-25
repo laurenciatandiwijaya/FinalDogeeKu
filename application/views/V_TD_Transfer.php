@@ -131,7 +131,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-2 control-label">Status Transfer<span class="required">*</span></label>
+										<label class="col-sm-3 control-label">Status Transfer<span class="required">*</span></label>
 										<div class="col-sm-6">
 											<select required name="status_transfer" class="form-control">
 												<option disabled value="" Selected>Pilih Status Transfer</option>

@@ -111,7 +111,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label">Alamat</label>
+										<label class="col-sm-2 control-label">Alamat</label>
 										<div class="col-sm-6">
 											<input type="text" name="alamat" class="form-control" required/>
 										</div>
