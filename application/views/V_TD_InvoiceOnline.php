@@ -111,6 +111,12 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-sm-3 control-label">Alamat</label>
+										<div class="col-sm-6">
+											<input type="text" name="alamat" class="form-control" required/>
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-2 control-label">Status Invoice<span class="required">*</span></label>
 										<div class="col-sm-6">
 											<select required name="status_invoice" class="form-control">

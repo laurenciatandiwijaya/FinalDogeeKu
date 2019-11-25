@@ -122,6 +122,12 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-sm-3 control-label">Alamat</label>
+										<div class="col-sm-6">
+											<input type="text" name="alamat" class="form-control" value="<?php echo $list->alamat; ?>" required/>
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label">Total Harga<span class="required">*</span></label>
 										<div class="col-sm-6">
 											<div class="input-group mb-md">
