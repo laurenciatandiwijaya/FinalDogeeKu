@@ -92,22 +92,22 @@
                                 <p>Deskripsi Layanan:<?php echo $list->deskripsi_layanan?></p>
                                 <p>Harga Layanan:<?php echo $list->harga?></p>
                                 <button  type="button" class="cobadeh" value="<?php echo $list->id_detail_layanan;?>">+/-</button>
-                                <input type="text" id="cek<?php echo $list->id_detail_layanan;?>" value="1">
+                                <input type="hidden" id="cek<?php echo $list->id_detail_layanan;?>" value="1">
                             </div>  
                             <form method="POST">
-                                <input type="text" id="layanan<?php echo $list->id_detail_layanan;?>" name="layanan<?php echo $list->id_detail_layanan;?>">
+                                <input type="hidden" id="layanan<?php echo $list->id_detail_layanan;?>" name="layanan<?php echo $list->id_detail_layanan;?>">
                         <?php 
                         $counter++;
                         } ?>        
                         <button type="submit"  onclick="javascript:form.action='<?php echo base_url().'PReservasi/coba_reservasiSalon2'?>'">submit</button>
                         <div>
-                            <input type="text" name="id_pekerja" value="<?php echo $id_pekerja;?>">
-                            <input type="text" name="nama_pekerja" value="<?php echo $nama_lengkap;?>">
-                            <input type="text" name="id_anjing" value="<?php echo $id_anjing;?>">
-                            <input type="text" name="nama_anjing" value="<?php echo $nama_anjing;?>">
-                            <input type="text" name="tanggal" value="<?php echo $tanggal;?>">
-                            <input type="text" name="jam" value="<?php echo $jam;?>">
-                            <input type="text" name="keterangan" value="<?php echo $keterangan;?>">
+                            <input type="hidden" name="id_pekerja" value="<?php echo $id_pekerja;?>">
+                            <input type="hidden" name="nama_pekerja" value="<?php echo $nama_lengkap;?>">
+                            <input type="hidden" name="id_anjing" value="<?php echo $id_anjing;?>">
+                            <input type="hidden" name="nama_anjing" value="<?php echo $nama_anjing;?>">
+                            <input type="hidden" name="tanggal" value="<?php echo $tanggal;?>">
+                            <input type="hidden" name="jam" value="<?php echo $jam;?>">
+                            <input type="hidden" name="keterangan" value="<?php echo $keterangan;?>">
                         </div>
                     </form>
             </div>

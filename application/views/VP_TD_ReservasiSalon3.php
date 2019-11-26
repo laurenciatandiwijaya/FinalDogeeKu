@@ -126,7 +126,7 @@
                                 <td><input type="text" name="nama_detail_layanan<?php echo $no;?>"
                                  value="<?php echo $list1->nama_detail_layanan;?>"></td>
                                  <td>
-                                 <input type="text" name="id_detail_layanan<?php echo $no;?>"
+                                 <input type="hidden" name="id_detail_layanan<?php echo $no;?>"
                                  value="<?php echo $list1->id_detail_layanan;?>">
                                  </td>
                             </tr>
@@ -136,7 +136,7 @@
                         <?php } ?>
                     <?php } ?>
                     <tr>
-                        <input type="text" name="jumlah_layanan" value="<?php echo $jmlh_lynan;?>">
+                        <input type="hidden" name="jumlah_layanan" value="<?php echo $jmlh_lynan;?>">
                         <td><button type="submit">Konfirmasi</button></td>
                     </tr>
                 </table>
