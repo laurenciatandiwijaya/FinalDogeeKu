@@ -19,6 +19,7 @@ class HomeAdmin extends CI_Controller {
 		$tanggalHariIni = date("Y-m-d");
 		$tanggalTanpaStrip = date("Ymd", strtotime($tanggalHariIni));
 		$data['pembelianBarang'] = $this->M_HomeAdmin->ambilJumlahPembelianBarang($tanggalTanpaStrip)->result();
+		$data['reservasi'] = $this->M_HomeAdmin->ambilDataJumlahReservasi($tanggalTanpaStrip)->num_rows();
 		$this->load->view('V_Home_Admin', $data);
 	}
 

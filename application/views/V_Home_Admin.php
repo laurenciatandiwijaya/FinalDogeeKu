@@ -139,14 +139,13 @@
 														<h4 class="title">Total Reservasi Layanan Hari Ini</h4>
 														<div class="info">
 															<strong class="amount"><?php 
-															foreach($pembelianBarang as $list){
-																if($list->jumlah == ""){
-																	echo "0";
-																}
-																else{
-																	echo $list->jumlah;
-																}
-															}?></strong>
+															if($reservasi == ""){
+																echo "0";
+															}
+															else{
+																echo $reservasi;
+															}
+															?></strong>
 														</div>
 													</div>
 													<div class="summary-footer">
