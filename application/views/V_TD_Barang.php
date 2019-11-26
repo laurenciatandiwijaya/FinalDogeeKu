@@ -151,10 +151,16 @@
 										</div>
 									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">Pilih Foto</label>
+									<div class="col-md-3">
+										<input type="file" name="fileToUpload" id="fileToUpload">
+									</div>
+								</div>
 								<footer class="panel-footer">
 									<div class="row">
 										<div class="col-sm-9 col-sm-offset-3">
-											<button class="btn btn-primary">Submit</button>
+											<input class="btn btn-primary" type="submit" name="submit">
 											<button type="reset" class="btn btn-default">Reset</button>
 										</div>
 									</div>

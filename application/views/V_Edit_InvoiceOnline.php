@@ -161,6 +161,8 @@
 												value="Sedang Dikirim">Sedang Dikirim</option>
 												<option <?php if($list->status_pengiriman == "Terkirim"){ echo "selected"; } ?> 
 												value="Terkirim">Terkirim</option>
+												<option <?php if($list->status_pengiriman == "Batal"){ echo "selected"; } ?> 
+												value="Batal">Batal</option>
 											</select>
 											<label class="error" for="company"></label>
 										</div>

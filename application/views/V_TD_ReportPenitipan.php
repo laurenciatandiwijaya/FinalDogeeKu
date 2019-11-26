@@ -66,7 +66,7 @@
 					</header>
 
 					<div style="margin-top:-490px;">
-						<form id="summary-form" action="<?php echo base_url(). 'ReportSalon/tambahData'?>" method="POST" class="form-horizontal">
+						<form id="summary-form" action="<?php echo base_url(). 'ReportPenitipan/tambahData'?>" method="POST" class="form-horizontal">
 							<section class="panel">
 								<header class="panel-heading">
 									<h2 class="panel-title">Tambah Data Report Penitipan</h2>
@@ -113,7 +113,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Jam<span class="required">*</span></label>
 										<div class="col-sm-9">
-											<input class="col-md-5" id="timepicker" name="jam" type="time" value="12:30" required>
+											<input class="col-md-5" id="timepicker" name="jam" type="time" value="08:00" required>
 										</div>
 									</div>
 									<div class="form-group">

@@ -26,6 +26,32 @@ class Barang extends CI_Controller {
 
 	public function tambahData()
 	{
+		$target_dir = "../FinalDogeeKu/assets/img/barang/";
+		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$uploadOk = 1;
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		// Check if image file is a actual image or fake image
+		if(isset($_POST["submit"])) {
+			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+			if($check !== false) {
+				$uploadOk = 1;
+			} else {
+				$uploadOk = 0;
+			}
+		}
+		// Check if file already exists
+		if (file_exists($target_file)) {
+			$uploadOk = 0;
+		}
+		// Check file size
+		if ($_FILES["fileToUpload"]["size"] > 900000) {
+			$uploadOk = 0;
+		}
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
+			$uploadOk = 0;
+		}
+
 		$id_pengguna = $this->session->userdata("id_pengguna");
 		$id_kategori_barang = $this->input->post('id_kategori_barang');
 		$nama_barang = $this->input->post('nama_barang');
@@ -54,6 +80,8 @@ class Barang extends CI_Controller {
 			date_default_timezone_set("Asia/Jakarta");
 			$waktu_add = date("Y-m-d H:i:s");
 
+			move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+
 			$data = array(
 				'id_kategori_barang' => $id_kategori_barang,
 				'nama_barang' => $nama_barang,
@@ -63,6 +91,7 @@ class Barang extends CI_Controller {
 				'ukuran' => $ukuran,
 				'satuan' => $satuan,
 				'keterangan' => $keterangan,
+				'foto' => "/assets/img/barang/".basename($_FILES["fileToUpload"]["name"]),
 				'status_delete' => "Aktif",
 				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
