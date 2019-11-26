@@ -5,6 +5,12 @@ class Transfer extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
 		$this->load->model('M_Transfer');	
+		$this->load->model('M_InvoiceOnline');	
+		$this->load->model('M_Barang');	
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()
@@ -28,7 +34,6 @@ class Transfer extends CI_Controller {
 		$nama_pengirim = $this->input->post('nama_pengirim');
 		$tanggal = $this->input->post('tanggal');
 		$total = $this->input->post('total');
-		$status_transfer = $this->input->post('status_transfer');
 
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_add = date("Y-m-d H:i:s");
@@ -40,7 +45,7 @@ class Transfer extends CI_Controller {
 			'nama_pengirim' => $nama_pengirim,
 			'tanggal' => $tanggal,
 			'total' => $total,
-			'status_transfer' => $status_transfer,
+			'status_transfer' => "Menunggu",
 			'status_delete' => "Aktif",
 			'user_add' =>$id_pengguna,
 			'waktu_add' => $waktu_add
@@ -105,6 +110,47 @@ class Transfer extends CI_Controller {
 		);
 
 		$this->M_Transfer->editRecord($where,'transfer',$data);
+
+		$whereInvoice = array('id_invoice' => $id_invoice);
+
+		if($status_transfer == "Berhasil"){
+			$dataInvoice = array(
+				'status_invoice' => "Lunas",
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_edit
+			);
+			$this->M_InvoiceOnline->editRecord($whereInvoice,'invoice',$dataInvoice);
+
+			$invoiceBarang_Arr['dataBarang'] = $this->M_Barang->tampilanEditrecord('detail_invoice_barang', $whereInvoice)->result();
+			foreach($invoiceBarang_Arr['dataBarang'] as $list){ //buat update stok barang yg kebeli
+				$id_barang = $list->id_barang;
+				$jumlah_barang = $list->jumlah_barang;
+
+				$whereBarang = array(
+					'id_barang' => $id_barang,
+				);
+				$barang_Arr = $this->M_Barang->tampilanEditrecord('barang', $whereBarang)->row_array();
+				$stok_barang = $barang_Arr['jumlah_barang'];
+
+				$sisa_barang = intval($stok_barang) - intval($jumlah_barang);
+
+				$dataUpdateBarang = array(
+					'jumlah_barang' => $sisa_barang,
+					'user_edit' => $id_pengguna,
+					'waktu_edit' => $waktu_edit
+				);
+				$this->M_Barang->editRecord($whereBarang,'barang',$dataUpdateBarang);
+			}
+		} 
+		else if($status_transfer == "Batal"){
+			$dataInvoice = array(
+				'status_invoice' => "Batal",
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_edit
+			);
+		}
+		$this->M_InvoiceOnline->editRecord($whereInvoice,'invoice',$dataInvoice);
+
 		redirect('Transfer');
 	}
 	

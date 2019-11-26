@@ -7,6 +7,10 @@ class Keranjang extends CI_Controller {
 		$this->load->model('M_Keranjang');
 		$this->load->model('M_Pelanggan');
 		$this->load->model('M_Barang');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()

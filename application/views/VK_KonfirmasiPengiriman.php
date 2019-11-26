@@ -47,7 +47,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Verifikasi Transfer</h2>
+						<h2>Konfirmasi Pengiriman</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -70,13 +70,13 @@
 									<thead>
 										<tr>
 											<th width="25%">Action</th>
-											<th width="10%">ID Invoice</th>	
+											<th width="10%">ID Invoice</th>
+											<th width="10%">Status Pengiriman</th>
 											<th width="10%">Nama Pelanggan</th>
 											<th width="10%">Tanggal</th>
 											<th width="10%">Jam</th>
 											<th width="20%">Alamat</th>
 											<th width="10%">Total</th>
-											<th width="10%">Status Invoice</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -92,12 +92,12 @@
 												</a>
 											</td>
 											<td><?php echo $list->id_invoice; ?></td>
+											<td><?php echo $list->status_pengiriman; ?></td>
 											<td><?php echo $list->nama_lengkap; ?></td>
 											<td><?php echo $list->tanggal; ?></td>
 											<td><?php echo $list->jam; ?></td>
 											<td><?php echo $list->alamat; ?></td>
 											<td><?php echo $list->total; ?></td>
-											<td><?php echo $list->status_invoice; ?></td>
 										</tr>
 										<?php
 										}

@@ -6,6 +6,10 @@ class Barang extends CI_Controller {
 		parent:: __construct();
 		$this->load->model('M_Barang');
 		$this->load->model('M_KategoriBarang');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()

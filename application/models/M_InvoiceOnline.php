@@ -15,10 +15,11 @@ class M_InvoiceOnline extends CI_Model {
 	function ambilDataLunas()
 	{
 		return $this->db->query("select a.id_invoice, a.id_pelanggan, a.tanggal, a.jam,
-		a.alamat, a.total, a.status_invoice, c.nama_lengkap 
+		a.alamat, a.total, a.status_pengiriman, c.nama_lengkap 
 		FROM invoice a JOIN pelanggan b ON a.id_pelanggan = b.id_pelanggan 
 		JOIN pengguna c ON b.id_pengguna = c.id_pengguna 
-		WHERE NOT a.id_pelanggan = '0' AND a.status_invoice = 'Lunas'");
+		WHERE id_invoice LIKE '%OL%' AND a.status_invoice = 'Lunas' 
+		AND NOT a.status_pengiriman = 'Terkirim'");
 	}
 
 	function cekUrutan($tanggalKode){

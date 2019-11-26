@@ -9,6 +9,10 @@ class ReportSalon extends CI_Controller {
 		$this->load->model('M_ReportPenitipan');
 		$this->load->model('M_Pekerja');
 		$this->load->model('M_InvoiceOnline');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()

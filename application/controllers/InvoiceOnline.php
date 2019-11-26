@@ -8,6 +8,10 @@ class InvoiceOnline extends CI_Controller {
 		$this->load->model('M_InvoiceOnline');
 		$this->load->model('M_Pelanggan');
 		$this->load->model('M_Barang');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()
@@ -32,7 +36,6 @@ class InvoiceOnline extends CI_Controller {
 		$jam = $this->input->post('jam');
 		$metode_pembayaran = $this->input->post('metode_pembayaran');
 		$alamat = $this->input->post('alamat');
-		$status_invoice = $this->input->post('status_invoice');
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_add = date("Y-m-d H:i:s");
 
@@ -83,6 +86,7 @@ class InvoiceOnline extends CI_Controller {
 			'alamat' => $alamat,
 			'total' => $harga_total,
 			'status_invoice' => "Belum Lunas",
+			'status_pengiriman' => "Belum Dikirim",
 			'status_delete' => "Aktif",
 			'user_add' => $id_pengguna,
 			'waktu_add' => $waktu_add
@@ -125,6 +129,7 @@ class InvoiceOnline extends CI_Controller {
 		$metode_pembayaran = $this->input->post('metode_pembayaran');
 		$alamat = $this->input->post('alamat');
 		$status_invoice = $this->input->post('status_invoice');
+		$status_pengiriman = $this->input->post('status_pengiriman');
 
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_edit = date("Y-m-d H:i:s");
@@ -140,6 +145,7 @@ class InvoiceOnline extends CI_Controller {
 			'metode_pembayaran' => $metode_pembayaran,
 			'alamat' => $alamat,
 			'status_invoice' => $status_invoice,
+			'status_pengiriman' => $status_pengiriman,
 			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
@@ -147,10 +153,46 @@ class InvoiceOnline extends CI_Controller {
 		$this->M_InvoiceOnline->editRecord($where,'invoice',$data);
 
 		if($metode_pembayaran == "Transfer" && $status_invoice == "Batal"){
+			$dataStatusDelete = array(
+				'status_delete' => "Tidak Aktif",
+				'user_delete' => $id_pengguna,
+				'waktu_delete' => $waktu_delete
+			);
+			$this->M_InvoiceOnline->editRecord($where,'detail_invoice_barang',$dataStatusDelete);
+
 			$dataTransfer = array(
-				'status_transfer' => "Batal"
+				'status_transfer' => "Batal",
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_delete
 			);
 			$this->M_Transfer->editRecord($where,'transfer',$dataTransfer);
+		}
+		else if($status_invoice == "Lunas"){
+			$dataTransfer = array(
+				'status_transfer' => "Berhasil"
+			);
+			$this->M_Transfer->editRecord($where,'transfer',$dataTransfer);
+
+			$invoiceBarang_Arr['dataBarang'] = $this->M_Barang->tampilanEditrecord('detail_invoice_barang', $where)->result();
+			foreach($invoiceBarang_Arr['dataBarang'] as $list){
+				$id_barang = $list->id_barang;
+				$jumlah_barang = $list->jumlah_barang;
+
+				$whereBarang = array(
+					'id_barang' => $id_barang,
+				);
+				$barang_Arr = $this->M_Barang->tampilanEditrecord('barang', $whereBarang)->row_array();
+				$stok_barang = $barang_Arr['jumlah_barang'];
+
+				$sisa_barang = intval($stok_barang) - intval($jumlah_barang);
+
+				$dataUpdateBarang = array(
+					'jumlah_barang' => $sisa_barang,
+					'user_edit' => $id_pengguna,
+					'waktu_edit' => $waktu_edit
+				);
+				$this->M_Barang->editRecord($whereBarang,'barang',$dataUpdateBarang);
+			}
 		}
 		redirect('InvoiceOnline');
 	}

@@ -132,7 +132,13 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Status Invoice</label>
 										<div class="col-sm-6">
-											<input type="text" name="status_delete" value="<?php echo $list->status_invoice; ?>" class="form-control"readonly/>
+											<input type="text" name="status_invoice" value="<?php echo $list->status_invoice; ?>" class="form-control"readonly/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Status Pengiriman</label>
+										<div class="col-sm-6">
+											<input type="text" name="status_pengiriman" value="<?php echo $list->status_pengiriman; ?>" class="form-control"readonly/>
 										</div>
 									</div><br>
 										<?php foreach($detailInvoiceBarang as $listBarang){ $i=1; ?>

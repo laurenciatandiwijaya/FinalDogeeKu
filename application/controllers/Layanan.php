@@ -5,6 +5,10 @@ class Layanan extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
 		$this->load->model(array('M_Layanan','M_Jabatan'));
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()

@@ -152,6 +152,20 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-sm-3 control-label">Status Pengiriman<span class="required">*</span></label>
+										<div class="col-sm-6">
+											<select name="status_pengiriman" class="form-control" required>
+												<option <?php if($list->status_pengiriman == "Belum Dikirim"){ echo "selected"; } ?> 
+												value="Belum Dikirim">Belum Dikirim</option>
+												<option <?php if($list->status_pengiriman == "Sedang Dikirim"){ echo "selected"; } ?> 
+												value="Sedang Dikirim">Sedang Dikirim</option>
+												<option <?php if($list->status_pengiriman == "Terkirim"){ echo "selected"; } ?> 
+												value="Terkirim">Terkirim</option>
+											</select>
+											<label class="error" for="company"></label>
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label">Status Delete</label>
 										<div class="col-sm-6">
 											<input type="text" name="status_delete" value="<?php echo $list->status_delete; ?>" class="form-control"readonly/>
