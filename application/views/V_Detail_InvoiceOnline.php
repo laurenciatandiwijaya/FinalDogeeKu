@@ -118,6 +118,12 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-sm-3 control-label">Alamat</label>
+										<div class="col-sm-6">
+											<input type="text" name="alamat" class="form-control" value="<?php echo $list->alamat; ?>" readonly/>
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label">Total</label>
 										<div class="col-sm-6">
 											<input type="text" name="total" value="<?php echo $list->total; ?>" class="form-control"readonly/>
@@ -126,9 +132,28 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Status Invoice</label>
 										<div class="col-sm-6">
-											<input type="text" name="status_delete" value="<?php echo $list->status_invoice; ?>" class="form-control"readonly/>
+											<input type="text" name="status_invoice" value="<?php echo $list->status_invoice; ?>" class="form-control"readonly/>
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Status Pengiriman</label>
+										<div class="col-sm-6">
+											<input type="text" name="status_pengiriman" value="<?php echo $list->status_pengiriman; ?>" class="form-control"readonly/>
+										</div>
+									</div><br>
+										<?php foreach($detailInvoiceBarang as $listBarang){ $i=1; ?>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Barang <?php echo $i; ?></label>
+											<div class="col-sm-6">
+												<input type="text" name="id_barang" value="<?php echo $listBarang->nama_barang ." / Warna: ".$listBarang->warna 
+												." / ".$listBarang->ukuran ." ".$listBarang->satuan; ?>" 
+												class="form-control"readonly/>
+											</div>
+											<label class="col-sm-2 control-label">Jumlah: <?php echo $listBarang->jumlah_barang; ?></label>
+										</div>
+										<?php
+										$i++;
+										} ?><br>
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Status Delete</label>
 										<div class="col-sm-6">

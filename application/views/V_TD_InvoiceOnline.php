@@ -111,14 +111,9 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-2 control-label">Status Invoice<span class="required">*</span></label>
+										<label class="col-sm-2 control-label">Alamat</label>
 										<div class="col-sm-6">
-											<select required name="status_invoice" class="form-control">
-												<option disabled value="" Selected>Pilih Status Invoice</option>
-												<option value="Lunas">Lunas</option>
-												<option value="Belum Lunas">Belum Lunas</option>
-												<option value="Batal">Batal</option>
-											</select>
+											<input type="text" name="alamat" class="form-control" required/>
 										</div>
 									</div><br>
 									<div class="form-group">

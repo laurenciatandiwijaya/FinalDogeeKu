@@ -122,6 +122,12 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-sm-3 control-label">Alamat</label>
+										<div class="col-sm-6">
+											<input type="text" name="alamat" class="form-control" value="<?php echo $list->alamat; ?>" required/>
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label">Total Harga<span class="required">*</span></label>
 										<div class="col-sm-6">
 											<div class="input-group mb-md">
@@ -141,6 +147,20 @@
 												value="Belum Lunas">Belum Lunas</option>
 												<option <?php if($list->status_invoice == "Batal"){ echo "selected"; } ?> 
 												value="Batal">Batal</option>
+											</select>
+											<label class="error" for="company"></label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Status Pengiriman<span class="required">*</span></label>
+										<div class="col-sm-6">
+											<select name="status_pengiriman" class="form-control" required>
+												<option <?php if($list->status_pengiriman == "Belum Dikirim"){ echo "selected"; } ?> 
+												value="Belum Dikirim">Belum Dikirim</option>
+												<option <?php if($list->status_pengiriman == "Sedang Dikirim"){ echo "selected"; } ?> 
+												value="Sedang Dikirim">Sedang Dikirim</option>
+												<option <?php if($list->status_pengiriman == "Terkirim"){ echo "selected"; } ?> 
+												value="Terkirim">Terkirim</option>
 											</select>
 											<label class="error" for="company"></label>
 										</div>

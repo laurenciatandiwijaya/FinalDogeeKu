@@ -49,7 +49,7 @@ class M_ReportKlinik extends CI_Model {
 	}
 
 	function ambilDataSatuReport($id_report_klinik){
-		return $this->db->query("select a.id_report_klinik, a.id_pekerja, a.tanggal, a.jam, a.keterangan,
+		return $this->db->query("select a.id_report_klinik as id_report, a.id_pekerja, a.tanggal, a.jam, a.keterangan,
 		a.status_report, a.user_add, a.waktu_add, a.user_edit, a.waktu_edit, a.user_delete, a.waktu_delete, 
 		a.status_delete, c.nama_lengkap as nama_pekerja, e.id_anjing, e.nama_anjing, g.nama_lengkap as nama_pelanggan
 		FROM report_klinik a JOIN pekerja b ON a.id_pekerja = b.id_pekerja
@@ -69,7 +69,7 @@ class M_ReportKlinik extends CI_Model {
 	}
 
 	function ambilObatSatuReport($id_report_klinik){
-		return $this->db->query("select a.id_barang, a.jumlah_barang, b.nama_barang, b.ukuran 
+		return $this->db->query("select a.id_barang, a.jumlah_barang, b.nama_barang, b.ukuran, b.satuan 
 		FROM detail_obat_report_klinik a JOIN barang b ON a.id_barang = b.id_barang 
 		WHERE a.id_report_klinik = '$id_report_klinik'");
 	}
@@ -99,11 +99,14 @@ class M_ReportKlinik extends CI_Model {
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
 		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
 		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
-		WHERE a.tanggal = '$tanggal' AND b.id_pekerja = '$id_pekerja' ");
+		JOIN detail_invoice_layanan g ON a.id_report_klinik = g.id_report
+		JOIN invoice h ON g.id_invoice = h.id_invoice
+		WHERE a.tanggal = '$tanggal' AND b.id_pekerja = '$id_pekerja' AND h.status_invoice = 'Lunas' ");
 	}
 
 	function ambilReportUpcoming($id_pekerja){
-		return $this->db->query("select a.id_report_klinik as id_report, a.tanggal, a.jam, a.status_report, c.id_anjing, d.nama_anjing, f.nama_lengkap 
+		return $this->db->query("select a.id_report_klinik as id_report, a.tanggal, a.jam, 
+		a.status_report, c.id_anjing, d.nama_anjing, f.nama_lengkap 
 		FROM report_klinik a JOIN pekerja b ON a.id_pekerja = b.id_pekerja
 		JOIN pelanggan_klinik c ON a.id_report_klinik = c.id_report_klinik
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
@@ -114,7 +117,8 @@ class M_ReportKlinik extends CI_Model {
 	}
 
 	function ambilReportFinished($id_pekerja){
-		return $this->db->query("select a.id_report_klinik as id_report, a.tanggal, a.jam, a.status_report, c.id_anjing, d.nama_anjing, f.nama_lengkap 
+		return $this->db->query("select a.id_report_klinik as id_report, a.tanggal, a.jam, a.keterangan,
+		a.status_report, c.id_anjing, d.nama_anjing, f.nama_lengkap 
 		FROM report_klinik a JOIN pekerja b ON a.id_pekerja = b.id_pekerja
 		JOIN pelanggan_klinik c ON a.id_report_klinik = c.id_report_klinik
 		JOIN anjing d ON c.id_anjing = d.id_anjing 

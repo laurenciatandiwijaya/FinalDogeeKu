@@ -160,11 +160,7 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label">Status Transfer<span class="required">*</span></label>
 										<div class="col-md-6">
-											<select required name="status_delete" data-plugin-selectTwo class="form-control populate">
-												<option <?php if($listTransfer->status_transfer == "Menunggu"){
-														echo "selected";
-													} ?> value="Menunggu">Menunggu
-												</option>
+											<select required name="status_transfer" data-plugin-selectTwo class="form-control populate">
 												<option <?php if($listTransfer->status_transfer == "Berhasil"){
 														echo "selected";
 													} ?> value="Berhasil">Berhasil

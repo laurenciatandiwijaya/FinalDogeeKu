@@ -8,6 +8,10 @@ class InvoiceOnline extends CI_Controller {
 		$this->load->model('M_InvoiceOnline');
 		$this->load->model('M_Pelanggan');
 		$this->load->model('M_Barang');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()
@@ -31,7 +35,7 @@ class InvoiceOnline extends CI_Controller {
 		$tanggal = $this->input->post('tanggal');
 		$jam = $this->input->post('jam');
 		$metode_pembayaran = $this->input->post('metode_pembayaran');
-		$status_invoice = $this->input->post('status_invoice');
+		$alamat = $this->input->post('alamat');
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_add = date("Y-m-d H:i:s");
 
@@ -79,8 +83,10 @@ class InvoiceOnline extends CI_Controller {
 			'tanggal' => $tanggal,
 			'jam' => $jam,
 			'metode_pembayaran' => $metode_pembayaran,
+			'alamat' => $alamat,
 			'total' => $harga_total,
 			'status_invoice' => "Belum Lunas",
+			'status_pengiriman' => "Belum Dikirim",
 			'status_delete' => "Aktif",
 			'user_add' => $id_pengguna,
 			'waktu_add' => $waktu_add
@@ -121,7 +127,9 @@ class InvoiceOnline extends CI_Controller {
 		$tanggal = $this->input->post('tanggal');
 		$jam = $this->input->post('jam');
 		$metode_pembayaran = $this->input->post('metode_pembayaran');
+		$alamat = $this->input->post('alamat');
 		$status_invoice = $this->input->post('status_invoice');
+		$status_pengiriman = $this->input->post('status_pengiriman');
 
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_edit = date("Y-m-d H:i:s");
@@ -135,7 +143,9 @@ class InvoiceOnline extends CI_Controller {
 			'tanggal' => $tanggal,
 			'jam' => $jam,
 			'metode_pembayaran' => $metode_pembayaran,
+			'alamat' => $alamat,
 			'status_invoice' => $status_invoice,
+			'status_pengiriman' => $status_pengiriman,
 			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);
@@ -143,10 +153,46 @@ class InvoiceOnline extends CI_Controller {
 		$this->M_InvoiceOnline->editRecord($where,'invoice',$data);
 
 		if($metode_pembayaran == "Transfer" && $status_invoice == "Batal"){
+			$dataStatusDelete = array(
+				'status_delete' => "Tidak Aktif",
+				'user_delete' => $id_pengguna,
+				'waktu_delete' => $waktu_delete
+			);
+			$this->M_InvoiceOnline->editRecord($where,'detail_invoice_barang',$dataStatusDelete);
+
 			$dataTransfer = array(
-				'status_transfer' => "Batal"
+				'status_transfer' => "Batal",
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_delete
 			);
 			$this->M_Transfer->editRecord($where,'transfer',$dataTransfer);
+		}
+		else if($status_invoice == "Lunas"){
+			$dataTransfer = array(
+				'status_transfer' => "Berhasil"
+			);
+			$this->M_Transfer->editRecord($where,'transfer',$dataTransfer);
+
+			$invoiceBarang_Arr['dataBarang'] = $this->M_Barang->tampilanEditrecord('detail_invoice_barang', $where)->result();
+			foreach($invoiceBarang_Arr['dataBarang'] as $list){
+				$id_barang = $list->id_barang;
+				$jumlah_barang = $list->jumlah_barang;
+
+				$whereBarang = array(
+					'id_barang' => $id_barang,
+				);
+				$barang_Arr = $this->M_Barang->tampilanEditrecord('barang', $whereBarang)->row_array();
+				$stok_barang = $barang_Arr['jumlah_barang'];
+
+				$sisa_barang = intval($stok_barang) - intval($jumlah_barang);
+
+				$dataUpdateBarang = array(
+					'jumlah_barang' => $sisa_barang,
+					'user_edit' => $id_pengguna,
+					'waktu_edit' => $waktu_edit
+				);
+				$this->M_Barang->editRecord($whereBarang,'barang',$dataUpdateBarang);
+			}
 		}
 		redirect('InvoiceOnline');
 	}
@@ -164,71 +210,8 @@ class InvoiceOnline extends CI_Controller {
 			'user_delete' => $id_pengguna,
 			'waktu_delete' => $waktu_delete
 		);
-		$this->M_Invoice->deleteRecord($where, 'invoice', $data);
+		$this->M_InvoiceOnline->deleteRecord($where, 'invoice', $data);
 		$this->M_InvoiceOnline->deleteRecord($where, 'detail_invoice_barang', $data);
 		redirect('Invoice');
 	}
-
-	public function tampilanTambahBarangKasir(){
-		$data['barang']=$this->M_Barang->ambilData()->result();
-		$this->load->view('V_TD_InvoiceKasir', $data);
-	}
-
-	public function tambahBarangKasir(){
-		date_default_timezone_set("Asia/Jakarta");
-		$waktu_add = date("Y-m-d H:i:s");
-		$tanggalHariIni = date("Y-m-d");
-		$tanggalInvoice = date("Ymd", strtotime($tanggalHariIni));
-		$jumlahAwalInvoice = $this->M_Invoice->cekUrutan($tanggalInvoice);
-		$urutan = $jumlahAwalInvoice+1;
-		$id_invoice = $tanggalInvoice ."TK". $urutan;
-
-		$i = 0;
-		$id_barang[0] = 0;
-		$jumlah_barang[0] = 0;
-		$harga_total = 0;
-		$jumlah = $this->input->post('jumlah_barang');
-
-		foreach($this->input->post('id_barang') as $id_barangArr){
-			if($id_barangArr != ""){
-				$id_barang[$i] = $id_barangArr; 
-				$jumlah_barang[$i] = $jumlah[$i];
-
-				$dataDetailInvoice = array(
-					'id_invoice' => $id_invoice,
-					'id_barang' => $id_barang[$i],
-					'jumlah_barang' => $jumlah_barang[$i],
-					'status_delete' => "Aktif",
-					'user_add' => $id_pengguna,
-					'waktu_add' => $waktu_add
-				);	
-				$this->M_Invoice->tambahRecord('detail_invoice_barang',$dataDetailInvoice);
-
-				$where = array('id_barang' => $id_barang[$i]);
-				$harga_barangArr['data'] = $this->M_Barang->tampilanEditrecord('barang', $where)->result();
-				foreach($harga_barangArr['data'] as $list){
-					$harga_barangInt = intval($list->harga);
-					$harga_total = $harga_total + ($harga_barangInt * $jumlah_barang[$i]);
-				}
-				$i++;
-			}
-		}
-
-		$dataInvoice = array(
-			'id_invoice' => $id_invoice,
-			'id_pelanggan' => "0",
-			'tanggal' => $tanggalHariIni,
-			'jam' => $waktu_add,
-			'metode_pembayaran' => "Cash",
-			'total' => $harga_total,
-			'status_invoice' => "Lunas",
-			'status_delete' => "Aktif",
-			'user_add' => $id_pengguna,
-			'waktu_add' => $waktu_add
-		);
-
-		$this->M_Invoice->tambahRecord('invoice',$dataInvoice);
-		redirect('Invoice');
-	}
-
 }

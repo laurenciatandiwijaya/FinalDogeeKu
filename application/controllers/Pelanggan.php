@@ -7,6 +7,10 @@ class Pelanggan extends CI_Controller {
 		$this->load->model('M_Pelanggan');
 		$this->load->model('M_Pengguna');
 		$this->load->model('M_TipePengguna');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()

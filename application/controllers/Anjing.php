@@ -7,6 +7,10 @@ class Anjing extends CI_Controller {
 		$this->load->model('M_Anjing');
 		$this->load->model('M_Pelanggan');
 		$this->load->model('M_JenisAnjing');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()

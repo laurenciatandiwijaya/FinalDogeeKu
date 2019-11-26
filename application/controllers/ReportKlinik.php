@@ -9,6 +9,10 @@ class ReportKlinik extends CI_Controller {
 		$this->load->model('M_ReportPenitipan');
 		$this->load->model('M_Pekerja');
 		$this->load->model('M_InvoiceOnline');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()
@@ -91,6 +95,7 @@ class ReportKlinik extends CI_Controller {
 			$id_barang[0] = 0;
 			$jumlah_barang[0] = 0;
 			$jumlah = $this->input->post('jumlah_barang');
+
 			foreach($this->input->post('id_barang') as $id_barangArr){
 				if($id_barangArr != ""){
 					$id_barang[$i] = $id_barangArr; 
@@ -146,7 +151,7 @@ class ReportKlinik extends CI_Controller {
 				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add
 			);
-			$this->M_ReportKlinik->tambahRecord('pelanggan_klinik',$dataPelangganSalon);
+			$this->M_ReportKlinik->tambahRecord('pelanggan_klinik',$dataPelangganKlinik);
 
 			$id_pelanggan = 0;
 			$whereIdPelanggan = array('id_anjing' => $id_anjing);

@@ -84,6 +84,7 @@
 											<th width="10%">Tanggal</th>
 											<th width="10%">Jam</th>
 											<th width="15%">Metode Pembayaran</th>
+											<th width="15%">Alamat</th>
 											<th width="10%">Total</th>
 											<th width="10%">Status Invoice</th>
 										</tr>
@@ -112,6 +113,7 @@
 											<td><?php echo $list->tanggal; ?></td>
 											<td><?php echo $list->jam; ?></td>
 											<td><?php echo $list->metode_pembayaran; ?></td>
+											<td><?php echo $list->alamat; ?></td>
 											<td><?php echo $list->total; ?></td>
 											<td><?php echo $list->status_invoice; ?></td>
 										</tr>

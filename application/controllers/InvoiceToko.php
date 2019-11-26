@@ -8,6 +8,10 @@ class InvoiceToko extends CI_Controller {
 		$this->load->model('M_InvoiceToko');
 		$this->load->model('M_Pelanggan');
 		$this->load->model('M_Barang');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	}  
 	
 	public function index()
@@ -57,10 +61,19 @@ class InvoiceToko extends CI_Controller {
 				$this->M_InvoiceToko->tambahRecord('detail_invoice_barang',$dataDetailInvoice);
 
 				$where = array('id_barang' => $id_barang[$i]);
-				$harga_barangArr['data'] = $this->M_Barang->tampilanEditrecord('barang', $where)->result();
-				foreach($harga_barangArr['data'] as $list){
+				$barangArr['data'] = $this->M_Barang->tampilanEditrecord('barang', $where)->result();
+				foreach($barangArr['data'] as $list){//untuk cari harga total sama update stok barang
 					$harga_barangInt = intval($list->harga);
 					$harga_total = $harga_total + ($harga_barangInt * $jumlah_barang[$i]);
+
+					$stok_barangAwal = intval($list->jumlah_barang);
+					$sisa_barang = $stok_barangAwal - $jumlah_barang[$i];
+					$dataUpdateBarang = array(
+						'jumlah_barang' => $sisa_barang,
+						'user_edit' => $id_pengguna,
+						'waktu_edit' => $waktu_edit
+					);
+					$this->M_Barang->editRecord($where,'barang',$dataUpdateBarang);
 				}
 				$i++;
 			}
@@ -72,8 +85,10 @@ class InvoiceToko extends CI_Controller {
 			'tanggal' => $tanggalHariIni,
 			'jam' => $waktu_add,
 			'metode_pembayaran' => "Cash",
+			'alamat' => "-",
 			'total' => $harga_total,
 			'status_invoice' => "Lunas",
+			'status_pengiriman' => "-",
 			'status_delete' => "Aktif",
 			'user_add' => $id_pengguna,
 			'waktu_add' => $waktu_add
@@ -110,7 +125,6 @@ class InvoiceToko extends CI_Controller {
 		$id_invoice = $this->input->post('id_invoice');
 		$tanggal = $this->input->post('tanggal');
 		$jam = $this->input->post('jam');
-		$status_invoice = $this->input->post('status_invoice');
 
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu_edit = date("Y-m-d H:i:s");
@@ -122,7 +136,6 @@ class InvoiceToko extends CI_Controller {
 		$data = array(
 			'tanggal' => $tanggal,
 			'jam' => $jam,
-			'status_invoice' => $status_invoice,
 			'user_edit' => $id_pengguna,
 			'waktu_edit' => $waktu_edit
 		);

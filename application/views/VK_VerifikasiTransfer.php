@@ -79,7 +79,6 @@
 											<th width="10%">Nomor Rekening</th>
 											<th width="10%">Nama Pengirim</th>
 											<th width="10%">Total</th>
-											<th width="10%">Status Transfer</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -104,7 +103,6 @@
 											<td><?php echo $list->nama_pengirim; ?></td>
 											<td><?php echo $list->total; ?></td>
 										</tr>
-
 										<?php
 										}
 										?>
@@ -114,9 +112,7 @@
 						</section>
 					<!-- end: page -->
 				</section>
-			</div>
-
-			
+			</div>		
 		</section>
 
 		<!-- Vendor -->

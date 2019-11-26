@@ -174,14 +174,20 @@
 					</li>
 					<li>
 						<a href="<?php echo base_url().'HomeKasir/tampilanInvoiceToko' ?>">
-							<i class="fa fa-home" aria-hidden="true"></i>
+							<i class="fa fa-money" aria-hidden="true"></i>
 							<span>Invoice Toko</span>
 						</a>
 					</li>
 					<li>
 						<a href="<?php echo base_url().'HomeKasir/tampilanTransfer' ?>">
-							<i class="fa fa-home" aria-hidden="true"></i>
+							<i class="fa fa-exchange" aria-hidden="true"></i>
 							<span>Verifikasi Transfer</span>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo base_url().'HomeKasir/tampilanPengiriman' ?>">
+							<i class="fa fa-check-square-o" aria-hidden="true"></i>
+							<span>Konfirmasi Pengiriman</span>
 						</a>
 					</li>
 				</ul>
@@ -197,13 +203,13 @@
 					</li>
 					<li>
 						<a href="<?php echo base_url().'HomePekerjaLayanan/tampilanReportUpcoming' ?>">
-							<i class="fa fa-home" aria-hidden="true"></i>
+							<i class="fa fa-sign-in" aria-hidden="true"></i>
 							<span>Upcoming Report</span>
 						</a>
 					</li>
 					<li>
 						<a href="<?php echo base_url().'HomePekerjaLayanan/tampilanReportFinished' ?>">
-							<i class="fa fa-home" aria-hidden="true"></i>
+							<i class="fa fa-check-square-o"  aria-hidden="true"></i>
 							<span>Finished Report</span>
 						</a>
 					</li>

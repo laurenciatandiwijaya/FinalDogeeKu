@@ -5,7 +5,7 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>Verifikasi Transfer</title>
+		<title>Konfirmasi Pengiriman</title>
 		<meta name="keywords" content="HTML5 Admin Template" />
 		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
@@ -25,8 +25,6 @@
 		<!-- Specific Page Vendor CSS -->
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/select2/select2.css" />
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
-		<link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
-		<link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/stylesheets/theme.css" />
@@ -49,7 +47,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Verifikasi Transfer</h2>
+						<h2>Edit Data Pengiriman</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -58,98 +56,110 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Verifikasi Transfer</span></li>
-								<li><span>Edit Data Transfer</span></li>
+								<li><span>Konfirmasi Pengiriman</span></li>
+								<li><span>Edit Data Pengiriman</span></li>
 							</ol>
 						</div>
 					</header>
 
 					<div style="margin-top:-490px;">
-						<form id="summary-form" action="<?php echo base_url(). 'HomeKasir/editDataTransfer'?>" method="POST" class="form-horizontal">
+						<form id="summary-form" action="<?php echo base_url(). 'HomeKasir/editPengiriman'?>" method="POST" class="form-horizontal">
 							<section class="panel">
 								<header class="panel-heading">
-									<h2 class="panel-title">Edit Data Transfer</h2>
+									<h2 class="panel-title">Edit Data Pengiriman</h2>
 								</header>
 								<div class="panel-body">
 									<div class="validation-message">
 										<ul></ul>
 									</div>
-									<?php foreach($transfer as $listTransfer){?>
+								<?php
+								foreach($invoice as $list){
 
+								?>
 									<div class="form-group">
-										<label class="col-sm-3 control-label">ID Transfer</label>
+										<label class="col-sm-3 control-label">ID Invoice</label>
 										<div class="col-sm-6">
-											<input type="text" name="id_transfer" value="<?php echo $listTransfer->id_transfer; ?>" 
+											<input type="text" name="id_invoice" value="<?php echo $list->id_invoice; ?>" 
 											class="form-control" readonly/>
 										</div>
 									</div>
+									<?php 
+									foreach($pelanggan as $listPelanggan){ 
+										if($list->id_pelanggan == $listPelanggan->id_pelanggan){ ?>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">Nama Pelanggan</label>
+												<div class="col-sm-6">
+													<input type="text" name="id_pelanggan" 
+													value="<?php echo $listPelanggan->nama_lengkap; ?>" 
+													class="form-control"readonly/>
+												</div>
+											</div>
+										<?php
+										}
+									}
+									?>
 									<div class="form-group">
-										<label class="col-md-3 control-label">ID Invoice / Pelanggan<span class="required">*</span></label>
-										<div class="col-md-6">
-											<?php foreach($invoicePelanggan as $list){ 
-												if($listTransfer->id_invoice == $list->id_invoice){?>
-												<input type="text" name="id_invoice" value="<?php echo $listTransfer->id_invoice; ?>" 
-												class="form-control" readonly/>
-											<?php
-												}
-										 	}?>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">Nama Bank<span class="required">*</span></label>
-										<div class="col-md-6">
-											<input type="text" name="nama_bank" value="<?php echo $listTransfer->nama_bank; ?>" 
-											class="form-control" readonly/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Nomor Rekening<span class="required">*</span></label>
+										<label class="col-sm-3 control-label">Tanggal</label>
 										<div class="col-sm-6">
-											<input type="text" name="nomor_rekening" value="<?php echo $listTransfer->nomor_rekening; ?>" 
-											class="form-control" readonly/>										
+											<input type="text" name="tanggal" value="<?php echo $list->tanggal; ?>" class="form-control"readonly/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label">Nama Pengirim<span class="required">*</span></label>
+										<label class="col-sm-3 control-label">Jam</label>
 										<div class="col-sm-6">
-											<input type="text" name="nama_pengirim" value="<?php echo $listTransfer->nama_pengirim; ?>" 
-											class="form-control" readonly/>										
+											<input type="text" name="jam" value="<?php echo $list->jam; ?>" class="form-control"readonly/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">Tanggal<span class="required">*</span></label>
-										<div class="col-md-6">
-											<input type="text" name="tanggal" value="<?php echo $listTransfer->tanggal; ?>" 
-											class="form-control" readonly/>	
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Total Transfer<span class="required">*</span></label>
+										<label class="col-sm-3 control-label">Metode Pembayaran</label>
 										<div class="col-sm-6">
-											<input type="text" name="total" value="<?php echo $listTransfer->total; ?>" 
-											class="form-control" readonly/>
+											<input type="text" name="metode_pembayaran" value="<?php echo $list->metode_pembayaran; ?>" class="form-control"readonly/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">Status Transfer<span class="required">*</span></label>
-										<div class="col-md-6">
-											<select required name="status_transfer" data-plugin-selectTwo class="form-control populate">
-												<option <?php if($listTransfer->status_transfer == "Berhasil"){
-														echo "selected";
-													} ?> value="Berhasil">Berhasil
-												</option>
-												<option <?php if($listTransfer->status_transfer == "Batal"){
-														echo "selected";
-													} ?> value="Batal">Batal
-												</option>
+										<label class="col-sm-3 control-label">Alamat</label>
+										<div class="col-sm-6">
+											<input type="text" name="alamat" class="form-control" value="<?php echo $list->alamat; ?>" readonly/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total</label>
+										<div class="col-sm-6">
+											<input type="text" name="total" value="<?php echo $list->total; ?>" class="form-control"readonly/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Status Invoice</label>
+										<div class="col-sm-6">
+											<input type="text" name="status_delete" value="<?php echo $list->status_invoice; ?>" class="form-control"readonly/>
+										</div>
+									</div><br>
+									<?php foreach($detailInvoiceBarang as $listBarang){ $i=1; ?>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Barang <?php echo $i; ?></label>
+											<div class="col-sm-6">
+												<input type="text" name="id_barang" value="<?php echo $listBarang->nama_barang ." / Warna: ".$listBarang->warna 
+												." / ".$listBarang->ukuran ." ".$listBarang->satuan; ?>" 
+												class="form-control"readonly/>
+											</div>
+											<label class="col-sm-2 control-label">Jumlah: <?php echo $listBarang->jumlah_barang; ?></label>
+										</div>
+										<?php
+										$i++;
+									} ?><br>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Status Pengiriman</label>
+										<div class="col-sm-6">
+											<select required name="status_pengiriman" data-plugin-selectTwo class="form-control populate">
+												<option value="Sedang Dikirim">Sedang Dikirim</option>
+												<option value="Terkirim">Terkirim</option>
 											</select>
 										</div>
 									</div>
-									<?php
-									}
-									?>
+								<?php
+								}
+								?>
 								</div>
-								
 								<footer class="panel-footer">
 									<div class="row">
 										<div class="col-sm-9 col-sm-offset-3">
@@ -161,6 +171,7 @@
 							</section>
 						</form>
 					</div>
+
 				</section>
 			</div>
 
@@ -180,8 +191,6 @@
 		<script src="<?php echo base_url()?>assets/vendor/select2/select2.js"></script>
 		<script src="<?php echo base_url()?>assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 		<script src="<?php echo base_url()?>assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
-		<!-- Untuk Jam -->
-		<script src="<?php echo base_url()?>assets/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo base_url()?>assets/javascripts/theme.js"></script>
@@ -195,6 +204,5 @@
 
 		<!-- Examples -->
 		<script src="<?php echo base_url()?>assets/javascripts/tables/examples.datatables.ajax.js"></script>
-		<script src="<?php echo base_url()?>assets/javascripts/forms/examples.advanced.form.js"></script>
 	</body>
 </html>

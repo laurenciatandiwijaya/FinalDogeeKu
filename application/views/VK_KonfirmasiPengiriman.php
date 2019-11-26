@@ -5,7 +5,7 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>Transaksi</title>
+		<title>Konfirmasi Pengiriman</title>
 		<meta name="keywords" content="HTML5 Admin Template" />
 		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
@@ -47,7 +47,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Invoice Toko</h2>
+						<h2>Konfirmasi Pengiriman</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -56,86 +56,59 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Transaksi</span></li>
-								<li><span>Invoice Toko</span></li>
-								<li><span>Edit Data Invoice Toko .</span></li>
+								<li><span>Konfirmasi Pengiriman .</span></li>
 							</ol>
 						</div>
 					</header>
 
-					<div style="margin-top:-490px;">
-						<form id="summary-form" action="<?php echo base_url(). 'InvoiceToko/editData'?>" method="POST" class="form-horizontal">
-							<section class="panel">
-								<header class="panel-heading">
-									<h2 class="panel-title">Edit Data Invoice Toko</h2>
-								</header>
-								<div class="panel-body">
-									<div class="validation-message">
-									<ul></ul>
-								</div>
-								<?php
-									foreach($invoice as $list){
-								?>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">ID Invoice</label>
-										<div class="col-sm-6">
-											<input type="text" name="id_invoice" value="<?php echo $list->id_invoice; ?>" 
-											class="form-control" readonly/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">Tanggal<span class="required">*</span></label>
-										<div class="col-md-9">
-											<input class="col-md-7" id="datepicker" name="tanggal" type="date" 
-											value="<?php echo $list->tanggal; ?>" required>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">Jam<span class="required">*</span></label>
-										<div class="col-md-9">
-											<input class="col-md-7" id="timepicker" name="jam" type="time" 
-											value="<?php echo $list->jam; ?>" required>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">Metode Pembayaran</label>
-										<div class="col-md-6">
-											<input type="text" name="metode_pembayaran" value="<?php echo $list->metode_pembayaran; ?>" 
-											class="form-control" readonly/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Total Harga</label>
-										<div class="col-sm-6">
-											<div class="input-group mb-md">
-												<span class="input-group-addon">Rp</span>
-												<input type="text" name="total" class="form-control" value="<?php echo $list->total; ?>"
-												readonly/>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Status Delete</label>
-										<div class="col-sm-6">
-											<input type="text" name="status_delete" value="<?php echo $list->status_delete; ?>" class="form-control"readonly/>
-										</div>
-									</div>
-									<?php
-									}
-									?>
-								</div>
-								<footer class="panel-footer">
-									<div class="row">
-										<div class="col-sm-9 col-sm-offset-3">
-											<button class="btn btn-primary">Submit</button>
-										</div>
-									</div>
-								</footer>
-							</section>
-						</form>
-					</div>
+						<section class="panel" style="margin-top:-490px;">
+							<header class="panel-heading">
+								<h2 class="panel-title">Data Invoice Online</h2>
+							</header>
+							<div class="panel-body">
+								<table class="table table-bordered table-striped mb-none" id="datatable-default">
+									<thead>
+										<tr>
+											<th width="25%">Action</th>
+											<th width="10%">ID Invoice</th>
+											<th width="10%">Status Pengiriman</th>
+											<th width="10%">Nama Pelanggan</th>
+											<th width="10%">Tanggal</th>
+											<th width="10%">Jam</th>
+											<th width="20%">Alamat</th>
+											<th width="10%">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+											foreach($invoice as $list){
+										?>
+
+										<tr>
+											<td>
+												<a href="<?php echo base_url().'HomeKasir/tampilanEditPengiriman/'.$list->id_invoice;?> ">
+													<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-warning">
+													<i class="fa fa-pencil"></i>Edit</button>
+												</a>
+											</td>
+											<td><?php echo $list->id_invoice; ?></td>
+											<td><?php echo $list->status_pengiriman; ?></td>
+											<td><?php echo $list->nama_lengkap; ?></td>
+											<td><?php echo $list->tanggal; ?></td>
+											<td><?php echo $list->jam; ?></td>
+											<td><?php echo $list->alamat; ?></td>
+											<td><?php echo $list->total; ?></td>
+										</tr>
+										<?php
+										}
+										?>
+									</tbody>
+								</table>
+							</div>
+						</section>
+					<!-- end: page -->
 				</section>
-			</div>
+			</div>		
 		</section>
 
 		<!-- Vendor -->
@@ -151,7 +124,8 @@
 		<script src="<?php echo base_url()?>assets/vendor/select2/select2.js"></script>
 		<script src="<?php echo base_url()?>assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 		<script src="<?php echo base_url()?>assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
-		
+		<script src="<?php echo base_url()?>assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo base_url()?>assets/javascripts/theme.js"></script>
 		
@@ -164,5 +138,8 @@
 
 		<!-- Examples -->
 		<script src="<?php echo base_url()?>assets/javascripts/tables/examples.datatables.ajax.js"></script>
+		<script src="<?php echo base_url()?>assets/javascripts/tables/examples.datatables.default.js"></script>
+		<script src="<?php echo base_url()?>assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
+		<script src="<?php echo base_url()?>assets/javascripts/tables/examples.datatables.tabletools.js"></script>
 	</body>
 </html>

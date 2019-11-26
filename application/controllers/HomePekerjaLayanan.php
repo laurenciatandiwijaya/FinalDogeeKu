@@ -9,6 +9,10 @@ class HomePekerjaLayanan extends CI_Controller {
 		$this->load->model('M_ReportSalon');
 		$this->load->model('M_ReportPenitipan');
 		$this->load->model('M_InvoiceOnline');
+
+		if($this->session->userdata('status') != "login"){
+			redirect('Login/login');
+		}
 	} 
 
 	public function index()
@@ -106,6 +110,9 @@ class HomePekerjaLayanan extends CI_Controller {
 		$keterangan = $this->input->post('keterangan');
 		$status_report = $this->input->post('status_report');
 		
+		date_default_timezone_set("Asia/Jakarta");
+		$waktu_edit = date("Y-m-d H:i:s");
+		
 		if($id_tipe_pengguna == "4"){	
 			$jumlahObat = $this->M_ReportKlinik->ambilObatSatuReport($id_report)->num_rows();
 			if($jumlahObat < 1 ){
@@ -128,8 +135,8 @@ class HomePekerjaLayanan extends CI_Controller {
 							'id_barang' => $id_barang[$i],
 							'jumlah_barang' => $jumlah_barang[$i],
 							'status_delete' => "Aktif",
-							'user_add' => $id_pengguna,
-							'waktu_add' => $waktu_add
+							'user_edit' => $id_pengguna,
+							'waktu_edit' => $waktu_edit
 						);	
 						$this->M_ReportKlinik->tambahRecord('detail_obat_report_klinik',$dataDetailObat);
 						
@@ -138,8 +145,8 @@ class HomePekerjaLayanan extends CI_Controller {
 							'id_barang' => $id_barang[$i],
 							'jumlah_barang' => $jumlah_barang[$i],
 							'status_delete' => "Aktif",
-							'user_add' => $id_pengguna,
-							'waktu_add' => $waktu_add
+							'user_edit' => $id_pengguna,
+							'waktu_edit' => $waktu_edit
 						);	
 						$this->M_InvoiceOnline->tambahRecord('detail_invoice_barang',$dataDetailInvoice);
 
@@ -154,8 +161,6 @@ class HomePekerjaLayanan extends CI_Controller {
 				}
 				if($i > 0){
 					$whereInvoice = array('id_invoice' => $id_invoice);
-					date_default_timezone_set("Asia/Jakarta");
-					$waktu_edit = date("Y-m-d H:i:s");
 					$dataInvoice = array(
 						'total' => $total+$harga_total,
 						'user_edit' => $id_pengguna,
