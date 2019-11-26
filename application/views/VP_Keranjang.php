@@ -58,7 +58,7 @@
             }
 
             .modal{
-                font-size:50%;
+                
                 margin-top:13%;
                
             }
@@ -68,7 +68,7 @@
                 color: #FEFFE4;
             }
 
-            .modal-body, .modal-body2{
+            .modal-body, .modal-body2, .modal-body3{
                 background-color:#FEFFE4;
             }
 
@@ -128,6 +128,22 @@
                 font-size:300%;
                 
             }
+
+            .button_wishlist{
+                background-color:#F77754;
+                color: #5A3921;
+                border-radius:50px;
+                text-align:center;
+                padding: 3% 3% 3% 3%;
+                margin-top:2%;
+                font-weight:bold;
+            }
+
+            .button_wishlist:hover{
+                background-color:#5A3921;
+                color:#FEFFE4;
+                font-weight:bold;
+            }
         </style>
 
 </head>
@@ -169,6 +185,7 @@
                                         <td width="15%">
                                             <button class="button_edit"  data-jumlah-barang="<?php echo $list->jumlah_barang?>" data-id="<?php echo $list->id_keranjang;?>" data-toggle="modal" data-target="#myModal">Edit</button>
                                             <button class="button_delete"  data-nama="<?php echo $list->nama_barang;?>" data-jumlah-barang="<?php echo $list->jumlah_barang?>" data-id="<?php echo $list->id_keranjang;?>" data-toggle="modal" data-target="#myModal2">Delete</button>
+                                            <button class="button_wishlist"  data-nama="<?php echo $list->nama_barang;?>" data-jumlah-barang="<?php echo $list->jumlah_barang?>" data-id="<?php echo $list->id_keranjang;?>" data-toggle="modal" data-target="#myModal3"><i class="fas fa-heart"></i></button>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -186,8 +203,8 @@
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Edit Data</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div class="modal-body">
                                 <p>Jumlah Barang</p>
@@ -210,8 +227,8 @@
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Delete Data</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div class="modal-body2">
                                 <form method="POST" action="<?php echo base_url().'Pkeranjang/delete_keranjang';?>">
@@ -228,6 +245,31 @@
                             </div>
                         </div>
                         <!-- end modal -->
+                                       <!-- Modal -->
+                <div class="modal fade" id="myModal3" role="dialog">
+                <div class="modal-dialog">
+                
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h4 class="modal-title">Pindahkan ke Wishlist</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body3">
+                    <form method="POST" action="<?php echo base_url().'PKeranjang/pindah_wishlist';?>">
+                            <input type="hidden" name="id" id="id" value=""/>
+                            <h3>Apakah anda yakin akan memindahkan barang ini ke wishlist?</h3>
+                            <p>Nama Barang <input type="text" readonly name="nama" id="nama" value=""/></p>
+                            <p>Jumlah Barang <input type="text" readonly name="jmlh_brg" id="jmlh_brg" value=""/></p>
+                            
+                    <button class="button_modal">Pindahkan</button>
+                     </form>
+                    </div>
+                </div>
+                
+                </div>
+            </div>
+            <!-- end modal -->
                 </div>
     </div>
 </div>
@@ -245,5 +287,36 @@
 <script src="<?php echo base_url()?>assets/plugins/progressbar/progressbar.min.js"></script>
 <script src="<?php echo base_url()?>assets/plugins/parallax-js-master/parallax.min.js"></script>
 <script src="<?php echo base_url()?>assets/js/custom.js"></script>
+
+<script>
+                $(document).on("click", ".button_edit", function () {
+                    var id = $(this).data('id');
+                    var jumlah_barang = $(this).data('jumlah-barang');
+
+                    $(".modal-body #id").val( id );
+                    $(".modal-body #jmlh_brg").val( jumlah_barang );
+                });
+
+                $(document).on("click", ".button_delete", function () {
+                    var id = $(this).data('id');
+                    var jumlah_barang = $(this).data('jumlah-barang');
+                    var nama = $(this).data('nama');
+
+                    $(".modal-body2 #id").val(id);
+                    $(".modal-body2 #jmlh_brg").val(jumlah_barang);
+                    $(".modal-body2 #nama").val(nama);
+                });
+
+                $(document).on("click", ".button_wishlist", function () {
+                    var id = $(this).data('id');
+                    var jumlah_barang = $(this).data('jumlah-barang');
+                    var nama = $(this).data('nama');
+
+                    $(".modal-body3 #id").val(id);
+                    $(".modal-body3 #jmlh_brg").val(jumlah_barang);
+                    $(".modal-body3 #nama").val(nama);
+                });
+
+        </script>
 </body>
 </html>

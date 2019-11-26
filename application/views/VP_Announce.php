@@ -14,6 +14,8 @@
 13 = infoin invoice berhasil, trf
 14 = infoin invoice berhasil, cash
 15 = Transfer berhasil
+16 = tambah barang ke wishlist, tapi jumlah melebihi jumlah yang tersedia.
+17 = sudah terdaftar pda layanan yang lain.
 
 -->
 
@@ -141,7 +143,7 @@
 
     <body>
         <?php 
-            if($status_announce == 13 || $status_announce == 14){
+            if($status_announce == 13 || $status_announce == 14|| $status_announce == 16 ){
         ?>
             <a href="<?php echo base_url()?>PHome"><button class="logout_back">HOME</button></a>
         <?php } else if( $status_announce!=11 || $status_announce!=12) {?>
@@ -352,7 +354,46 @@
                 </form>
             </div>
 
+            <?php
+                }  else if($status_announce == '16'){
+            ?>
+
+            <div class="logout_kanan">
+                <form method="POST" action="<?php echo base_url().'PShop/detail_barang_check'?>">
+                    <h1 class="tulisan_logout">KONFIRMASI</h1>
+                    <h3>Mohon maaf, jumlah barang yang anda masukkan melebihi jumlah barang yang tersedia.</h3>
+                    <input name="id_barang" type="hidden" value="<?php echo $id_barang;?>">
+                    <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
+                </form>
+            </div>
+
+            <?php
+                }  else if($status_announce == '17'){
+            ?>
+
+            <div class="logout_kanan">
+                <form method="POST" action="<?php echo base_url().'PAnjing/data_anjing'?>">
+                    <h1 class="tulisan_logout">KONFIRMASI</h1>
+                    <h3>Mohon maaf, Anjing dengan nama tersebut sudah terdaftar pada layanan kami di tanggal dan waktu yang sama.
+                    Silahkan dicoba untuk waktu yang berbeda.</h3>
+                    <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
+                </form>
+            </div>
+
+            <?php
+                }  else if($status_announce == '18'){
+            ?>
+
+            <div class="logout_kanan">
+                <form method="POST" action="<?php echo base_url().'PAnjing/data_anjing'?>">
+                    <h1 class="tulisan_logout">KONFIRMASI</h1>
+                    <h3>Mohon maaf, Reservasi di jam dan tanggal segitu sudah penuh.</h3>
+                    <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
+                </form>
+            </div>
+
             <?php } ?>
+            
             
         </div>
 

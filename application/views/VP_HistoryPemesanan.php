@@ -53,6 +53,8 @@
                 height:100px;
             }
 
+
+
             .button_delete, .button_edit{
                 background-color:#F77754;
                 color: #5A3921;
@@ -125,7 +127,7 @@
             }
 
             .div_belumLunas{
-               
+                background-color:rgba(136,136,136,0.5);
                 border: 6px solid #5A3921;
                 width: 90%;
                 margin:auto;
@@ -186,23 +188,6 @@
                 color:#FEFFE4;
                 font-weight:bold;
             }
-
-            #button_history{
-                background-color:#F77754;
-                color: #5A3921;
-                border-radius:50px;
-                margin-left:80%;
-                font-weight:bold;
-                padding:0.5% 0.5% 0.5% 0.5%; 
-                font-size:120%;
-
-            }
-
-            #button_history:hover{
-                background-color:#5A3921;
-                color:#FEFFE4;
-                font-weight:bold;
-            }
         </style>
 </head>
 <body>
@@ -219,14 +204,11 @@
 	<div class="super_container_inner">
         <div class="super_overlay"></div>
         <div class="pemesanan">
-            <a href="<?php echo base_url().'PInvoice/history'?>">
-                <button id="button_history">History</button>
-            </a>
                   <?php 
                   $counter=0;
                   foreach($invoice as $a){ ?>
 
-                  <?php if($a->status_invoice == "Belum Lunas" && $a->metode_pembayaran == "Cash"){
+                  <?php if($a->status_invoice == "Lunas"){
                       
                   ?>
                         <div class="div_belumLunas">
@@ -281,75 +263,7 @@
                             </table>
                         </div>   
 
-                <?php } else if($a->status_invoice == "Belum Lunas" && $a->metode_pembayaran == "Transfer"){?>
-                        <div class="div_belumLunas">
-                                <table class="table_infoInvoice">
-                                    <tr class="id_invoice">
-                                        <td>Nomor Pemesanan:<b><?php echo $a->id_invoice;?></b></td>
-                                        <td>
-                                            <a href="<?php echo base_url().'PInvoice/tampilan_komfirmasiTransfer/'.$a->id_invoice;?>">
-                                                <button class="button_konfirmasi">Konfirmasi Pembayaran</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="baris">
-                                        <td class="info_pembayaran">
-                                            <p>Status Pembayaran: <b><?php echo $a->status_invoice;?></b> </p>
-                                        </td>
-                                        <td class="info_pembayaran">
-                                            <p>Metode Pembayaran: <b><?php echo $a->metode_pembayaran;?></b> </p>
-                                        </td>
-                                        <td class="info_pembayaran">
-                                            <!--
-                                            <p>Waktu: <span id="waktu_pemesanan"></span> </p>
-                                            <?php 
-                                                $date=date_create("2019-10-31 17:16:52");
-                                            ?>
-                                            <input type="text" id="waktu_add" value="<?php echo date_format($date,"M d, Y H:i:s");;?>">
-                                            -->
-                                        </td>
-                                    </tr>
-                                    <tr class="id_invoice">
-                                        <td>Total Pembayaran:<b><?php echo $a->total;?></b></td>
-                                    </tr>
-                                </table>
-                                <div id="div_buttonTampilkanDetailBarang">
-                                    <a class="cobadeh" target="<?php echo $counter;?>">
-                                        <button id="button_tampilkanDetailBarang" >Detail Barang v</button>
-                                    </a>
-                                </div>
-                            
-                                <table class="table_detailBarang" id="table_detailBarang<?php echo $counter;?>">
-                                    <tr>
-                                        <th>Nama Barang</th>
-                                        <th>Warna</th>
-                                        <th>Ukuran</th>
-                                        <th>Jumlah Barang</th>
-                                        <th>Harga</th>
-                                        <th>Total Harga</th>
-                                    </tr>
-                                    <?php
-                                        foreach($detail_barang as $b){
-                                        if($a->id_invoice == $b->id_invoice){    
-                                    ?>
-                                    <tr class="warna_div">
-                                        <td><?php echo $b->nama_barang; ?></td>
-                                        <td><?php echo $b->warna; ?></td>
-                                        <td><?php echo $b->ukuran; ?></td>
-                                        <td><?php echo $b->jumlah_barang; ?></td>
-                                        <td><?php echo $b->harga; ?></td>
-                                        <td><?php echo $total_harga =$b->jumlah_barang * $b->harga; ?></td>
-                                    </tr>
-                                    <?php
-                                        }
-                                    } 
-                                    $counter++;
-                                    ?>
-                                </table>
-                        </div>   
-                  <?php 
-                    } }?>
-                </div>
+                <?php } } ?>
     </div>
 </div>
 
@@ -375,40 +289,6 @@
                     });
                 });
 </script>
-
-<!-- 
-<script>
-        var data = document.getElementById("waktu_add");
-
-        // Set the date we're counting down to
-        var countDownDate = new Date(data).getTime();
-
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-
-        // Get today's date and time
-        var now = new Date().getTime();
-            
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-            
-        // Time calculations for days, hours, minutes and seconds
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-        // Output the result in an element with id="demo"
-        document.getElementById("waktu_pemesanan").innerHTML = hours + "h "
-        + minutes + "m " + seconds + "s ";
-            
-        // If the count down is over, write some text 
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
-        }
-        }, 1000);
-</script>
--->
 
 </body>
 </html>

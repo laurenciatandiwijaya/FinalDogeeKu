@@ -149,5 +149,29 @@ class PInvoice extends CI_Controller {
       $this->load->view('VP_Pemesanan',$data_invoice);
     }
 
+    public function tampilan_komfirmasiTransfer($id){
+      $data_invoice = $this->M_PInvoice->ambil_totalHarga($id)->row_array();
+
+      $data['total_harga'] = $data_invoice['total'];
+      $data['id_invoice'] = $id;
+
+      $this->load->view('VP_KonfirmasiTransfer',$data);
+
+    }
+
+    public function history(){
+      $email = $this->session->userdata('email');
+      $Data_Pelanggan = $this->M_PInvoice->cari_idPelanggan($email)->row_array();
+      $id_pelanggan = $Data_Pelanggan['id_pelanggan'];
+
+      $data_idPelanggan =array(
+        'id_pelanggan' => $id_pelanggan
+      );
+
+      $data_invoice['invoice'] = $this->M_PInvoice->get_data('invoice',$data_idPelanggan)->result();
+      $data_invoice['detail_barang'] = $this->M_PInvoice->get_detailInvoiceBarang('detail_invoice_barang',$id_pelanggan)->result();
+      $this->load->view('VP_HistoryPemesanan',$data_invoice);
+    }
+
 }
 ?>

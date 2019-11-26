@@ -29,6 +29,23 @@ class PShop extends CI_Controller {
     $this->load->view('VP_DetailBarang',$data);
   }
 
+  public function detail_barang_check(){
+    $id_barang = $this->input->post('id_barang');
+
+    $data_kategori_barang = $this->M_PShop->cari_kategoriBarang($id_barang)->row_array();
+    $id_kategori_barang = $data_kategori_barang['id_kategori_barang'];
+
+    $where = array (
+      'id_barang' => $id_barang
+    );
+
+
+    $data['detailData_barang'] = $this->M_PShop->get_detailDataBarang($where,'barang')->result();
+    $data['detailData_barangSejenis'] = $this->M_PShop->get_detailDataBarangSejenis($id_kategori_barang,$id_barang)->result();
+
+    $this->load->view('VP_DetailBarang',$data);
+  }
+
 
 }
 ?>

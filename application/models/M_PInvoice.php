@@ -43,5 +43,9 @@ class M_PInvoice extends CI_Model {
         AND detail_invoice_barang.id_invoice = invoice.id_invoice ORDER BY invoice.status_invoice ASC ");
     }
 
+    function ambil_totalHarga($id){
+        return $this->db->query("SELECT total FROM invoice WHERE id_invoice='$id' ");
+    }
+
 }
 ?>

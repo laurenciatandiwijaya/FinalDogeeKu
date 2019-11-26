@@ -195,7 +195,7 @@
                             <tr>
                                 <td>Total Dikirim</td>
                                 <td>
-                                    <input name="total" type="text" required placeholder="<?php echo $total_harga;?>">
+                                    <input name="total" type="number" required placeholder="<?php echo $total_harga;?>">
                                 </td>
                             </tr>
                             <tr>

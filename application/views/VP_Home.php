@@ -17,127 +17,127 @@
         ntegrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
   
     <style>
-        body{
-            background-color:#FEFFE4; 
-            height:100%;
-        }
+            body{
+                background-color:#FEFFE4; 
+                height:100%;
+            }
 
-        p, td{
-            color:#5A3921;
-        }
+            p, td{
+                color:#5A3921;
+            }
 
-        section{
-            width: 100%;
-            height:100vh;
-        }
+            section{
+                width: 100%;
+                height:100vh;
+            }
 
-        .konten{
-                    margin:auto;
+            .konten{
+                        margin:auto;
+                        text-align:center;
+                    }
+
+            .welcome{
+                        color:  #5A3921;
+                        text-align: center;
+                        font-size:500%;
+                        padding-top:10%;
+                        margin:auto;
+                    }
+
+                    .desc{
+                        color:  #5A3921;
+                        width:80%;
+                        text-align:center;
+                        margin:auto;
+                        font-size:200%;
+                    }
+
+            .judul{
+                        font-size:200%;
+                        margin-left:5%;
+                        color:  #5A3921;
+                        font-weight:bold;
+                    }
+
+
+                    .about{
+                        width:90%;
+                        text-align:center;
+                        background-color:#F77754;
+                        border-radius:50px;
+                    }
+
+                    .S1kiri{
+                        width:60%;
+                        color: #5A3921;
+                    }
+
+                    .S1kanan{
+                        width:40%;
+                    }
+
+                    .foto_DogeeKu{
+                        width: 100%;
+                        height: 70%;
+                    }
+
+            /* S2 */
+
+                .gambarLayanan{
+                    width:55%;
+                    height:40%;
+                }
+
+                .layanan, .shop{
+                    width:100%;
                     text-align:center;
                 }
 
-        .welcome{
-                    color:  #5A3921;
-                    text-align: center;
-                    font-size:500%;
-                    padding-top:10%;
-                    margin:auto;
+                .button_layanan{
+                    background-color:#5A3921;
+                    color: #FEFFE4;
+                    width: 50%;
+                    height: 50%;
+                    font-size:110%;
+                    border:none;
+                    border-radius: 50px;
+                    padding: 2.5% 2.5% 2.5% 2.5%;
+                    cursor:pointer;
                 }
 
-                .desc{
-                    color:  #5A3921;
+                    .button_layanan:hover{
+                        background-color:#F77754;
+                        color:black;
+                    }
+
+        /* S3 */
+
+        
+        /* S4 */
+        #barang_shop{
+            width:90%;
+        }
+
+        /* S5 */
+        .table_operatingHour{
+                    font-size:120%;
                     width:80%;
                     text-align:center;
+                    background-color:#95CEB3;
+                    padding: 2% 2% 2% 2%;
                     margin:auto;
-                    font-size:200%;
-                }
-
-        .judul{
-                    font-size:200%;
-                    margin-left:5%;
-                    color:  #5A3921;
-                    font-weight:bold;
-                }
-
-
-                .about{
-                    width:90%;
-                    text-align:center;
-                    background-color:#F77754;
                     border-radius:50px;
+                } 
+
+                .table_operatingHour_left{
+                    width:50%;
+                    padding: 2% 2% 0% 0%;
                 }
 
-                .S1kiri{
-                    width:60%;
-                    color: #5A3921;
-                }
-
-                .S1kanan{
-                    width:40%;
-                }
-
-                .foto_DogeeKu{
-                    width: 100%;
-                    height: 70%;
-                }
-
-    /* S2 */
-
-            .gambarLayanan{
-                width:55%;
-                height:40%;
-            }
-
-            .layanan, .shop{
-                width:100%;
-                text-align:center;
-            }
-
-            .button_layanan{
-                background-color:#5A3921;
-                color: #FEFFE4;
-                width: 50%;
-                height: 50%;
-                font-size:110%;
-                border:none;
-                border-radius: 50px;
-                padding: 2.5% 2.5% 2.5% 2.5%;
-                cursor:pointer;
-            }
-
-                .button_layanan:hover{
-                    background-color:#F77754;
-                    color:black;
-                }
-
-    /* S3 */
-
-    
-    /* S4 */
-    #barang_shop{
-        width:90%;
-    }
-
-     /* S5 */
-     .table_operatingHour{
-                font-size:120%;
-                width:80%;
-                text-align:center;
-                background-color:#95CEB3;
-                padding: 2% 2% 2% 2%;
-                margin:auto;
-                border-radius:50px;
-            } 
-
-            .table_operatingHour_left{
-                width:50%;
-                padding: 2% 2% 0% 0%;
-            }
-
-            .table_operatingHour_right{
-                width:50%;
-                padding: 2% 2% 0% 0%;
-            }   
+                .table_operatingHour_right{
+                    width:50%;
+                    padding: 2% 2% 0% 0%;
+                }   
     </style>
 </head>
 <body>

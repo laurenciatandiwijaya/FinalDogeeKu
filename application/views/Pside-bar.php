@@ -35,17 +35,17 @@
         width:100%;
         height:50px;
         border: 1px solid #F77754;
-    }
+      }
 
-    .sideBar_button:hover{
-        background-color: #FEFFE4;
-        color:black;
-        border: 0px;
-    }
+      .sideBar_button:hover{
+          background-color: #FEFFE4;
+          color:black;
+          border: 0px;
+      }
 
-    .sideBar_judul{
-      color: #FEFFE4;
-    }
+      .sideBar_judul{
+        color: #FEFFE4;
+      }
     </style>
 </head>
 
@@ -91,12 +91,14 @@
               <div>
                   <p class="sideBar_judul">AnjingKu</p>
                 <div>
-                  <a  href="<?php echo base_url()?>PAnjing/tambah_anjing">
+                  <a  href="<?php echo base_url()?>PAnjing/data_anjing">
                       <button class="sideBar_button">+Anjing</button>
                   </a>
                 </div>
                 <div>
+                <a  href="<?php echo base_url()?>PReservasi">
                   <button class="sideBar_button">Reservasi</button>
+                </a>
                 </div>
               </div>
 

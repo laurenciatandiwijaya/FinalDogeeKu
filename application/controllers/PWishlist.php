@@ -34,42 +34,54 @@ class PWishlist extends CI_Controller {
 
           $id_barang = $this->input->post('id_barang');
           $jumlah_barang = $this->input->post('jumlah_barang');
+          $jumlah_maks= $this->input->post('jumlah_maks');
           $nama_barang = $this->input->post('nama_barang');
           $harga = $this->input->post('harga');
           $warna = $this->input->post('warna');
           $ukuran = $this->input->post('ukuran');
 
+          //check jumlah yg dimasukkan dlu
+          if($jumlah_barang > $jumlah_maks){
+            $data['id_barang'] = $id_barang;
+            $data['nama_barang'] = $nama_barang;
 
-          $where = array (
-            'id_barang' => $id_barang,
-            'id_pelanggan' => $id_pelanggan,
-            'status_delete' =>"Aktif"
-          );
-
-          $cek_data = $this->M_PWishlist->cek_row($where)->row_array();
-
-          if($cek_data > 0){
-            $id_wishlist = $cek_data['id_wishlist'];
-            $user_edit =  $id_pengguna;
-            date_default_timezone_set("Asia/Jakarta");
-            $waktu_edit = date("Y-m-d H:i:s");
-
-            $this->M_PWishlist->tambah_jumlahWishlist($id_wishlist,$jumlah_barang,$user_edit,$waktu_edit);
+            $data['status_announce'] = "16";
+            $this->load->view('VP_Announce',$data);
+            
           }
           else{
-            $data = array(
-              'id_pelanggan' => $id_pelanggan,
-              'id_barang' => $id_barang,
-              'jumlah_barang' => $jumlah_barang,
-              'user_add' => $id_pengguna,
-              'waktu_add' => $waktu_add,
-              'status_delete' => "Aktif"
-            );
-  
-            $this->M_PWishlist->tambah_wishlist($data);
-          }
-
-          redirect('PWishlist');
+              $where = array (
+                'id_barang' => $id_barang,
+                'id_pelanggan' => $id_pelanggan,
+                'status_delete' =>"Aktif"
+              );
+    
+              $cek_data = $this->M_PWishlist->cek_row($where)->row_array();
+    
+              if($cek_data > 0){
+                $id_wishlist = $cek_data['id_wishlist'];
+                $user_edit =  $id_pengguna;
+                date_default_timezone_set("Asia/Jakarta");
+                $waktu_edit = date("Y-m-d H:i:s");
+    
+                $this->M_PWishlist->tambah_jumlahWishlist($id_wishlist,$jumlah_barang,$user_edit,$waktu_edit);
+              }
+              else{
+                $data = array(
+                  'id_pelanggan' => $id_pelanggan,
+                  'id_barang' => $id_barang,
+                  'jumlah_barang' => $jumlah_barang,
+                  'user_add' => $id_pengguna,
+                  'waktu_add' => $waktu_add,
+                  'status_delete' => "Aktif"
+                );
+      
+                $this->M_PWishlist->tambah_wishlist($data);
+              }
+    
+              redirect('PWishlist');
+            }
+         
     }
 
     public function delete_wishlist(){
@@ -179,7 +191,7 @@ class PWishlist extends CI_Controller {
       );
 
       $this->M_PWishlist->coba_pindah($where,$data);
-      redirect('PWishlist');
+      redirect('PKeranjang');
       
     }
 

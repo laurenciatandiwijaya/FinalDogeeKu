@@ -82,9 +82,9 @@
                 color: #5A3921;
                 border-radius:50px;
                 text-align:center;
-                width:20%;
+                width:25%;
                 height:80%;
-                padding: 1.5% 1.5% 1.5% 1.5%;
+                padding: 0.5% 0.5% 0.5% 0.5%;
                 margin-top:2%;
                 font-weight:bold;
                 }
@@ -100,9 +100,9 @@
                 color: #5A3921;
                 border-radius:50px;
                 text-align:center;
-                width:20%;
+                width:25%;
                 height:80%;
-                padding: 1.5% 1.5% 1.5% 1.5%;
+                padding: 0.5% 0.5% 0.5% 0.5%;
                 margin-top:2%;
                 font-weight:bold;
                 }
@@ -116,6 +116,8 @@
                 input{
                     border: 3px solid  #5A3921;
                     border-radius: 50px;
+                    font-size: 60%;
+                    width:50%;
                 }
 
             .keranjang{
@@ -133,6 +135,10 @@
             p, td{
                 color:#5A3921;
                 font-size:160%;
+            }
+
+            #jumlah_barang{
+                font-size:50%;
             }
 
         </style>
@@ -187,7 +193,9 @@
                                     <td>Jumlah</td>
                                     <td>
                                         <p>
-                                            <input type="text" name="jumlah_barang" required>
+                                            <input type="number" name="jumlah_barang" required>
+                                            <span id="jumlah_barang">Tersisa:<?php echo $list->jumlah_barang;?></span>
+                                            <input type="hidden" name="jumlah_maks" value="<?php echo $list->jumlah_barang;?>" required>
                                         </p>
                                     </td>
                                 </tr>

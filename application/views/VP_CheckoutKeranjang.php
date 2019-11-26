@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+<title>Coba DogeeKu</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Little Closet template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/bootstrap-4.1.2/bootstrap.min.css">
+<link href="<?php echo base_url()?>assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/responsive.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
+        ntegrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
 
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="<?php echo base_url()?>assets/css/style.css"> 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
         ntegrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+  
         <style>
             body{
                 background-color:#FEFFE4;
@@ -17,7 +29,7 @@
 
             #table_keranjang{
                 width:95%;
-                font-size:50%;
+                font-size:120%;
                 margin:auto;
                 border: 7px solid  #5A3921;
                 padding: 3% 3% 3% 3%;  
@@ -34,8 +46,6 @@
             td{
                 height:100px;
             }
-
-
 
             .button_delete, .button_edit{
                 background-color:#F77754;
@@ -54,7 +64,7 @@
             }
 
             .modal{
-                font-size:50%;
+                font-size:100%;
                 margin-top:13%;
                
             }
@@ -136,7 +146,7 @@
             }
 
             .metode_pembayaran p{
-                font-size:150%;
+                font-size:400%;
             }
 
             /* Hide the browser's default radio button */
@@ -189,18 +199,13 @@
                 background: #FEFFE4;
             }
 
-            select, option, input, textarea{
-                color:  #5A3921;
-                margin-bottom: 2%;
-            }
-
             textarea{
                 width: 35%;
                 height: 100px;
             }
 
             .button_buatPesanan{
-                font-size:80%;
+                font-size:150%;
                 background-color:#5A3921;
                 color:#FEFFE4;
                 border-radius:50px;
@@ -222,20 +227,44 @@
                 background-color:#5A3921;
                 color: #FEFFE4;
             }
+
+            .div_checkout{
+                margin-top:10%;
+               color:#5A3921;
+               text-align:center;
+            }
+
+            #judul{
+                color:#5A3921;
+                font-size:300%; 
+            }
+
+            select, option, input, textarea{
+                font-size:200%;
+                margin-bottom: 2%;
+                color: #5A3921;
+            }
+
+            label{
+                font-size:200%;
+            }
         </style>
-    
-    </head>
+</head>
+<body>
 
+<!-- Menu -->
 
-    <body>
-         <?php include('Pside-bar.php'); ?>
-           
-        <div class="main" id="main">
-            <?php include('Ptop-bar.php'); ?>
+<?php include('Pside-bar.php')?>
 
-            <div id="S0">
-                 <div class="welcome">
-                  <p>Checkout</p>
+<div class="super_container">
+
+	<!-- Header -->
+		<?php include('Ptop-bar.php')?>
+
+	<div class="super_container_inner">
+		<div class="super_overlay"></div>
+        <div class="div_checkout">
+                  <div id="judul">Checkout</div>
                     <table id="table_keranjang">
                         <tr>
                             <th width="10%">Gambar</th>
@@ -268,8 +297,8 @@
                             <td colspan="3" width="50%"></td>
                                 <input type="hidden" name="ttl_hrg" value="<?php echo $ttl_hrg;?>">
                             <td colspan="4" width="50%" style="right:0;" class="total">
-                                <p><?php echo "Jumlah Barang:   ".$jmlh_brg;?></p>
-                                <p><?php echo "Total Harga:   ".$ttl_hrg;?></p>
+                                <?php echo "Jumlah Barang:   ".$jmlh_brg;?><br>
+                                <?php echo "Total Harga:   ".$ttl_hrg;?>
                             </td>
                             </tr>
                     </table>
@@ -362,27 +391,25 @@
             <!-- end modal -->
             
                 </div>
-            </div>
-        </div>
 
-        <script>
-                function sidebar_open() {
-                document.getElementById("main").style.width = "80%";
-                document.getElementById("main").style.marginLeft = "20%";
-                document.getElementById("mySidebar").style.width = "20%";
-                document.getElementById("mySidebar").style.display = "block";
-                document.getElementById("openNav").style.display = 'none';
-                document.getElementById("main").style.marginTop = "185px";
-                document.getElementById("top_navigation").style.marginRight = "20%";
-                }
-                function sidebar_close() {
-                document.getElementById("main").style.width = "100%";
-                document.getElementById("main").style.marginLeft = "0%";
-                document.getElementById("mySidebar").style.display = "none";
-                document.getElementById("openNav").style.display = "inline-block";
-                document.getElementById("top_navigation").style.marginRight = "0%";
-                }
+    </div>
+</div>
 
+<script src="<?php echo base_url()?>assets/js/jquery-3.2.1.min.js"></script>
+<script src="<?php echo base_url()?>assets/styles/bootstrap-4.1.2/popper.js"></script>
+<script src="<?php echo base_url()?>assets/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/greensock/TweenMax.min.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/greensock/TimelineMax.min.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/greensock/animation.gsap.min.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/easing/easing.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/progressbar/progressbar.min.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="<?php echo base_url()?>assets/js/custom.js"></script>
+
+<script>
                 $(document).on("click", ".button_edit", function () {
                     var id = $(this).data('id');
                     var jumlah_barang = $(this).data('jumlah-barang');
@@ -403,5 +430,5 @@
 
         </script>
 
-    </body>
+</body>
 </html>

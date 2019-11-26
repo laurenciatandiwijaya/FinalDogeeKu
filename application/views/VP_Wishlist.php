@@ -63,7 +63,6 @@
             }
 
             .modal{
-                font-size:50%;
                 margin-top:13%;
                
             }
@@ -73,7 +72,7 @@
                 color: #FEFFE4;
             }
 
-            .modal-body, .modal-body2{
+            .modal-body, .modal-body2, .modal-body3{
                 background-color:#FEFFE4;
             }
 
@@ -181,8 +180,9 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Edit Data</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    
                     </div>
                     <div class="modal-body">
                     <p>Jumlah Barang</p>
@@ -205,8 +205,8 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Delete Data</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body2">
                     <form method="POST" action="<?php echo base_url().'PWishlist/delete_wishlist';?>">
@@ -231,8 +231,8 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Pindahkan ke Keranjang</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body3">
                     <form method="POST" action="<?php echo base_url().'PWishlist/pindah_keranjang';?>">

@@ -45,5 +45,14 @@ class M_PKeranjang extends CI_Model {
         $this->db->where($where);
         $this->db->update('keranjang',$data);
     }
+
+    function cari_keranjang($id){
+        return $this->db->query("SELECT id_pelanggan,id_barang,jumlah_barang FROM keranjang WHERE id_keranjang='$id'");
+    }
+
+    function coba_pindah($where,$data){
+        $this->db->where($where);
+        $this->db->update('keranjang',$data);
+    }
 }
 ?>
