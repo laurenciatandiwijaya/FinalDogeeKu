@@ -167,9 +167,17 @@
 												</div>
 												<div class="widget-summary-col">
 													<div class="summary">
-														<h4 class="title">Today's Visitors</h4>
+														<h4 class="title">Total Pendapatan Hari Ini</h4>
 														<div class="info">
-															<strong class="amount">3765</strong>
+															<strong class="amount"><?php 
+															foreach($pendapatan as $list){
+																if($list->total_pendapatan == ""){
+																	echo "0";
+																}
+																else{
+																	echo $list->total_pendapatan;
+																}
+															}?></strong>
 														</div>
 													</div>
 													<div class="summary-footer">

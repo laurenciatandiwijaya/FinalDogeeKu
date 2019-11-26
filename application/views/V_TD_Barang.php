@@ -106,8 +106,8 @@
 										<div class="col-sm-6">
 											<div class="input-group mb-md">
 												<span class="input-group-addon">Rp</span>
-												<input type="text" name="harga" class="form-control" 
-												title="Isi harga barang"required/>
+												<input type="number" min="5000" max="1000000" step="1000" value="5000" 
+												name="harga" class="form-control" title="Isi harga barang"required/>
 											</div>
 										</div>
 									</div>
@@ -127,7 +127,6 @@
 											</select>
 										</div>
 									</div>
-
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Ukuran</label>
 										<div class="col-sm-2">
@@ -150,11 +149,12 @@
 											<input type="text" name="keterangan" class="form-control" title="Isi keterangan"/>
 										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Pilih Foto</label>
-									<div class="col-md-3">
-										<input type="file" name="fileToUpload" id="fileToUpload">
+								
+									<div class="form-group">
+										<label class="col-md-3 control-label">Pilih Foto</label>
+										<div class="col-md-3">
+											<input type="file" name="fileToUpload" id="fileToUpload">
+										</div>
 									</div>
 								</div>
 								<footer class="panel-footer">
@@ -170,8 +170,6 @@
 					</div>
 				</section>
 			</div>
-
-			
 		</section>
 
 		<!-- Vendor -->

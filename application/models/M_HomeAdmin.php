@@ -24,4 +24,9 @@ class M_HomeAdmin extends CI_Model {
 		JOIN report_penitipan d ON a.id_report = d.id_report_penitipan 
 		WHERE b.tanggal = '$tanggal%' AND c.tanggal = '$tanggal%' AND d.tanggal = '$tanggal%'");
 	}
+
+	function hitungPendapatan($tanggal){
+		return $this->db->query("select SUM(total) as total_pendapatan FROM invoice
+		WHERE id_invoice LIKE '$tanggal%' ");
+	}
 }
