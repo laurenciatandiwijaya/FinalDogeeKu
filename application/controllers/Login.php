@@ -49,7 +49,7 @@ class Login extends CI_Controller {
           redirect('HomeAdmin');
         }
         else if($id_tipe_pengguna == "2"){
-          redirect('HomeAdmin');
+          redirect('HomeManager');
         }
         else if($id_tipe_pengguna == "3"){
           redirect('HomeKasir');
@@ -217,7 +217,7 @@ class Login extends CI_Controller {
       );
 
       $this->M_Login->edit_dataPengguna($where,'pengguna',$data);
-      redirect('PShop');
+      redirect('PHome');
     }
 
     public function registrasi(){
@@ -291,12 +291,6 @@ class Login extends CI_Controller {
             }
 
       }
-
-  
-      
-      
-
-
 
     }
 

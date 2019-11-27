@@ -47,6 +47,7 @@
         .fas:hover{
           color:#5A3921;
         }
+
     </style>
 </head>
 
@@ -56,8 +57,8 @@
 			<div class="logo">
 				<a href="<?php echo base_url()?>PHome">
 					<div class="d-flex flex-row align-items-center justify-content-start">
-						<div><img src="<?php echo base_url()?>assets/images/logo_1.png" alt=""></div>
-						<div>DogeeKu</div>
+						<div><img src="<?php echo base_url()?>assets/img/logo_DogeeKu.png" height="50" width="65" alt=""></div>
+						<div style="color:#FEFFE4;">DogeeKu</div>
 					</div>
 				</a>	
 			</div>

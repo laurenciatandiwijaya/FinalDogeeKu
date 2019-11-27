@@ -7,7 +7,7 @@
 						echo base_url().'HomeAdmin';
 					}
 					else if($id_tipe_pengguna == "2"){
-						echo base_url().'HomeAdmin';
+						echo base_url().'HomeManager';
 					}
 					else if($id_tipe_pengguna == "3"){
 						echo base_url().'HomeKasir';
@@ -57,7 +57,7 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> Profil</a>
+									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'Login/editProfilPekerja'?>"><i class="fa fa-user"></i> Profil</a>
 								</li>
 								<li>
 									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'Login/coba_logout'?>">

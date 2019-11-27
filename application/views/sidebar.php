@@ -156,7 +156,7 @@
 				else if($id_tipe_pengguna == "2"){ ?>
 				<ul class="nav nav-main">
 					<li>
-						<a href="<?php echo base_url().'HomeAdmin' ?>">
+						<a href="<?php echo base_url().'HomeManager' ?>">
 							<i class="fa fa-home" aria-hidden="true"></i>
 							<span>Home</span>
 						</a>
