@@ -96,7 +96,7 @@
                   </a>
                 </div>
                 <div>
-                <a  href="<?php echo base_url()?>PReservasi">
+                <a  href="<?php echo base_url()?>PReservasi/data_reservasi">
                   <button class="sideBar_button">Reservasi</button>
                 </a>
                 </div>
