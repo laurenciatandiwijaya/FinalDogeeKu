@@ -13,9 +13,12 @@
 12
 13 = infoin invoice berhasil, trf
 14 = infoin invoice berhasil, cash
-15 = Transfer berhasil
+15 = Transfer berhasil, salon
 16 = tambah barang ke wishlist, tapi jumlah melebihi jumlah yang tersedia.
 17 = sudah terdaftar pda layanan yang lain.
+18 = 
+19 = waktu yang dimasukkan akhir > waktu awal (planner)
+20 = Transfer berhasil, layanan
 
 -->
 
@@ -389,6 +392,30 @@
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
                     <h3>Mohon maaf, Reservasi di jam dan tanggal segitu sudah penuh.</h3>
                     <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
+                </form>
+            </div>
+
+            <?php
+                }  else if($status_announce == '19'){
+            ?>
+
+            <div class="logout_kanan">
+                <form method="POST" action="<?php echo base_url().'PPlanner/tambah_kegiatan'?>">
+                    <h1 class="tulisan_logout">KONFIRMASI</h1>
+                    <h3>Mohon maaf, Waktu selesai tidak dapat melebihi waktu mulai.</h3>
+                    <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
+                </form>
+            </div>
+
+            <?php
+                }  else if($status_announce == '20'){
+            ?>
+
+            <div class="logout_kanan">
+                <form method="POST" action="<?php echo base_url().'PReservasi/data_reservasi'?>">
+                    <h1 class="tulisan_logout">KONFIRMASI</h1>
+                    <h3>Terimakasih. Barang anda akan dikirimkan dalam selang waktu 1x24 jam.</h3>
+                    <p><button class="logout_logout" type="submit">OK</button></p>
                 </form>
             </div>
 

@@ -53,79 +53,6 @@
                 height:100px;
             }
 
-
-
-            .button_delete, .button_edit{
-                background-color:#F77754;
-                color: #5A3921;
-                border-radius:50px;
-                text-align:center;
-                padding: 5% 5% 5% 5%;
-                margin-top:2%;
-                font-weight:bold;
-            }
-
-            .button_delete:hover , .button_edit:hover{
-                background-color:#5A3921;
-                color:#FEFFE4;
-                font-weight:bold;
-            }
-
-            .modal{
-                font-size:150%;
-                margin-top:13%;
-               
-            }
-
-            .modal-header{
-                background-color:#5A3921;
-                color: #FEFFE4;
-            }
-
-            .modal-body, .modal-body2{
-                background-color:#FEFFE4;
-            }
-
-            .close{
-                color: #FEFFE4;
-            }
-
-            .button_modal{
-                background-color:#5A3921;
-                color:#FEFFE4;
-                border-radius:50px;
-                text-align:center;
-                padding: 1% 3% 1% 3%;
-                margin-top:2%;
-                font-weight:bold;
-            }
-
-            .button_modal:hover{
-                background-color:#F77754;
-                color: #5A3921;
-                font-weight:bold;
-            }
-
-            .button_keranjang{
-                background-color:#F77754;
-                color: #5A3921;
-                border-radius:50px;
-                text-align:center;
-                padding: 3% 3% 3% 3%;
-                margin-top:2%;
-                font-weight:bold;
-            }
-
-            .button_keranjang:hover{
-                background-color:#5A3921;
-                color:#FEFFE4;
-                font-weight:bold;
-            }
-
-            .button_keranjang:hover .fa-cart-plus{
-                color:#FEFFE4;
-            }
-
             .div_belumLunas{
                 background-color:rgba(136,136,136,0.5);
                 border: 6px solid #5A3921;
@@ -188,6 +115,23 @@
                 color:#FEFFE4;
                 font-weight:bold;
             }
+
+            #button_history{
+                background-color:#F77754;
+                color: #5A3921;
+                border-radius:50px;
+                margin-left:80%;
+                font-weight:bold;
+                padding:0.5% 0.5% 0.5% 0.5%; 
+                font-size:120%;
+
+            }
+
+            #button_history:hover{
+                background-color:#5A3921;
+                color:#FEFFE4;
+                font-weight:bold;
+            }
         </style>
 </head>
 <body>
@@ -206,11 +150,10 @@
         <div class="pemesanan">
                   <?php 
                   $counter=0;
-                  foreach($invoice as $a){ ?>
-
-                  <?php if($a->status_invoice == "Lunas"){
+                  foreach($reservasi_klinik as $a){ ?>
+                    <?php if($a->status_invoice == "Lunas"){
                       
-                  ?>
+                    ?>
                         <div class="div_belumLunas">
                             <table class="table_infoInvoice">
                                 <tr class="id_invoice">
@@ -218,42 +161,38 @@
                                 </tr>
                                 <tr class="baris">
                                     <td class="info_pembayaran">
-                                        <p>Status Pembayaran: <b><?php echo $a->status_invoice;?></b> </p>
+                                        Status Pembayaran: <b><?php echo $a->status_invoice;?></b>
                                     </td>
-                                    <td class="info_pembayaran">
-                                        <p>Metode Pembayaran: <b><?php echo $a->metode_pembayaran;?></b> </p>
-                                    </td>
+                                    <td class="info_pembayaran">Total Pembayaran:<b><?php echo $a->total;?></b></td>
                                 </tr>
                                 <tr class="id_invoice">
-                                    <td>Total Pembayaran:<b><?php echo $a->total;?></b></td>
+                                    <td class="info_pembayaran">Tanggal:<b><?php echo $a->tanggal;?></b></td>
+                                    <td class="info_pembayaran">Jam:<b><?php echo $a->jam;?></b></td>
+                                </tr>
+                                <tr class="id_invoice">
+                                    <td>Nama Anjing:<b><?php echo $a->nama_anjing;?></b></td>
                                 </tr>
                             </table>
                             <div id="div_buttonTampilkanDetailBarang">
                                 <a class="cobadeh" target="<?php echo $counter;?>">
-                                    <button id="button_tampilkanDetailBarang" >Detail Barang v</button>
+                                    <button id="button_tampilkanDetailBarang" >Detail Reservasi v</button>
                                 </a>
                             </div>
                            
                             <table class="table_detailBarang" id="table_detailBarang<?php echo $counter;?>">
                                 <tr>
-                                    <th>Nama Barang</th>
-                                    <th>Warna</th>
-                                    <th>Ukuran</th>
-                                    <th>Jumlah Barang</th>
+                                    <th>Nama Layanan</th>
+                                    <th>Deskripsi Layanan</th>
                                     <th>Harga</th>
-                                    <th>Total Harga</th>
                                 </tr>
                                 <?php
-                                    foreach($detail_barang as $b){
+                                    foreach($detail_reservasi_klinik as $b){
                                     if($a->id_invoice == $b->id_invoice){    
                                 ?>
                                 <tr class="warna_div">
-                                    <td><?php echo $b->nama_barang; ?></td>
-                                    <td><?php echo $b->warna; ?></td>
-                                    <td><?php echo $b->ukuran; ?></td>
-                                    <td><?php echo $b->jumlah_barang; ?></td>
+                                    <td><?php echo $b->nama_detail_layanan; ?></td>
+                                    <td><?php echo $b->deskripsi_layanan; ?></td>
                                     <td><?php echo $b->harga; ?></td>
-                                    <td><?php echo $total_harga =$b->jumlah_barang * $b->harga; ?></td>
                                 </tr>
                                 <?php
                                     }
@@ -262,8 +201,119 @@
                                 ?>
                             </table>
                         </div>   
+                <?php } }?>
 
-                <?php } } ?>
+                <?php 
+                  $counter=0;
+                  foreach($reservasi_salon as $salonA){ ?>
+                    <?php if($salonA->status_invoice == "Lunas"){
+                      
+                    ?>
+                        <div class="div_belumLunas">
+                            <table class="table_infoInvoice">
+                                <tr class="id_invoice">
+                                    <td>Nomor Pemesanan:<b><?php echo $salonA->id_invoice;?></b></td>
+                                </tr>
+                                <tr class="baris">
+                                    <td class="info_pembayaran">
+                                        Status Pembayaran: <b><?php echo $salonA->status_invoice;?></b>
+                                    </td>
+                                    <td  class="info_pembayaran">Total Pembayaran:<b><?php echo $salonA->total;?></b></td>
+                                </tr>
+                                <tr class="baris">
+                                    <td  class="info_pembayaran">Tanggal:<b><?php echo $salonA->tanggal;?></b></td>
+                                    <td  class="info_pembayaran">Jam:<b><?php echo $salonA->jam;?></b></td>
+                                </tr>
+                                <trclass="baris">
+                                    <td  class="info_pembayaran">Nama Anjing:<b><?php echo $salonA->nama_anjing;?></b></td>
+                                </tr>
+                            </table>
+                            <div id="div_buttonTampilkanDetailBarang">
+                                <a class="cobadeh" target="<?php echo $counter;?>">
+                                    <button id="button_tampilkanDetailBarang" >Detail Reservasi v</button>
+                                </a>
+                            </div>
+                           
+                            <table class="table_detailBarang" id="table_detailBarang<?php echo $counter;?>">
+                                <tr>
+                                    <th>Nama Layanan</th>
+                                    <th>Deskripsi Layanan</th>
+                                    <th>Harga</th>
+                                </tr>
+                                <?php
+                                    foreach($detail_reservasi_salon as $salonB){
+                                    if($salonA->id_invoice == $salonB->id_invoice){    
+                                ?>
+                                <tr class="warna_div">
+                                    <td><?php echo $salonB->nama_detail_layanan; ?></td>
+                                    <td><?php echo $salonB->deskripsi_layanan; ?></td>
+                                    <td><?php echo $salonB->harga; ?></td>
+                                </tr>
+                                <?php
+                                    }
+                                } 
+                                $counter++;
+                                ?>
+                            </table>
+                        </div>   
+                <?php } }?>
+
+                <?php 
+                  $counter=0;
+                  foreach($reservasi_penitipan as $penitipanA){ ?>
+                    <?php if($penitipanA->status_invoice == "Lunas"){
+                      
+                    ?>
+                        <div class="div_belumLunas">
+                            <table class="table_infoInvoice">
+                                <tr class="id_invoice">
+                                    <td>Nomor Pemesanan:<b><?php echo $penitipanA->id_invoice;?></b></td>
+                                </tr>
+                                <tr class="baris">
+                                    <td class="info_pembayaran">
+                                        Status Pembayaran: <b><?php echo $penitipanA->status_invoice;?></b>
+                                    </td>
+                                    <td class="info_pembayaran">Total Pembayaran:<b><?php echo $penitipanA->total;?></b></td>
+                                </tr>
+                                <tr  class="baris">
+                                    <td class="info_pembayaran">Tanggal:<b><?php echo $penitipanA->tanggal;?></b></td>
+                                    <td class="info_pembayaran">Jam:<b><?php echo $penitipanA->jam;?></b></td>
+                                </tr>
+                                <tr c class="baris">
+                                    <td class="info_pembayaran">Nama Anjing:<b><?php echo $penitipanA->nama_anjing;?></b></td>
+                                </tr>
+                            </table>
+                            <div id="div_buttonTampilkanDetailBarang">
+                                <a class="cobadeh" target="<?php echo $counter;?>">
+                                    <button id="button_tampilkanDetailBarang" >Detail Reservasi v</button>
+                                </a>
+                            </div>
+                           
+                            <table class="table_detailBarang" id="table_detailBarang<?php echo $counter;?>">
+                                <tr>
+                                    <th>Nama Layanan</th>
+                                    <th>Deskripsi Layanan</th>
+                                    <th>Harga</th>
+                                </tr>
+                                <?php
+                                    foreach($detail_reservasi_penitipan as $penitipanB){
+                                    if($penitipanA->id_invoice == $penitipanB->id_invoice){    
+                                ?>
+                                <tr class="warna_div">
+                                    <td><?php echo $penitipanB->nama_detail_layanan; ?></td>
+                                    <td><?php echo $penitipanB->deskripsi_layanan; ?></td>
+                                    <td><?php echo $penitipanB->harga; ?></td>
+                                </tr>
+                                <?php
+                                    }
+                                } 
+                                $counter++;
+                                ?>
+                            </table>
+                        </div>   
+                <?php } }?>
+        </div>
+                
     </div>
 </div>
 

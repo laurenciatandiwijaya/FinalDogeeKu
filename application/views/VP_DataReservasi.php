@@ -219,7 +219,7 @@
 	<div class="super_container_inner">
         <div class="super_overlay"></div>
         <div class="pemesanan">
-            <a href="<?php echo base_url().'PInvoice/history'?>">
+            <a href="<?php echo base_url().'PReservasi/history_reservasi'?>">
                 <button id="button_history">History</button>
             </a>
                   <?php 
@@ -233,24 +233,20 @@
                                 <tr class="id_invoice">
                                     <td>Nomor Pemesanan:<b><?php echo $a->id_invoice;?></b></td>
                                     <td>  
-                                        <a href="<?php echo base_url().'PInvoice/tampilan_komfirmasiTransfer/'.$a->id_invoice;?>">
+                                        <a href="<?php echo base_url().'PInvoice/tampilan_konfirmasiTransfer_layanan/'.$a->id_invoice;?>">
                                             <button class="button_konfirmasi">Konfirmasi Pembayaran</button>
                                         </a>
                                     </td>
                                 </tr>
                                 <tr class="baris">
                                     <td class="info_pembayaran">
-                                        <p>Status Pembayaran: <b><?php echo $a->status_invoice;?></b> </p>
+                                        Status Pembayaran: <b><?php echo $a->status_invoice;?></b>
                                     </td>
+                                    <td class="info_pembayaran">Total Pembayaran:<b><?php echo $a->total;?></b></td>
                                 </tr>
                                 <tr class="id_invoice">
-                                    <td>Total Pembayaran:<b><?php echo $a->total;?></b></td>
-                                </tr>
-                                <tr class="id_invoice">
-                                    <td>Tanggal:<b><?php echo $a->tanggal;?></b></td>
-                                </tr>
-                                <tr class="id_invoice">
-                                    <td>Jam:<b><?php echo $a->jam;?></b></td>
+                                    <td class="info_pembayaran">Tanggal:<b><?php echo $a->tanggal;?></b></td>
+                                    <td class="info_pembayaran">Jam:<b><?php echo $a->jam;?></b></td>
                                 </tr>
                                 <tr class="id_invoice">
                                     <td>Nama Anjing:<b><?php echo $a->nama_anjing;?></b></td>
@@ -297,27 +293,23 @@
                                 <tr class="id_invoice">
                                     <td>Nomor Pemesanan:<b><?php echo $salonA->id_invoice;?></b></td>
                                     <td>  
-                                        <a href="<?php echo base_url().'PInvoice/tampilan_komfirmasiTransfer/'.$salonA->id_invoice;?>">
+                                        <a href="<?php echo base_url().'PInvoice/tampilan_konfirmasiTransfer_layanan/'.$salonA->id_invoice;?>">
                                             <button class="button_konfirmasi">Konfirmasi Pembayaran</button>
                                         </a>
                                     </td>
                                 </tr>
                                 <tr class="baris">
                                     <td class="info_pembayaran">
-                                        <p>Status Pembayaran: <b><?php echo $salonA->status_invoice;?></b> </p>
+                                        Status Pembayaran: <b><?php echo $salonA->status_invoice;?></b>
                                     </td>
+                                    <td  class="info_pembayaran">Total Pembayaran:<b><?php echo $salonA->total;?></b></td>
                                 </tr>
-                                <tr class="id_invoice">
-                                    <td>Total Pembayaran:<b><?php echo $salonA->total;?></b></td>
+                                <tr class="baris">
+                                    <td  class="info_pembayaran">Tanggal:<b><?php echo $salonA->tanggal;?></b></td>
+                                    <td  class="info_pembayaran">Jam:<b><?php echo $salonA->jam;?></b></td>
                                 </tr>
-                                <tr class="id_invoice">
-                                    <td>Tanggal:<b><?php echo $salonA->tanggal;?></b></td>
-                                </tr>
-                                <tr class="id_invoice">
-                                    <td>Jam:<b><?php echo $salonA->jam;?></b></td>
-                                </tr>
-                                <tr class="id_invoice">
-                                    <td>Nama Anjing:<b><?php echo $salonA->nama_anjing;?></b></td>
+                                <trclass="baris">
+                                    <td  class="info_pembayaran">Nama Anjing:<b><?php echo $salonA->nama_anjing;?></b></td>
                                 </tr>
                             </table>
                             <div id="div_buttonTampilkanDetailBarang">
@@ -340,6 +332,66 @@
                                     <td><?php echo $salonB->nama_detail_layanan; ?></td>
                                     <td><?php echo $salonB->deskripsi_layanan; ?></td>
                                     <td><?php echo $salonB->harga; ?></td>
+                                </tr>
+                                <?php
+                                    }
+                                } 
+                                $counter++;
+                                ?>
+                            </table>
+                        </div>   
+                <?php } }?>
+
+                <?php 
+                  $counter=0;
+                  foreach($reservasi_penitipan as $penitipanA){ ?>
+                    <?php if($penitipanA->status_invoice == "Belum Lunas"){
+                      
+                    ?>
+                        <div class="div_belumLunas">
+                            <table class="table_infoInvoice">
+                                <tr class="id_invoice">
+                                    <td>Nomor Pemesanan:<b><?php echo $penitipanA->id_invoice;?></b></td>
+                                    <td>  
+                                        <a href="<?php echo base_url().'PInvoice/tampilan_konfirmasiTransfer_layanan/'.$penitipanA->id_invoice;?>">
+                                            <button class="button_konfirmasi">Konfirmasi Pembayaran</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="baris">
+                                    <td class="info_pembayaran">
+                                        Status Pembayaran: <b><?php echo $penitipanA->status_invoice;?></b>
+                                    </td>
+                                    <td class="info_pembayaran">Total Pembayaran:<b><?php echo $penitipanA->total;?></b></td>
+                                </tr>
+                                <tr  class="baris">
+                                    <td class="info_pembayaran">Tanggal:<b><?php echo $penitipanA->tanggal;?></b></td>
+                                    <td class="info_pembayaran">Jam:<b><?php echo $penitipanA->jam;?></b></td>
+                                </tr>
+                                <tr c class="baris">
+                                    <td class="info_pembayaran">Nama Anjing:<b><?php echo $penitipanA->nama_anjing;?></b></td>
+                                </tr>
+                            </table>
+                            <div id="div_buttonTampilkanDetailBarang">
+                                <a class="cobadeh" target="<?php echo $counter;?>">
+                                    <button id="button_tampilkanDetailBarang" >Detail Reservasi v</button>
+                                </a>
+                            </div>
+                           
+                            <table class="table_detailBarang" id="table_detailBarang<?php echo $counter;?>">
+                                <tr>
+                                    <th>Nama Layanan</th>
+                                    <th>Deskripsi Layanan</th>
+                                    <th>Harga</th>
+                                </tr>
+                                <?php
+                                    foreach($detail_reservasi_penitipan as $penitipanB){
+                                    if($penitipanA->id_invoice == $penitipanB->id_invoice){    
+                                ?>
+                                <tr class="warna_div">
+                                    <td><?php echo $penitipanB->nama_detail_layanan; ?></td>
+                                    <td><?php echo $penitipanB->deskripsi_layanan; ?></td>
+                                    <td><?php echo $penitipanB->harga; ?></td>
                                 </tr>
                                 <?php
                                     }

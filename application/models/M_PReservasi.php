@@ -77,6 +77,24 @@ class M_PReservasi extends CI_Model {
         invoice.id_pelanggan = '$id_pelanggan'");
     }
 
+    function data_reservasi_penitipan($id_pelanggan){
+        return $this->db->query("SELECT * FROM invoice,detail_invoice_layanan,report_penitipan,pelanggan_penitipan,anjing WHERE
+        invoice.id_invoice = detail_invoice_layanan.id_invoice AND 
+        detail_invoice_layanan.id_report = report_penitipan.id_report_penitipan 
+        AND report_penitipan.id_report_penitipan = pelanggan_penitipan.id_report_penitipan AND anjing.id_anjing = pelanggan_penitipan.id_anjing
+        AND invoice.id_pelanggan='$id_pelanggan'");
+    }
+
+    function data_detail_reservasi_penitipan($id_pelanggan){
+        return $this->db->query("SELECT detail_layanan.nama_detail_layanan, detail_layanan.harga, 
+        detail_layanan.deskripsi_layanan, detail_layanan.id_detail_layanan, invoice.id_invoice FROM detail_layanan, 
+        detail_layanan_report_penitipan, report_penitipan, detail_invoice_layanan, invoice WHERE invoice.id_invoice =
+        detail_invoice_layanan.id_invoice AND detail_invoice_layanan.id_report = report_penitipan.id_report_penitipan
+        AND report_penitipan.id_report_penitipan = detail_layanan_report_penitipan.id_report_penitipan AND 
+        detail_layanan_report_penitipan.id_detail_layanan = detail_layanan.id_detail_layanan AND 
+        invoice.id_pelanggan = '$id_pelanggan'");
+    }
+
 
 
     

@@ -184,6 +184,7 @@ class PReservasi extends CI_Controller {
           'tanggal' => $tanggal,
           'jam' => $jam,
           'keterangan' => $keterangan,
+          'status_report' =>"Menunggu",
           'status_delete' => "Aktif",
           'user_add' => $id_pengguna,
           'waktu_add' => $waktu_add
@@ -226,6 +227,10 @@ class PReservasi extends CI_Controller {
           'waktu_add' => $waktu_add
         );
         $this->M_ReportSalon->tambahRecord('detail_invoice_layanan',$data_detail_invoice_layanan);
+
+        $data['id_invoice'] = $id_invoice;
+        $data['total_harga'] = $total_harga;
+        $this->load->view('VP_KonfirmasiTransfer_Layanan',$data);
         
     }
 
@@ -391,6 +396,7 @@ class PReservasi extends CI_Controller {
           'tanggal' => $tanggal,
           'jam' => $jam,
           'keterangan' => $keterangan,
+          'status_report' =>"Menunggu",
           'status_delete' => "Aktif",
           'user_add' => $id_pengguna,
           'waktu_add' => $waktu_add
@@ -435,7 +441,9 @@ class PReservasi extends CI_Controller {
         $this->M_ReportPenitipan->tambahRecord('detail_invoice_layanan',$data_detail_invoice_layanan);
 
 
-        
+        $data['id_invoice'] = $id_invoice;
+        $data['total_harga'] = $total_harga;
+        $this->load->view('VP_KonfirmasiTransfer_Layanan',$data);
 
 
     }
@@ -603,6 +611,7 @@ class PReservasi extends CI_Controller {
         'tanggal' => $tanggal,
         'jam' => $jam,
         'keterangan' => $keterangan,
+        'status_report' =>"Menunggu",
         'status_delete' => "Aktif",
         'user_add' => $id_pengguna,
         'waktu_add' => $waktu_add
@@ -646,6 +655,10 @@ class PReservasi extends CI_Controller {
         'waktu_add' => $waktu_add
       );
       $this->M_ReportKlinik->tambahRecord('detail_invoice_layanan',$data_detail_invoice_layanan);
+
+      $data['id_invoice'] = $id_invoice;
+      $data['total_harga'] = $total_harga;
+      $this->load->view('VP_KonfirmasiTransfer_Layanan',$data);
     }
 
     public function data_reservasi(){
@@ -663,13 +676,35 @@ class PReservasi extends CI_Controller {
         $data_reservasi['reservasi_salon'] = $this->M_PReservasi->data_reservasi_salon($id_pelanggan)->result();
         $data_reservasi['detail_reservasi_salon'] = $this->M_PReservasi->data_detail_reservasi_salon($id_pelanggan)->result();
         
+        $data_reservasi['reservasi_penitipan'] = $this->M_PReservasi->data_reservasi_penitipan($id_pelanggan)->result();
+        $data_reservasi['detail_reservasi_penitipan'] = $this->M_PReservasi->data_detail_reservasi_penitipan($id_pelanggan)->result();
+        
         
         $this->load->view('VP_DataReservasi',$data_reservasi);
-
-
-
-        
     }
+
+    public function history_reservasi(){
+      $email = $this->session->userdata('email');
+      $Data_Pelanggan = $this->M_PInvoice->cari_idPelanggan($email)->row_array();
+      $id_pelanggan = $Data_Pelanggan['id_pelanggan'];
+
+      $data_idPelanggan =array(
+        'id_pelanggan' => $id_pelanggan
+      );
+
+      $data_reservasi['reservasi_klinik'] = $this->M_PReservasi->data_reservasi_klinik($id_pelanggan)->result();
+      $data_reservasi['detail_reservasi_klinik'] = $this->M_PReservasi->data_detail_reservasi_klinik($id_pelanggan)->result();
+      
+      $data_reservasi['reservasi_salon'] = $this->M_PReservasi->data_reservasi_salon($id_pelanggan)->result();
+      $data_reservasi['detail_reservasi_salon'] = $this->M_PReservasi->data_detail_reservasi_salon($id_pelanggan)->result();
+      
+      $data_reservasi['reservasi_penitipan'] = $this->M_PReservasi->data_reservasi_penitipan($id_pelanggan)->result();
+      $data_reservasi['detail_reservasi_penitipan'] = $this->M_PReservasi->data_detail_reservasi_penitipan($id_pelanggan)->result();
+      
+      
+      $this->load->view('VP_HistoryReservasi',$data_reservasi);
+  }
+
 
 
 

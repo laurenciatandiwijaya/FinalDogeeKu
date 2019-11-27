@@ -135,6 +135,40 @@ class PInvoice extends CI_Controller {
       $this->load->view('VP_Announce',$data);
     }
 
+    function coba_konfirmasiTransfer_layanan(){
+      $id_invoice = $this->input->post('id_invoice');
+      $nama_bank = $this->input->post('nama_bank');
+      $nomor_rekening = $this->input->post('nomor_rekening');
+      $nama_pengirim = $this->input->post('nama_pengirim');
+      $tanggal = $this->input->post('tanggal_dikirim');
+      $total = $this->input->post('total');
+      
+      $email = $this->session->userdata('email');
+      $Dataid_pengguna = $this->M_PInvoice->cari_idPengguna($email)->row_array();
+      $id_pengguna = $Dataid_pengguna['id_pengguna'];
+
+      date_default_timezone_set("Asia/Jakarta");
+      $waktu_add = date("Y-m-d H:i:s");
+
+      $data = array (
+        'id_invoice' => $id_invoice,
+        'nama_bank' => $nama_bank,
+        'nomor_rekening' => $nomor_rekening,
+        'nama_pengirim' => $nama_pengirim,
+        'tanggal' => $tanggal,
+        'total' => $total,
+        'user_add' =>$id_pengguna,
+        'waktu_add' => $waktu_add,
+        'status_transfer' => "Menunggu",
+        'status_delete' => "Aktif"
+      );
+
+      $this->M_PInvoice->tambah_data('transfer',$data);
+
+      $data['status_announce'] = "20";
+      $this->load->view('VP_Announce',$data);
+    }
+
     public function pemesanan(){
       $email = $this->session->userdata('email');
       $Data_Pelanggan = $this->M_PInvoice->cari_idPelanggan($email)->row_array();
@@ -144,7 +178,7 @@ class PInvoice extends CI_Controller {
         'id_pelanggan' => $id_pelanggan
       );
 
-      $data_invoice['invoice'] = $this->M_PInvoice->get_data('invoice',$data_idPelanggan)->result();
+      $data_invoice['invoice'] = $this->M_PInvoice->get_data_invoice_shop($id_pelanggan)->result();
       $data_invoice['detail_barang'] = $this->M_PInvoice->get_detailInvoiceBarang('detail_invoice_barang',$id_pelanggan)->result();
       $this->load->view('VP_Pemesanan',$data_invoice);
     }
@@ -156,6 +190,16 @@ class PInvoice extends CI_Controller {
       $data['id_invoice'] = $id;
 
       $this->load->view('VP_KonfirmasiTransfer',$data);
+
+    }
+
+    public function tampilan_konfirmasiTransfer_layanan($id){
+      $data_invoice = $this->M_PInvoice->ambil_totalHarga($id)->row_array();
+
+      $data['total_harga'] = $data_invoice['total'];
+      $data['id_invoice'] = $id;
+
+      $this->load->view('VP_KonfirmasiTransfer_Layanan',$data);
 
     }
 
