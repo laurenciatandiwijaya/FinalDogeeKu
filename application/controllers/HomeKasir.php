@@ -188,7 +188,7 @@ class HomeKasir extends CI_Controller {
 		$data['invoice']= $this->M_InvoiceOnline->tampilanEditRecord('invoice',$where)->result();
 		$data['pelanggan']= $this->M_Pelanggan->ambilDataNamaPelanggan()->result();
 		$data['detailInvoiceBarang'] = $this->M_InvoiceOnline->ambilDetailInvoiceBarang($id_invoice)->result();
-		$this->load->view('V_Edit_KonfirmasiPengiriman',$data);
+		$this->load->view('VK_Edit_KonfirmasiPengiriman',$data);
 	}
 
 	public function editPengiriman(){

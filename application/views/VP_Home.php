@@ -235,7 +235,7 @@
                             <?php foreach($data_barang as $list){?>
                                 <div class="col-xl-3 col-md-6">
                                     <div class="product">
-                                        <div class="product_image"><img src="<?php echo base_url()?>assets/images/product_1.jpg" alt=""></div>
+                                        <div class="product_image"><img src="<?php echo base_url().$list->foto;?>" alt=""></div>
                                         <div class="product_content">
                                             <div class="product_info d-flex flex-row align-items-start justify-content-start">
                                                 <div>

@@ -28,6 +28,32 @@ class Anjing extends CI_Controller {
 
 	public function tambahData()
 	{
+		$target_dir = "../FinalDogeeKu/assets/img/anjing/";
+		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$uploadOk = 1;
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		// Check if image file is a actual image or fake image
+		if(isset($_POST["submit"])) {
+			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+			if($check !== false) {
+				$uploadOk = 1;
+			} else {
+				$uploadOk = 0;
+			}
+		}
+		// Check if file already exists
+		if (file_exists($target_file)) {
+			$uploadOk = 0;
+		}
+		// Check file size
+		if ($_FILES["fileToUpload"]["size"] > 900000) {
+			$uploadOk = 0;
+		}
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
+			$uploadOk = 0;
+		}
+
 		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_anjing = $this->input->post('nama_anjing');
 		$id_pelanggan = $this->input->post('id_pelanggan');
@@ -40,7 +66,7 @@ class Anjing extends CI_Controller {
 		
 		$hasil = $this->M_Anjing->cekAnjing('anjing', $where);
 
-		if($hasil > 0){
+		if($hasil > 0 || $uploadOk == 0){
 			redirect('Anjing/tampilanTambahData');
 		}
 		else{
@@ -51,6 +77,8 @@ class Anjing extends CI_Controller {
 			date_default_timezone_set("Asia/Jakarta");
 			$waktu_add = date("Y-m-d H:i:s");
 
+			move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+
 			$data = array(
 				'nama_anjing' => $nama_anjing,
 				'id_jenis_anjing' => $id_jenis_anjing,
@@ -59,6 +87,7 @@ class Anjing extends CI_Controller {
 				'berat_badan' => $berat_badan,
 				'tinggi' => $tinggi,
 				'tanggal_lahir' => $tanggal_lahir,
+				'foto' => "/assets/img/anjing/".basename($_FILES["fileToUpload"]["name"]),
 				'status_delete' => "Aktif",
 				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add

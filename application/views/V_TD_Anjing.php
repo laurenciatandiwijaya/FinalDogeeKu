@@ -25,6 +25,7 @@
 		<!-- Specific Page Vendor CSS -->
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/select2/select2.css" />
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+		<link rel="stylesheet" href="assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/stylesheets/theme.css" />
@@ -64,7 +65,8 @@
 					</header>
 
 					<div style="margin-top:-490px;">
-						<form id="summary-form" action="<?php echo base_url(). 'Anjing/tambahData'?>" method="POST" class="form-horizontal">
+						<form id="summary-form" action="<?php echo base_url(). 'Anjing/tambahData'?>" method="POST" 
+						class="form-horizontal" enctype="multipart/form-data">
 							<section class="panel">
 								<header class="panel-heading">
 									<h2 class="panel-title">Tambah Data Anjing</h2>
@@ -138,12 +140,18 @@
 											<input id="datepicker" name="tanggal_lahir" type="date" value="<?php date("Y-m-d"); ?>" required>
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Pilih Foto</label>
+										<div class="col-md-3">
+											<input type="file" name="fileToUpload" id="fileToUpload">
+										</div>
+									</div>
 								</div>
 								
 								<footer class="panel-footer">
 									<div class="row">
 										<div class="col-sm-9 col-sm-offset-3">
-											<button class="btn btn-primary">Submit</button>
+   											<input class="btn btn-primary" type="submit" name="submit">
 											<button type="reset" class="btn btn-default">Reset</button>
 										</div>
 									</div>
@@ -170,6 +178,8 @@
 		<script src="<?php echo base_url()?>assets/vendor/select2/select2.js"></script>
 		<script src="<?php echo base_url()?>assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 		<script src="<?php echo base_url()?>assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+		<script src="<?php echo base_url()?>assets/vendor/jquery-autosize/jquery.autosize.js"></script>
+		<script src="<?php echo base_url()?>assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo base_url()?>assets/javascripts/theme.js"></script>

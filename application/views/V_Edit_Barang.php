@@ -119,8 +119,8 @@
 										<div class="col-sm-6">
 											<div class="input-group mb-md">
 												<span class="input-group-addon">Rp</span>
-												<input type="text" name="harga" class="form-control" 
-												value="<?php echo $list->harga; ?>"required/>
+												<input type="number" min="5000" max="1000000" step="1000" value="<?php echo $list->harga; ?>"
+												name="harga" class="form-control" title="Isi harga barang" required/>
 											</div>
 										</div>
 									</div>

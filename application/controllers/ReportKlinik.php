@@ -165,8 +165,10 @@ class ReportKlinik extends CI_Controller {
 				'tanggal' => $tanggalHariIni,
 				'jam' => $waktu_add,
 				'metode_pembayaran' => "Transfer",
+				'alamat' => "-",
 				'total' => $harga_total,
 				'status_invoice' => "Belum Lunas",
+				'status_pengiriman' => "-",
 				'status_delete' => "Aktif",
 				'user_add' => $id_pengguna,
 				'waktu_add' => $waktu_add

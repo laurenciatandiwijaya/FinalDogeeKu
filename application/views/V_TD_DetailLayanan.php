@@ -104,8 +104,8 @@
 										<div class="col-sm-6">
 											<div class="input-group mb-md">
 												<span class="input-group-addon">Rp</span>
-												<input type="text" name="harga" class="form-control" 
-												title="Isi harga layanan"required/>
+												<input type="number" min="5000" max="1000000" step="1000" value="5000" 
+												name="harga" class="form-control" title="Isi harga detail layanan"required/>
 											</div>
 										</div>
 									</div>

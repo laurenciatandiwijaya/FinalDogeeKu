@@ -19,7 +19,8 @@ class M_InvoiceOnline extends CI_Model {
 		FROM invoice a JOIN pelanggan b ON a.id_pelanggan = b.id_pelanggan 
 		JOIN pengguna c ON b.id_pengguna = c.id_pengguna 
 		WHERE id_invoice LIKE '%OL%' AND a.status_invoice = 'Lunas' 
-		AND NOT a.status_pengiriman = 'Terkirim'");
+		AND NOT a.status_pengiriman = 'Terkirim'
+		AND NOT a.status_pengiriman = 'Batal'");
 	}
 
 	function cekUrutan($tanggalKode){

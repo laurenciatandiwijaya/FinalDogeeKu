@@ -153,6 +153,7 @@
 											<select required name="status_pengiriman" data-plugin-selectTwo class="form-control populate">
 												<option value="Sedang Dikirim">Sedang Dikirim</option>
 												<option value="Terkirim">Terkirim</option>
+												<option value="Terkirim">Batal</option>
 											</select>
 										</div>
 									</div>
