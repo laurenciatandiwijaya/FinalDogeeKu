@@ -89,15 +89,15 @@
               </div>
 
               <div>
-                  <p class="sideBar_judul">AnjingKu</p>
+                  <p class="sideBar_judul">Anjing</p>
                 <div>
                   <a  href="<?php echo base_url()?>PAnjing/data_anjing">
-                      <button class="sideBar_button">+Anjing</button>
+                      <button class="sideBar_button">AnjingKu</button>
                   </a>
                 </div>
                 <div>
                 <a  href="<?php echo base_url()?>PReservasi/data_reservasi">
-                  <button class="sideBar_button">Reservasi</button>
+                  <button class="sideBar_button">History Reservasi</button>
                 </a>
                 </div>
               </div>

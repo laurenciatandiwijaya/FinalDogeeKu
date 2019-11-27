@@ -16,25 +16,24 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
         ntegrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
         <style>
-            body{
+           body{
                 background-color: #FEFFE4;
                 color: #5A3921;
             }
 
-            #form_tambahReservasi{
+            #form_konfirmasiReservasi{
                padding-top:10%; 
                text-align:center;
             }
 
 
-            #table_tambahReservasi{
+            #table_konfirmasiReservasi{
                 width:80%;
                 background-color:#5A3921;
                 color:#FEFFE4;
                 border-radius:50px;
                 padding: 10% 10% 10% 10%;
                 margin-left:10%;
-                margin-top:-150px;
             }
 
             #button_ok{
@@ -42,10 +41,8 @@
                 background-color:#F77754;
                 border-radius:50px;
                 text-align:center;
-                width:50%;
-                height:6%;
+                margin:auto;
                 padding: 1.5% 1.5% 1.5% 1.5%;
-                margin-top:5%;
             }
 
             #button_ok:hover{
@@ -53,16 +50,6 @@
                 color: black;
                 font-weight:bold;
 
-            }
-
-            .div_paket{
-                background-color:  #F77754;
-                color: #5A3921;
-                border-radius:50px;
-                width:45%;
-                float:left;
-                margin: 2% 2% 2% 2%; 
-                padding: 1% 1% 1% 1%; 
             }
 
     
@@ -81,12 +68,12 @@
 
 	<div class="super_container_inner">
         <div class="super_overlay"></div>
-        <div id="form_tambahReservasi">
+        <div id="form_konfirmasiReservasi">
             <h3 id="title">Konfirmasi Reservasi Salon</h3>
             <form method="POST" action="<?php echo base_url().'PReservasi/coba_reservasiPenitipan3'?>">
                 <input type="hidden" name="id_anjing" value="<?php echo $id_anjing;?>" readonly>
                 <input type="hidden" name="id_pekerja" value="<?php echo $id_pekerja;?>" readonly>
-                <table>
+                <table id="table_konfirmasiReservasi">
                     <tr>
                         <td>Nama Anjing</td>
                         <td><input type="text" name="nama_anjing" value="<?php echo $nama_anjing;?>" readonly></td>
@@ -137,7 +124,7 @@
                     <?php } ?>
                     <tr>
                         <input type="hidden" name="jumlah_layanan" value="<?php echo $jmlh_lynan;?>">
-                        <td><button type="submit">Konfirmasi</button></td>
+                        <td colspan="2"><button  id="button_ok" type="submit">Konfirmasi</button></td>
                     </tr>
                 </table>
             </form>

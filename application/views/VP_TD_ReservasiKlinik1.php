@@ -59,8 +59,7 @@
                 background-color:#F77754;
                 border-radius:50px;
                 text-align:center;
-                width:50%;
-                height:6%;
+                margin:auto;
                 padding: 1.5% 1.5% 1.5% 1.5%;
                 margin-top:5%;
             }
@@ -120,7 +119,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td> <button type="submit">Buat Reservasi</button></td>
+                                <td colspan="2"> <button id="button_ok" type="submit">Buat Reservasi</button></td>
                             </tr>
                             <?php } ?>
                         </table>

@@ -37,18 +37,35 @@
                 margin-top:-150px;
             }
 
-            #button_ok{
+            .button_ok{
                 
                 background-color:#F77754;
                 border-radius:50px;
                 text-align:center;
-                width:50%;
-                height:6%;
+                margin:auto;
                 padding: 1.5% 1.5% 1.5% 1.5%;
                 margin-top:5%;
+                border: 2px solid black;
             }
 
-            #button_ok:hover{
+            .button_ok:hover{
+                background-color:#FEFFE4;
+                color: black;
+                font-weight:bold;
+
+            }
+
+            #button_submit{
+                background-color:#F77754;
+                border-radius:50px;
+                text-align:center;
+                margin:auto;
+                padding: 1.5% 1.5% 1.5% 1.5%;
+                margin-top:5%;
+
+            }
+
+            #button_submit:hover{
                 background-color:#FEFFE4;
                 color: black;
                 font-weight:bold;
@@ -91,7 +108,7 @@
                                 <p>Nama Layanan:<?php echo $list->nama_detail_layanan?></p>
                                 <p>Deskripsi Layanan:<?php echo $list->deskripsi_layanan?></p>
                                 <p>Harga Layanan:<?php echo $list->harga?></p>
-                                <button  type="button" class="cobadeh" value="<?php echo $list->id_detail_layanan;?>">+/-</button>
+                                <button  type="button" class="cobadeh button_ok" value="<?php echo $list->id_detail_layanan;?>">+/-</button>
                                 <input type="hidden" id="cek<?php echo $list->id_detail_layanan;?>" value="1">
                             </div>  
                             <form method="POST">
@@ -99,7 +116,7 @@
                         <?php 
                         $counter++;
                         } ?>        
-                        <button type="submit"  onclick="javascript:form.action='<?php echo base_url().'PReservasi/coba_reservasiSalon2'?>'">submit</button>
+                        <button type="submit" id="button_submit" onclick="javascript:form.action='<?php echo base_url().'PReservasi/coba_reservasiSalon2'?>'">submit</button>
                         <div>
                             <input type="hidden" name="id_pekerja" value="<?php echo $id_pekerja;?>">
                             <input type="hidden" name="nama_pekerja" value="<?php echo $nama_lengkap;?>">
