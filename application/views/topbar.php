@@ -57,7 +57,7 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'Login/editProfilPekerja'?>"><i class="fa fa-user"></i> Profil</a>
+									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'Login/tampilanEditProfilPekerja'?>"><i class="fa fa-user"></i>Edit Profil</a>
 								</li>
 								<li>
 									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'Login/coba_logout'?>">

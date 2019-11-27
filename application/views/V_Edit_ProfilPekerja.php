@@ -5,7 +5,7 @@
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
-		<title>Layanan</title>
+		<title>Edit Profil</title>
 		<meta name="keywords" content="HTML5 Admin Template" />
 		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
@@ -47,7 +47,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Report Penitipan</h2>
+						<h2>Edit Profil</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -56,115 +56,64 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Layanan</span></li>
-								<li><span>Report Penitipan</span></li>
-								<li><span>Edit Data Report Penitipan  .</span></li>
+								<li><span>Home</span></li>
+								<li><span>Edit Profil  .</span></li>
 							</ol>
 						</div>
 					</header>
 
 					<div style="margin-top:-490px;">
-						<form id="summary-form" action="<?php echo base_url(). 'ReportSalon/editData'?>" method="POST" class="form-horizontal">
+						<form id="summary-form" action="<?php echo base_url(). 'Login/editProfilPekerja'?>" method="POST" class="form-horizontal">
 							<section class="panel">
-							<header class="panel-heading">
-									<h2 class="panel-title">Edit Data Report Penitipan</h2>
+								<header class="panel-heading">
+									<h2 class="panel-title">Edit Profil</h2>
 								</header>
 								<div class="panel-body">
 									<div class="validation-message">
 										<ul></ul>
 									</div>
+									<h4 class="mb-xlg">Data Personal</h4>
 								<?php
-									foreach($report as $list){
-								?>
+									foreach($pekerja as $listPekerja){
+										foreach($pengguna as $listPengguna){
+									?>
 									<div class="form-group">
-										<label class="col-sm-3 control-label">ID Report</label>
+										<label class="col-sm-3 control-label">Nama Lengkap<span class="required">*</span></label>
 										<div class="col-sm-6">
-											<input type="text" name="id_report_penitipan" value="<?php echo $list->id_report; ?>" 
-											class="form-control" readonly/>
+											<input type="hidden" name="id_pengguna" value="<?php echo $listPengguna->id_pengguna; ?>" class="form-control"/>
+											<input type="text" name="nama_lengkap" value="<?php echo $listPengguna->nama_lengkap; ?>" class="form-control" required/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">Nama Anjing / Pemilik<span class="required">*</span></label>
-										<div class="col-md-6">
-											<input type="hidden" name="id_anjingAsli" value="<?php echo $list->id_anjing; ?>" class="form-control"/>
-											<select required name="id_anjingUbah" data-plugin-selectTwo class="form-control populate">
-												<?php foreach($anjing as $listAnjing){ ?>
-													<option value="<?php echo $listAnjing->id_anjing; ?>" <?php
-														if($list->id_anjing == $listAnjing->id_anjing){ echo "selected"; } ?>>
-														<?php echo $listAnjing->nama_anjing ." / Pemilik : ". $listAnjing->nama_lengkap;?>
-													</option>
-												<?php }?>
-											</select>
+										<label class="col-sm-3 control-label">Email<span class="required">*</span></label>
+										<div class="col-sm-6">
+											<input type="hidden" name="emailAsli" value="<?php echo $listPengguna->email; ?>" class="form-control" required/>	
+											<input type="text" name="emailUbah" value="<?php echo $listPengguna->email; ?>" class="form-control" required/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">Nama Pekerja<span class="required">*</span></label>
-										<div class="col-md-6">
-										<input type="hidden" name="id_pekerjaAsli" value="<?php echo $list->id_pekerja; ?>" class="form-control"/>
-											<select required name="id_pekerjaUbah" data-plugin-selectTwo class="form-control populate">
-												<?php foreach($pekerja as $listPekerja){ 
-													if($listPekerja->id_jabatan == "6"){?>
-														<option value="<?php echo $listPekerja->id_pekerja; ?>" <?php
-														if($list->id_pekerja == $listPekerja->id_pekerja){ echo "selected"; } ?>>
-															<?php echo $listPekerja->nama_lengkap; ?>
-														</option>
-												<?php
-												 	}
-												}?>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label">Tanggal<span class="required">*</span></label>
+										<label class="col-md-3 control-label">Tanggal Lahir<span class="required">*</span></label>
 										<div class="col-md-9">
-											<input type="hidden" name="tanggalAsli" value="<?php echo $list->tanggal; ?>" class="form-control"/>
-											<input class="col-md-5" id="datepicker" name="tanggalUbah" type="date" 
-											value="<?php echo $list->tanggal; ?>" required>
+											<input class="col-md-7" id="datepicker" name="tanggal_lahir" type="date" 
+											value="<?php echo $listPengguna->tanggal_lahir; ?>" required>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label">Jam<span class="required">*</span></label>
-										<div class="col-sm-9">
-											<input type="hidden" name="jamAsli" value="<?php echo $list->jam; ?>" class="form-control"/>
-											<input class="col-md-5" id="timepicker" name="jamUbah" type="time" 
-											value="<?php echo $list->jam; ?>" required>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Keterangan</label>
+										<label class="col-sm-3 control-label">No HP<span class="required">*</span></label>
 										<div class="col-sm-6">
-											<input type="text" name="keterangan" value="<?php echo $list->keterangan; ?>" 
-											class="form-control" required/>
+											<input type="text" name="no_hp" value="<?php echo $listPengguna->no_hp; ?>" class="form-control" required/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label">Status Report<span class="required">*</span></label>
+										<label class="col-sm-3 control-label">Alamat<span class="required">*</span></label>
 										<div class="col-sm-6">
-											<?php 
-											if($list->status_report == "Menunggu"){ ?>
-												<select name="status_report" class="form-control" required>
-													<option value="Selesai" <?php 
-													if($list->status_report == "Selesai"){ echo "selected"; } ?>>Selesai</option>
-													<option value="Batal" <?php 
-													if($list->status_report == "Batal"){ echo "selected"; } ?>>Batal</option>
-												</select>
-											<?php
-											}
-											else{ ?>
-												<input type="text" name="status_report" value="<?php echo $list->status_report; ?>" 
-												class="form-control" readonly/>
-											<?php
-											}
-											?>
+											<input type="text" name="alamat" value="<?php echo $listPekerja->alamat; ?>" class="form-control" required/>
 										</div>
 									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Status Delete</label>
-										<div class="col-sm-6">
-											<input type="text" name="status_delete" value="<?php echo $list->status_delete; ?>" 
-											class="form-control"readonly/>
-										</div>
-									</div>
+									
+									<?php
+										}
+									?>
 								<?php
 									}
 								?>
@@ -172,7 +121,7 @@
 								<footer class="panel-footer">
 									<div class="row">
 										<div class="col-sm-9 col-sm-offset-3">
-											<button class="btn btn-primary">Simpan</button>
+											<button class="btn btn-primary">Submit</button>
 										</div>
 									</div>
 								</footer>
