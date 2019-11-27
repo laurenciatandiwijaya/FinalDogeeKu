@@ -68,7 +68,7 @@ class TipePengguna extends CI_Controller {
 		);
 		
 		$data['tipePengguna']= $this->M_TipePengguna->tampilanEditRecord('tipe_pengguna',$where)->result();
-		$this->load->view('V_Detail_TipePengguna',$data);
+		$this->load->view('V_Edit_TipePengguna',$data);
 	}
 
 	public function editData()

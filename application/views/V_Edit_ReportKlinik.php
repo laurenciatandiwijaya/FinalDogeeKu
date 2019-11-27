@@ -79,7 +79,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label">ID Report</label>
 										<div class="col-sm-6">
-											<input type="text" name="id_report_klinik" value="<?php echo $list->id_report_klinik; ?>" 
+											<input type="text" name="id_report_klinik" value="<?php echo $list->id_report; ?>" 
 											class="form-control" readonly/>
 										</div>
 									</div>
