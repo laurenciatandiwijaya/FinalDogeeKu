@@ -180,7 +180,7 @@
             </div>
 
             <div class="register_kanan">
-                <h1 class="tulisan_register">REGISTRATION</h1>
+                <h1 class="tulisan_register">EDIT KEGIATAN</h1>
                 
                 <form method="POST" action="<?php echo base_url().'PPlanner/coba_editKegiatanAnjing'?>">
                     <p>Nama Anjing
