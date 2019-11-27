@@ -5,6 +5,8 @@ class Login extends CI_Controller {
     function __construct(){
       parent:: __construct();
         $this->load->model('M_Login');
+        $this->load->model('M_Pengguna');
+        $this->load->model('M_Pekerja');
     }  
 
     public function login(){
@@ -292,6 +294,76 @@ class Login extends CI_Controller {
 
       }
 
+    }
+
+    public function tampilanEditProfilPekerja(){
+      $id_pengguna = $this->session->userdata("id_pengguna");
+      $where = array(
+        'id_pengguna' => $id_pengguna
+      );
+  
+      $data['pengguna']= $this->M_Pengguna->tampilanEditRecord('pengguna', $where)->result();
+      $data['pekerja']= $this->M_Pekerja->tampilanEditRecord('pekerja', $where)->result();
+      $this->load->view('V_Edit_ProfilPekerja',$data);
+    }
+
+    public function editProfilPekerja(){
+      $id_pengguna = $this->session->userdata("id_pengguna");
+      $id_tipe_pengguna = $this->session->userdata("id_tipe_pengguna");
+      $emailAsli = $this->input->post('emailAsli');
+      $emailUbah = $this->input->post('emailUbah');
+
+      $email = $emailAsli;
+      if($emailAsli != $emailUbah){
+        $whereCek = array(
+          'email' => $emailUbah
+        );
+        
+        $hasilEmail = $this->M_Pekerja->cekEmail('pengguna', $whereCek);
+        if($hasilEmail > 0){
+          redirect('Login/tampilanEditProfilPekerja');
+        }
+        $email = $emailUbah;
+      }
+      $id_pekerja = $this->input->post('id_pekerja');
+      $nama_lengkap = $this->input->post('nama_lengkap');
+      $tanggal_lahir = $this->input->post('tanggal_lahir');
+      $no_hp = $this->input->post('no_hp');
+      $alamat = $this->input->post('alamat');
+      date_default_timezone_set("Asia/Jakarta");
+      $waktu_edit = date("Y-m-d H:i:s");
+
+      $where = array('id_pengguna' => $id_pengguna);
+      
+      $dataPengguna = array(
+        'nama_lengkap' => $nama_lengkap,
+        'tanggal_lahir' => $tanggal_lahir,
+        'no_hp' => $no_hp,
+        'email' => $email,
+        'user_edit' => $id_pengguna,
+        'waktu_edit' => $waktu_edit
+      );
+      $this->M_Pengguna->editRecord($where,'pengguna',$dataPengguna);
+
+      $dataPekerja = array (
+        'alamat' => $alamat,
+        'user_edit' => $id_pengguna,
+        'waktu_edit' => $waktu_edit
+      );
+
+      $this->M_Pengguna->editRecord($where,'pekerja',$dataPekerja);
+      if($id_tipe_pengguna == "1"){
+        redirect('HomeAdmin');
+      }			
+      else if($id_tipe_pengguna == "2"){
+        redirect('HomeManager');
+      }	
+      else if($id_tipe_pengguna == "3"){
+        redirect('HomeKasir');
+      }
+      else if($id_tipe_pengguna == "4" || $id_tipe_pengguna == "5" || $id_tipe_pengguna == "6"){
+        redirect('HomePekerjaLayanan');
+      }		
     }
 
 }
