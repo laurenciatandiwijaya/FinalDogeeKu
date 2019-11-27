@@ -69,7 +69,7 @@ class Barang extends CI_Controller {
 		
 		$hasil = $this->M_Barang->cekBarang('barang', $where);
 
-		if($hasil > 0){
+		if($hasil > 0 || $uploadOk == 0){
 			redirect('Barang/tampilanTambahData');
 		}
 		else{

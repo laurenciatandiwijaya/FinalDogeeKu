@@ -64,7 +64,8 @@
 					</header>
 
 					<div style="margin-top:-490px;">
-						<form id="summary-form" action="<?php echo base_url(). 'Barang/tambahData'?>" method="POST" class="form-horizontal">
+						<form id="summary-form" action="<?php echo base_url(). 'Barang/tambahData'?>" method="POST" 
+						class="form-horizontal" enctype="multipart/form-data">
 							<section class="panel">
 								<header class="panel-heading">
 									<h2 class="panel-title">Tambah Data Barang</h2>

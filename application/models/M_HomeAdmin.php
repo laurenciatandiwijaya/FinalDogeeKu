@@ -22,7 +22,7 @@ class M_HomeAdmin extends CI_Model {
 		FROM detail_invoice_layanan a JOIN report_salon b ON a.id_report = b.id_report_salon
 		JOIN report_klinik c ON a.id_report = c.id_report_klinik
 		JOIN report_penitipan d ON a.id_report = d.id_report_penitipan 
-		WHERE b.tanggal = '$tanggal%' AND c.tanggal = '$tanggal%' AND d.tanggal = '$tanggal%'");
+		WHERE b.tanggal = '$tanggal%' OR c.tanggal = '$tanggal%' OR d.tanggal = '$tanggal%'");
 	}
 
 	function hitungPendapatan($tanggal){
