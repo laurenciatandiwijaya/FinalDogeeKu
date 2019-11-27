@@ -167,18 +167,14 @@
                                                                 <div class="form-group">
                                                                     <label class="control-label col-sm-3">Start Date</label>
                                                                     <div class="col-sm-8">
-                                                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
-                                                                            <input type="text" name="start_date" class="form-control" readonly>
-                                                                            <span class="input-group-addon"><i class="fa fa-calendar font-dark"></i></span>
-                                                                        </div>
+                                                                        <input type="text" name="start_date" class="form-control" readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label col-sm-3">End Date</label>
                                                                     <div class="col-sm-8">
-                                                                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+                                                                        <div>
                                                                             <input type="text" name="end_date" class="form-control" readonly>
-                                                                            <span class="input-group-addon"><i class="fa fa-calendar font-dark"></i></span>
                                                                         </div>
                                                                     </div>
                                                                 </div>

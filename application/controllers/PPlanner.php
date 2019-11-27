@@ -45,11 +45,10 @@ class PPlanner extends CI_Controller {
 		$data['data_anjing'] = $this->M_PPlanner->cari_namaAnjing($id_pelanggan)->result();
 
 		$this->load->view('VP_tambahKegiatanAnjing',$data);
-		
 	}
 
 	public function coba_tambahKegiatanAnjing(){
-    $email = $this->session->userdata('email');
+		$email = $this->session->userdata('email');
 
 		$tangkap_idAnjing = $this->input->post('nama_anjing');
 		$tangkap_namaKegiatan = $this->input->post('nama_kegiatan');
@@ -60,46 +59,51 @@ class PPlanner extends CI_Controller {
     $Dataid_pengguna = $this->M_PPlanner->cari_idPengguna($email)->row_array();
     $id_pengguna = $Dataid_pengguna['id_pengguna'];
 
-		date_default_timezone_set("Asia/Jakarta");
-    $waktu_add = date("Y-m-d H:i:s");
-    
-
-    $where_data = array (
-      'id_anjing' => $tangkap_idAnjing,
-      'start_date' => $tangkap_startDate,
-      'end_date' => $tangkap_endDate,
-      'nama_kegiatan' => $tangkap_namaKegiatan
-    );
-
-    if($tangkap_startDate == $tangkap_endDate){
-      $data['status_announce'] = "12";
-      $this->load->view('VP_Announce',$data);
-    }
-
-    else{
-      $cek_kegiatan = $this->M_PPlanner->cek_kegiatan($where_data)->num_rows();
-      if($cek_kegiatan < 1){
-        $data_kegiatan = array(
-          'nama_kegiatan' => $tangkap_namaKegiatan,
-          'id_anjing' => $tangkap_idAnjing,
-          'color' => $tangkap_color,
-          'start_date' => $tangkap_startDate,
-          'end_date' => $tangkap_endDate,
-          'user_add' => $id_pengguna,
-          'waktu_add' => $waktu_add,
-          'status_delete' => "Aktif"
-        );
-    
-        $insert = $this->M_PPlanner->insert($this->table, $data_kegiatan);
-        redirect('PPlanner');  
-      }
-  
-      else{
-        $data['status_announce'] = "11";
+	date_default_timezone_set("Asia/Jakarta");
+	$waktu_add = date("Y-m-d H:i:s");
+	
+	if($tangkap_endDate >= $tangkap_startDate){
+		$data['status_announce'] = "19";
         $this->load->view('VP_Announce',$data);
-      }    
-    }
-
+	}
+	else{
+		$where_data = array (
+			'id_anjing' => $tangkap_idAnjing,
+			'start_date' => $tangkap_startDate,
+			'end_date' => $tangkap_endDate,
+			'nama_kegiatan' => $tangkap_namaKegiatan
+		  );
+		  //ini belum bisa...
+		  if($tangkap_startDate == $tangkap_endDate){
+			$data['status_announce'] = "12";
+			$this->load->view('VP_Announce',$data);
+		  }
+	  
+		  else{
+			$cek_kegiatan = $this->M_PPlanner->cek_kegiatan($where_data)->num_rows();
+			if($cek_kegiatan < 1){
+			  $data_kegiatan = array(
+				'nama_kegiatan' => $tangkap_namaKegiatan,
+				'id_anjing' => $tangkap_idAnjing,
+				'color' => $tangkap_color,
+				'start_date' => $tangkap_startDate,
+				'end_date' => $tangkap_endDate,
+				'user_add' => $id_pengguna,
+				'waktu_add' => $waktu_add,
+				'status_delete' => "Aktif"
+			  );
+		  
+			  $insert = $this->M_PPlanner->insert($this->table, $data_kegiatan);
+			  redirect('PPlanner');  
+			}
+		
+			else{
+			  $data['status_announce'] = "11";
+			  $this->load->view('VP_Announce',$data);
+			}    
+		  }
+	  
+	}
     
 	}
 

@@ -160,7 +160,7 @@
 
             <div class="logout_kanan">
                     <h1 class="tulisan_logout">Konfirmasi Transfer</h1>
-                    <form method="POST" action="<?php echo base_url().'PInvoice/coba_konfirmasiTransfer'?>">
+                    <form method="POST" action="<?php echo base_url().'PInvoice/coba_konfirmasiTransfer_layanan'?>">
                     <table>
                             <tr>
                                 <input name="id_invoice" type="hidden" value=<?php echo $id_invoice;?>>

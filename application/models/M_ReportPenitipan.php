@@ -38,7 +38,7 @@ class M_ReportPenitipan extends CI_Model {
 	}
 
 	function cekUrutan($tanggal){
-		return $this->db->query("select id_report_penitipan FROM report_salon
+		return $this->db->query("select id_report_penitipan FROM report_penitipan
 		WHERE id_report_penitipan LIKE '$tanggal%' ")->num_rows();	
 	}
 

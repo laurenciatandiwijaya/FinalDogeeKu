@@ -24,6 +24,11 @@ class M_PInvoice extends CI_Model {
         return $this->db->get_where($table,$where);
     }
 
+    function get_data_invoice_shop($id_pelanggan){
+        return $this->db->query("select * FROM invoice
+		WHERE id_invoice LIKE '%OL%' AND invoice.id_pelanggan='$id_pelanggan'");
+    }
+
     function tambah_data($table,$data){
         $this->db->insert($table,$data);
     }
