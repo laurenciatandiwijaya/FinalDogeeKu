@@ -62,7 +62,7 @@ class PPlanner extends CI_Controller {
 	date_default_timezone_set("Asia/Jakarta");
 	$waktu_add = date("Y-m-d H:i:s");
 	
-	if($tangkap_endDate >= $tangkap_startDate){
+	if($tangkap_endDate <= $tangkap_startDate){
 		$data['status_announce'] = "19";
         $this->load->view('VP_Announce',$data);
 	}
