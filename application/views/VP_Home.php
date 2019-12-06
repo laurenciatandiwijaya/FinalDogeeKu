@@ -16,10 +16,9 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/animate.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
         ntegrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
-        <script src="js/wow.min.js"></script>
-              <script>
-              new WOW().init();
-              </script>
+		<!--Ini WOW js-->
+		<link rel="stylesheet"  href="<?php echo base_url()?>assets/css/animate.css">
+		<script src="<?php echo base_url()?>assets/js/wow.js"></script>   
     <style>
             body{
                 background-color:#FEFFE4; 
@@ -275,7 +274,7 @@
 
 		<section class="home" id="S1">
             <div class="kontenS1">
-                <div class="welcome wow zoomIn">Welcome to DogeeKu</div>
+                <div class="welcome" data-wow-duration="1000ms">Welcome to DogeeKu</div>
                 <div class="desc">Since 1999.</div>
             </div>
 		</section>
@@ -284,7 +283,7 @@
 
 		<section id="S2">
             <div class="kontenS2">
-                <div class="judul">
+                <div class="judul  wow slideInLeft">
                     Tentang DogeeKu
                 </div>
                  <div class="konten">
@@ -319,17 +318,17 @@
                         </tr>
                         <tr>
                             <td>
-                                <a  href="<?php echo base_url()?>PHome/klinik">
+                                <a >
                                     <button class="button_layanan">Layanan Klinik</button>
                                 </a>
                             </td>
                             <td>
-                                <a  href="<?php echo base_url()?>PHome/salon">
+                                <a>
                                     <button class="button_layanan">Layanan Salon</button>
                                 </a>
                             </td>
                             <td>
-                                <a  href="<?php echo base_url()?>PHome/penitipan">
+                                <a>
                                     <button class="button_layanan">Layanan Penitipan</button>
                                 </a>
                             </td>
@@ -443,21 +442,21 @@
                             </table>
                         </div>
                         <div class="div_contactUs">
-                            <a>
+                            <a href="https://www.facebook.com/">
                                 <button class="button_contactUs">
                                 <img src="<?php echo base_url().'assets/img/facebook.png'?>">
                                 </button>
                             </a>
                         </div>
                         <div class="div_contactUs">
-                            <a>
+                            <a href="https://www.instagram.com/">
                                 <button class="button_contactUs">
                                 <img src="<?php echo base_url().'assets/img/instagram.png'?>">
                                 </button>
                             </a>
                         </div>
                         <div class="div_contactUs">
-                            <a>
+                            <a href="https://www.whatsapp.com/">
                                 <button class="button_contactUs">
                                 <img src="<?php echo base_url().'assets/img/whatsapp.png'?>">
                                 </button>
