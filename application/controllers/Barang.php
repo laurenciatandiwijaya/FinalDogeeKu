@@ -64,7 +64,8 @@ class Barang extends CI_Controller {
 			'nama_barang' => $nama_barang,
 			'warna' => $warna,
 			'ukuran' => $ukuran,
-			'satuan' => $satuan
+			'satuan' => $satuan,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasil = $this->M_Barang->cekBarang('barang', $where);
@@ -151,7 +152,8 @@ class Barang extends CI_Controller {
 				'nama_barang' => $nama_barangUbah,
 				'warna' => $warnaUbah,
 				'ukuran' => $ukuranUbah,
-				'satuan' => $satuanUbah
+				'satuan' => $satuanUbah,
+				'status_delete' => "Aktif"
 			);
 			
 			$hasil = $this->M_Barang->cekBarang('barang', $whereCek);

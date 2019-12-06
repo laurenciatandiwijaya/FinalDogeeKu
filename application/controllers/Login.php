@@ -366,5 +366,59 @@ class Login extends CI_Controller {
       }		
     }
 
+    public function tampilanGantiPasswordPekerja(){
+      $id_pengguna = $this->session->userdata("id_pengguna");
+      $where = array(
+        'id_pengguna' => $id_pengguna
+      );
+  
+      $data['pengguna']= $this->M_Pengguna->tampilanEditRecord('pengguna', $where)->result();
+      $this->load->view('V_Edit_PasswordPekerja',$data);
+    }
+
+    public function gantiPasswordPekerja(){
+      $id_pengguna = $this->session->userdata("id_pengguna");
+      $id_tipe_pengguna = $this->session->userdata("id_tipe_pengguna");
+      $passwordLamaHidden = $this->input->post('passwordLamaHidden');
+      $passwordLamaInput = $this->input->post('passwordLamaInput');
+
+      if($passwordLamaHidden != md5($passwordLamaInput)){
+        redirect('Login/tampilanGantiPasswordPekerja');
+      }
+      else{
+        $passwordBaru1 = $this->input->post('passwordBaru1');
+        $passwordBaru2 = $this->input->post('passwordBaru2');
+        if($passwordBaru1 != $passwordBaru2){
+          redirect('Login/tampilanGantiPasswordPekerja');
+        }
+        else{
+          date_default_timezone_set("Asia/Jakarta");
+          $waktu_edit = date("Y-m-d H:i:s");
+          $passwordEnkrip = md5($passwordBaru1);
+          $wherePengguna = array('id_pengguna' => $id_pengguna);
+          $data = array(
+            'password' => $passwordEnkrip,
+            'user_edit' => $id_pengguna,
+            'waktu_edit' => $waktu_edit
+          );
+
+          $this->M_Pengguna->editRecord($wherePengguna,'pengguna',$data);
+          
+          if($id_tipe_pengguna == "1"){
+            redirect('HomeAdmin');
+          }			
+          else if($id_tipe_pengguna == "2"){
+            redirect('HomeManager');
+          }	
+          else if($id_tipe_pengguna == "3"){
+            redirect('HomeKasir');
+          }
+          else if($id_tipe_pengguna == "4" || $id_tipe_pengguna == "5" || $id_tipe_pengguna == "6"){
+            redirect('HomePekerjaLayanan');
+          }	
+        }
+      }
+    }
+
 }
 ?>

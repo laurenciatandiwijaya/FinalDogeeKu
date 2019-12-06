@@ -75,7 +75,6 @@
 									</div>
 								<?php
 									foreach($pekerja as $listPekerja){
-
 								?>
 									<div class="form-group">
 										<label class="col-sm-3 control-label">ID Pekerja</label>

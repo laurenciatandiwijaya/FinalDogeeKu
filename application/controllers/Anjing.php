@@ -61,7 +61,8 @@ class Anjing extends CI_Controller {
 		$where = array(
 			'nama_anjing' => $nama_anjing,
 			'id_pelanggan' => $id_pelanggan,
-			'id_jenis_anjing' => $id_jenis_anjing
+			'id_jenis_anjing' => $id_jenis_anjing,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasil = $this->M_Anjing->cekAnjing('anjing', $where);
@@ -142,6 +143,7 @@ class Anjing extends CI_Controller {
 				'nama_anjing' => $nama_anjingUbah,
 				'id_pelanggan' => $id_pelangganUbah,
 				'id_jenis_anjing' => $id_jenis_anjingUbah
+				'status_delete' => "Aktif"
 			);
 			
 			$hasil = $this->M_Anjing->cekAnjing('anjing', $whereCek);

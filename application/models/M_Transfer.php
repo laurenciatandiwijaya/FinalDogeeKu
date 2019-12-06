@@ -5,11 +5,12 @@ class M_Transfer extends CI_Model {
 
 	function ambilData()
 	{
-		return $this->db->query('select a.id_transfer, a.id_invoice, a.nama_bank, a.nomor_rekening,
+		return $this->db->query("select a.id_transfer, a.id_invoice, a.nama_bank, a.nomor_rekening,
 		a.nama_pengirim, a.tanggal, a.total, a.status_transfer, d.nama_lengkap 
 		FROM transfer a JOIN invoice b ON a.id_invoice = b.id_invoice 
 		JOIN pelanggan c ON b.id_pelanggan = c.id_pelanggan 
-		JOIN pengguna d ON c.id_pengguna = d.id_pengguna');
+		JOIN pengguna d ON c.id_pengguna = d.id_pengguna
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function ambilDataMenunggu()
@@ -19,13 +20,15 @@ class M_Transfer extends CI_Model {
 		FROM transfer a JOIN invoice b ON a.id_invoice = b.id_invoice 
 		JOIN pelanggan c ON b.id_pelanggan = c.id_pelanggan 
 		JOIN pengguna d ON c.id_pengguna = d.id_pengguna
-		WHERE a.status_transfer = 'Menunggu' AND b.status_delete = 'Aktif'");
+		WHERE a.status_transfer = 'Menunggu' 
+		AND b.status_delete = 'Aktif'");
 	}
 
 	function tampilanTambahRecord(){
 		return $this->db->query("select a.id_invoice, c.nama_lengkap 
 		FROM invoice a JOIN pelanggan b ON a.id_pelanggan = b.id_pelanggan 
-		JOIN pengguna c ON b.id_pengguna = c.id_pengguna WHERE a.metode_pembayaran = 'Transfer' ");
+		JOIN pengguna c ON b.id_pengguna = c.id_pengguna WHERE a.metode_pembayaran = 'Transfer' 
+		AND a.status_delete = 'Aktif'");
 	}
 
 	function tambahRecord($table,$data)

@@ -29,7 +29,8 @@ class Pelanggan extends CI_Controller {
 		$id_pengguna = $this->session->userdata("id_pengguna");
 		$email = $this->input->post('email');
 		$where = array(
-			'email' => $email
+			'email' => $email,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasilEmail = $this->M_Pelanggan->cekEmail('pengguna', $where);
@@ -114,7 +115,8 @@ class Pelanggan extends CI_Controller {
 		$email = $emailAsli;
 		if($emailAsli != $emailUbah){
 			$whereCek = array(
-				'email' => $emailUbah
+				'email' => $emailUbah,
+				'status_delete' => "Aktif"
 			);
 			
 			$hasilEmail = $this->M_Pelanggan->cekEmail('pengguna', $whereCek);

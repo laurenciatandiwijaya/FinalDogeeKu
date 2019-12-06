@@ -5,9 +5,9 @@ class M_Layanan extends CI_Model {
 
 	function ambilData()
 	{
-		return $this->db->query('select a.id_layanan, a.nama_layanan, a.id_jabatan, a.status_delete, b.nama_jabatan 
-		FROM layanan a JOIN jabatan b ON
-		a.id_jabatan = b.id_jabatan');
+		return $this->db->query("select a.id_layanan, a.nama_layanan, a.id_jabatan, a.status_delete, b.nama_jabatan 
+		FROM layanan a JOIN jabatan b ON a.id_jabatan = b.id_jabatan
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function cekLayanan($table, $nama_layanan){

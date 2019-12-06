@@ -5,7 +5,7 @@ class M_KategoriBarang extends CI_Model {
 
 	function ambilData()
 	{
-		return $query=$this->db->get('kategori_barang');	
+		return $query=$this->db->query("select * FROM kategori_barang WHERE status_delete = 'Aktif'");
 	}
 
 	function cekKategori($table, $nama_jabatan){

@@ -5,10 +5,11 @@ class M_Barang extends CI_Model {
 
 	function ambilData()
 	{
-		return $this->db->query('select a.id_barang, a.id_kategori_barang, a.nama_barang, a.jumlah_barang, 
+		return $this->db->query("select a.id_barang, a.id_kategori_barang, a.nama_barang, a.jumlah_barang, 
 		a.harga, a.warna, a.ukuran, a.satuan, a.keterangan, a.waktu_add, b.nama_kategori_barang 
 		FROM barang a JOIN kategori_barang b ON
-		a.id_kategori_barang = b.id_kategori_barang');
+		a.id_kategori_barang = b.id_kategori_barang
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function cekBarang($table, $barang){

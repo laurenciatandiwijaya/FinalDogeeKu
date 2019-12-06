@@ -31,7 +31,8 @@ class DetailLayanan extends CI_Controller {
 		$nama_detail_layanan = $this->input->post('nama_detail_layanan');
 		$where = array(
 			'id_layanan' => $id_layanan,
-			'nama_detail_layanan' => $nama_detail_layanan
+			'nama_detail_layanan' => $nama_detail_layanan,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasil = $this->M_DetailLayanan->cekDetailLayanan('detail_layanan', $where);
@@ -95,7 +96,8 @@ class DetailLayanan extends CI_Controller {
 		if($id_layananAsli != $id_layananUbah || $nama_detail_layananAsli != $nama_detail_layananUbah){
 			$whereCek = array(
 				'id_layanan' => $id_layananUbah,
-				'nama_detail_layanan' => $nama_detail_layananUbah
+				'nama_detail_layanan' => $nama_detail_layananUbah,
+				'status_delete' => "Aktif"
 			);
 			
 			$hasil = $this->M_DetailLayanan->cekDetailLayanan('detail_layanan', $whereCek);

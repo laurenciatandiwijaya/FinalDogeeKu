@@ -27,7 +27,8 @@ class TipePengguna extends CI_Controller {
 		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_tipe_pengguna = $this->input->post('nama_tipe_pengguna');
 		$where = array(
-			'nama_tipe_pengguna' => $nama_tipe_pengguna
+			'nama_tipe_pengguna' => $nama_tipe_pengguna,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasil = $this->M_TipePengguna->cekTipePengguna('tipe_pengguna', $where);

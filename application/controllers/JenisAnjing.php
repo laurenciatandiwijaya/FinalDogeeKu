@@ -27,7 +27,8 @@ class JenisAnjing extends CI_Controller {
 		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_jenis_anjing = $this->input->post('nama_jenis_anjing');
 		$where = array(
-			'nama_jenis_anjing' => $nama_jenis_anjing
+			'nama_jenis_anjing' => $nama_jenis_anjing,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasil = $this->M_JenisAnjing->cekJenisAnjing('jenis_anjing', $where);
@@ -80,7 +81,8 @@ class JenisAnjing extends CI_Controller {
 		$nama_jenis_anjing = $nama_jenis_anjingAsli;
 		if($nama_jenis_anjingAsli != $nama_jenis_anjingUbah){
 			$whereCek = array(
-				'nama_jenis_anjing' => $nama_jenis_anjingUbah
+				'nama_jenis_anjing' => $nama_jenis_anjingUbah,
+				'status_delete' => "Aktif"
 			);
 			
 			$hasil = $this->M_JenisAnjing->cekJenisAnjing('jenis_anjing', $whereCek);

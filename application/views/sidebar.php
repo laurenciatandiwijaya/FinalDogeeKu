@@ -2,7 +2,7 @@
 <aside id="sidebar-left" class="sidebar-left">
 				
 	<div class="sidebar-header">
-		<div class="sidebar-title" style="color: white">
+		<div class="sidebar-title" style="color: black">
 			Navigation
 		</div>
 		<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">

@@ -43,7 +43,7 @@ class M_Login extends CI_Model {
 	function get_dataAnjing($where){
 		return $this->db->query("SELECT anjing.nama_anjing FROM anjing,pengguna,pelanggan
 		WHERE pengguna.id_pengguna='$where' AND pengguna.id_pengguna = pelanggan.id_pengguna AND 
-		anjing.id_pelanggan = pelanggan.id_pelanggan");
+		anjing.id_pelanggan = pelanggan.id_pelanggan AND anjing.status_delete = 'Aktif'");
 	}
 
 

@@ -5,14 +5,16 @@ class M_Pelanggan extends CI_Model {
 
 	function ambilData()
 	{
-		return $this->db->query('select a.id_pengguna, a.email, a.password, a.nama_lengkap, a.tanggal_lahir,
+		return $this->db->query("select a.id_pengguna, a.email, a.password, a.nama_lengkap, a.tanggal_lahir,
 		a.jenis_kelamin, a.no_hp, a.status_delete, b.id_pelanggan, b.tanggal_registrasi
-		FROM pengguna a JOIN pelanggan b ON a.id_pengguna = b.id_pengguna');
+		FROM pengguna a JOIN pelanggan b ON a.id_pengguna = b.id_pengguna
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function ambilDataNamaPelanggan(){
-		return $this->db->query('select a.nama_lengkap, b.id_pelanggan 
-		FROM pengguna a JOIN pelanggan b ON a.id_pengguna = b.id_pengguna');
+		return $this->db->query("select a.nama_lengkap, b.id_pelanggan 
+		FROM pengguna a JOIN pelanggan b ON a.id_pengguna = b.id_pengguna
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function cekEmail($table, $email){

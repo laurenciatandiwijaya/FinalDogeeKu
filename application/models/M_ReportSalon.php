@@ -5,20 +5,22 @@ class M_ReportSalon extends CI_Model {
 
 	function ambilData()
 	{
-		return $this->db->query('select a.id_report_salon, a.id_pekerja, a.tanggal, a.jam, a.keterangan,
+		return $this->db->query("select a.id_report_salon, a.id_pekerja, a.tanggal, a.jam, a.keterangan,
 		a.status_report, c.nama_lengkap as nama_pekerja, e.nama_anjing, g.nama_lengkap as nama_pelanggan
 		FROM report_salon a JOIN pekerja b ON a.id_pekerja = b.id_pekerja
 		JOIN pengguna c ON b.id_pengguna = c.id_pengguna
 		JOIN pelanggan_salon d ON a.id_report_salon = d.id_report_salon
 		JOIN anjing e ON d.id_anjing = e.id_anjing 
 		JOIN pelanggan f ON e.id_pelanggan = f.id_pelanggan 
-		JOIN pengguna g ON f.id_pengguna = g.id_pengguna');
+		JOIN pengguna g ON f.id_pengguna = g.id_pengguna
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function ambilNamaPemilikAnjing(){
-		return $this->db->query('select a.id_anjing, a.nama_anjing, b.id_pelanggan, c.nama_lengkap 
+		return $this->db->query("select a.id_anjing, a.nama_anjing, b.id_pelanggan, c.nama_lengkap 
 		FROM anjing a JOIN pelanggan b ON a.id_pelanggan = b.id_pelanggan 
-		JOIN pengguna c ON b.id_pengguna = c.id_pengguna');
+		JOIN pengguna c ON b.id_pengguna = c.id_pengguna
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function ambilDetailLayanan($table,$where){
@@ -29,13 +31,13 @@ class M_ReportSalon extends CI_Model {
 		return $this->db->query("select a.id_report_salon 
 		FROM report_salon a JOIN pelanggan_salon b ON a.id_report_salon = b.id_report_salon 
 		WHERE a.tanggal = '$tanggal' AND a.jam = '$jam' AND a.status_report = '$status_report' 
-		AND b.id_anjing = '$id_anjing' ")->num_rows();
+		AND b.id_anjing = '$id_anjing' AND status_delete = 'Aktif'")->num_rows();
 	}
 
 	function cekPekerja($id_pekerja, $tanggal, $jam, $status_report){
 		return $this->db->query("select id_report_salon FROM report_salon 
 		WHERE id_pekerja = '$id_pekerja' AND tanggal = '$tanggal' AND jam = '$jam' 
-		AND status_report = '$status_report'")->num_rows();
+		AND status_report = '$status_report' AND status_delete = 'Aktif'")->num_rows();
 	}
 
 	function cekUrutan($tanggal){
@@ -95,7 +97,10 @@ class M_ReportSalon extends CI_Model {
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
 		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
 		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
-		WHERE a.tanggal = '$tanggal' AND b.id_pekerja = '$id_pekerja' ");
+		JOIN detail_invoice_layanan g ON a.id_report_salon = g.id_report
+		JOIN invoice h ON g.id_invoice = h.id_invoice
+		WHERE a.tanggal = '$tanggal' AND b.id_pekerja = '$id_pekerja' 
+		AND h.status_invoice = 'Lunas' AND a.status_delete = 'Aktif'");
 	}
 
 	function ambilReportUpcoming($id_pekerja){
@@ -105,7 +110,7 @@ class M_ReportSalon extends CI_Model {
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
 		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
 		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
-		WHERE a.id_pekerja = '$id_pekerja' AND a.status_report = 'Menunggu'
+		WHERE a.id_pekerja = '$id_pekerja' AND a.status_report = 'Menunggu' AND a.status_delete = 'Aktif'
 		ORDER BY a.tanggal ASC, a.jam ASC");
 	}
 
@@ -116,7 +121,7 @@ class M_ReportSalon extends CI_Model {
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
 		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
 		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
-		WHERE a.id_pekerja = '$id_pekerja' AND NOT a.status_report = 'Menunggu'
+		WHERE a.id_pekerja = '$id_pekerja' AND NOT a.status_report = 'Menunggu' AND a.status_delete = 'Aktif'
 		ORDER BY a.tanggal ASC, a.jam ASC");
 	}
 }
