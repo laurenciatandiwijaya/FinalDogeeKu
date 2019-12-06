@@ -17,9 +17,12 @@ class HomeManager extends CI_Controller {
 		date_default_timezone_set("Asia/Jakarta");
 		$tanggalHariIni = date("Y-m-d");
 		$tanggalTanpaStrip = date("Ymd", strtotime($tanggalHariIni));
+		$tahunBulan = date("Ym", strtotime($tanggalHariIni));
 		$data['pembelianBarang'] = $this->M_HomeManager->ambilJumlahPembelianBarang($tanggalTanpaStrip)->result();
 		$data['reservasi'] = $this->M_HomeManager->ambilDataJumlahReservasi($tanggalTanpaStrip)->num_rows();
-		$data['pendapatan'] = $this->M_HomeManager->hitungPendapatan($tanggalTanpaStrip)->result();
+		$data['pendapatanHarian'] = $this->M_HomeManager->hitungPendapatanHarian($tanggalTanpaStrip)->result();
+		$data['pendapatanBulanan'] = $this->M_HomeManager->hitungPendapatanBulanan($tahunBulan)->result();
+
 		$this->load->view('V_Home_Manager', $data);
 	}
 

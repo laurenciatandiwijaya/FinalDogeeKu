@@ -25,8 +25,13 @@ class M_HomeManager extends CI_Model {
 		WHERE b.tanggal = '$tanggal%' AND c.tanggal = '$tanggal%' AND d.tanggal = '$tanggal%'");
 	}
 
-	function hitungPendapatan($tanggal){
+	function hitungPendapatanHarian($tanggal){
 		return $this->db->query("select SUM(total) as total_pendapatan FROM invoice
+		WHERE id_invoice LIKE '$tanggal%' ");
+	}
+
+	function hitungPendapatanBulanan($tanggal){
+		return $this->db->query("select SUM(total) as total_pendapatanBulanan FROM invoice
 		WHERE id_invoice LIKE '$tanggal%' ");
 	}
 }
