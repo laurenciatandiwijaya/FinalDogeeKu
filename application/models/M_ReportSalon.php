@@ -31,7 +31,7 @@ class M_ReportSalon extends CI_Model {
 		return $this->db->query("select a.id_report_salon 
 		FROM report_salon a JOIN pelanggan_salon b ON a.id_report_salon = b.id_report_salon 
 		WHERE a.tanggal = '$tanggal' AND a.jam = '$jam' AND a.status_report = '$status_report' 
-		AND b.id_anjing = '$id_anjing' AND status_delete = 'Aktif'")->num_rows();
+		AND b.id_anjing = '$id_anjing' AND a.status_delete = 'Aktif'")->num_rows();
 	}
 
 	function cekPekerja($id_pekerja, $tanggal, $jam, $status_report){

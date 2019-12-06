@@ -29,7 +29,7 @@ class M_ReportKlinik extends CI_Model {
 		return $this->db->query("select a.id_report_klinik 
 		FROM report_klinik a JOIN pelanggan_klinik b ON a.id_report_klinik = b.id_report_klinik 
 		WHERE a.tanggal = '$tanggal' AND a.jam = '$jam' AND a.status_report = '$status_report' 
-		AND b.id_anjing = '$id_anjing' AND status_delete = 'Aktif'")->num_rows();
+		AND b.id_anjing = '$id_anjing' AND a.status_delete = 'Aktif'")->num_rows();
 	}
 
 	function cekPekerja($id_pekerja, $tanggal, $jam, $status_report){
