@@ -5,11 +5,12 @@ class M_Anjing extends CI_Model {
 
 	function ambilData()
 	{
-		return $this->db->query('select a.id_anjing, a.id_jenis_anjing, a.id_pelanggan, a.nama_anjing, 
+		return $this->db->query("select a.id_anjing, a.id_jenis_anjing, a.id_pelanggan, a.nama_anjing, 
 		a.jenis_kelamin, a.berat_badan, a.tinggi, a.tanggal_lahir, b.nama_jenis_anjing, d.nama_lengkap 
 		FROM anjing a JOIN jenis_anjing b ON a.id_jenis_anjing = b.id_jenis_anjing 
 		JOIN pelanggan c ON a.id_pelanggan = c.id_pelanggan 
-		JOIN pengguna d ON c.id_pengguna = d.id_pengguna');
+		JOIN pengguna d ON c.id_pengguna = d.id_pengguna
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function cekAnjing($table, $anjing){

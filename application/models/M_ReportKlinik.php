@@ -29,13 +29,13 @@ class M_ReportKlinik extends CI_Model {
 		return $this->db->query("select a.id_report_klinik 
 		FROM report_klinik a JOIN pelanggan_klinik b ON a.id_report_klinik = b.id_report_klinik 
 		WHERE a.tanggal = '$tanggal' AND a.jam = '$jam' AND a.status_report = '$status_report' 
-		AND b.id_anjing = '$id_anjing' ")->num_rows();
+		AND b.id_anjing = '$id_anjing' AND status_delete = 'Aktif'")->num_rows();
 	}
 
 	function cekPekerja($id_pekerja, $tanggal, $jam, $status_report){
 		return $this->db->query("select id_report_klinik FROM report_klinik 
 		WHERE id_pekerja = '$id_pekerja' AND tanggal = '$tanggal' AND jam = '$jam' 
-		AND status_report = '$status_report'")->num_rows();
+		AND status_report = '$status_report' AND status_delete = 'Aktif'")->num_rows();
 	}
 
 	function cekUrutan($tanggal){
@@ -99,9 +99,10 @@ class M_ReportKlinik extends CI_Model {
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
 		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
 		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
-		JOIN detail_invoice_layanan g ON a.id_report_klinik = g.id_report
+		JOIN detail_invoice_layanan g ON a.id_report_salon = g.id_report
 		JOIN invoice h ON g.id_invoice = h.id_invoice
-		WHERE a.tanggal = '$tanggal' AND b.id_pekerja = '$id_pekerja' AND h.status_invoice = 'Lunas' ");
+		WHERE a.tanggal = '$tanggal' AND b.id_pekerja = '$id_pekerja' 
+		AND h.status_invoice = 'Lunas' AND a.status_delete = 'Aktif'");
 	}
 
 	function ambilReportUpcoming($id_pekerja){
@@ -112,7 +113,7 @@ class M_ReportKlinik extends CI_Model {
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
 		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
 		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
-		WHERE a.id_pekerja = '$id_pekerja' AND a.status_report = 'Menunggu'
+		WHERE a.id_pekerja = '$id_pekerja' AND a.status_report = 'Menunggu' AND a.status_delete = 'Aktif'
 		ORDER BY a.tanggal ASC, a.jam ASC");
 	}
 
@@ -124,7 +125,7 @@ class M_ReportKlinik extends CI_Model {
 		JOIN anjing d ON c.id_anjing = d.id_anjing 
 		JOIN pelanggan e ON d.id_pelanggan = e.id_pelanggan 
 		JOIN pengguna f ON e.id_pengguna = f.id_pengguna 
-		WHERE a.id_pekerja = '$id_pekerja' AND NOT a.status_report = 'Menunggu'
+		WHERE a.id_pekerja = '$id_pekerja' AND NOT a.status_report = 'Menunggu' AND a.status_delete = 'Aktif'
 		ORDER BY a.tanggal ASC, a.jam ASC");
 	}
 

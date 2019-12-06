@@ -28,7 +28,8 @@ class Layanan extends CI_Controller {
 		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_layanan = $this->input->post('nama_layanan');
 		$where = array(
-			'nama_layanan' => $nama_layanan
+			'nama_layanan' => $nama_layanan,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasil = $this->M_Layanan->cekLayanan('layanan', $where);
@@ -46,7 +47,7 @@ class Layanan extends CI_Controller {
 				'id_jabatan' => $id_jabatan,
 				'status_delete' => "Aktif",
 				'user_add' => $id_pengguna,
-				'waktu_add' => $waktu_add
+				'waktu_add' => $waktu_add,
 			);
 	
 			$this->M_Layanan->tambahRecord('layanan',$data);
@@ -85,7 +86,8 @@ class Layanan extends CI_Controller {
 		$nama_layanan = $nama_layananAsli;
 		if($nama_layananAsli != $nama_layananUbah){
 			$whereCek = array(
-				'nama_layanan' => $nama_layananUbah
+				'nama_layanan' => $nama_layananUbah,
+				'status_delete' => "Aktif"
 			);
 			
 			$hasil = $this->M_Layanan->cekLayanan('layanan', $whereCek);

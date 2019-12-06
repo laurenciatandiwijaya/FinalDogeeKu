@@ -137,6 +137,10 @@
             .warna_shop{
                 color:#5A3921;
             }
+
+            .tulisan{
+                margin-top:-5%;
+            }
        
         
         </style>
@@ -169,7 +173,7 @@
                     <form method="POST" action="<?php echo base_url().'PHome'?>">
                         <h1 class="tulisan_logout">KONFIRMASI</h1>
                         <h3><?php echo $this->session->userdata("nama"); ?></h3>
-                        <h3>Selamat, anda berhasil melakukan login</h3>
+                        <h3>Selamat! anda berhasil melakukan login</h3>
                         <p><button class="logout_logout" type="submit">OK</button></p>
                     </form>
                 </div>
@@ -181,7 +185,7 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'Login/login'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Maaf, email atau password yang anda masukkan salah.</h3>
+                    <h3>Maaf, Email atau password yang anda masukkan salah.</h3>
                     <p><button class="logout_logout" type="submit">COBA LAGI</button></p>
                 </form>
             </div>
@@ -205,7 +209,7 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PHome'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Yeay, password anda berhasil diganti</h3>
+                    <h3>Yeay! Password anda berhasil diganti.</h3>
                     <p><button class="logout_logout" type="submit">OK</button></p>
                 </form>
             </div>
@@ -217,7 +221,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'Login/ganti_password'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Password baru dan konfirmasi password baru yang anda masukkan tidak sama.</h3>
+                    <h3>Password baru dan konfirmasi password baru</h3>
+                    <h3 class="tulisan">yang anda masukkan tidak sama.</h3>
                     <p><button class="logout_logout" type="submit">COBA LAGI</button></p>
                 </form>
             </div>
@@ -229,7 +234,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'Login/registrasi'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Password dan konfirmasi password baru yang anda masukkan tidak sama.</h3>
+                    <h3>Password dan konfirmasi password baru</h3>
+                    <h3 class="tulisan">yang anda masukkan tidak sama.</h3>
                     <p><button class="logout_logout" type="submit">COBA LAGI</button></p>
                 </form>
             </div>
@@ -241,7 +247,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'Login/registrasi'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Mohon maaf, email yang anda masukkan sudah terdaftar. Coba email yang lain.</h3>
+                    <h3>Mohon maaf, email yang anda masukkan sudah terdaftar.</h3>
+                    <h3 class="tulisan">Coba email yang lain.</h3>
                     <p><button class="logout_logout" type="submit">COBA LAGI</button></p>
                 </form>
             </div>
@@ -253,7 +260,7 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'Login/login'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Selamat, anda berhasil didaftarkan.</h3>
+                    <h3>Selamat! Anda berhasil terdaftar</h3>
                     <p><button class="logout_logout" type="submit">LOGIN NOW</button></p>
                 </form>
             </div>
@@ -265,7 +272,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'Login/edit_profile'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Mohon maaf, email yang anda masukkan sudah terdaftar. Coba email yang lain.</h3>
+                    <h3>Mohon maaf, email yang anda masukkan sudah terdaftar.</h3>
+                    <h3 class="tulisan">Coba email yang lain.</h3>
                     <p><button class="logout_logout" type="submit">LOGIN NOW</button></p>
                 </form>
             </div>
@@ -277,8 +285,9 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PAnjing/tambah_anjing'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Mohon maaf, nama anjing <?php echo $nama_anjing;?>  sudah terdaftar untuk akun ini.
-                    Silahkan coba dengan nama lain.</h3>
+                    <h3>Mohon maaf, nama anjing <?php echo $nama_anjing;?></h3>
+                    <h3 class="tulisan">sudah terdaftar untuk akun ini.</h3><br>
+                    <h3>Silahkan coba dengan nama lain.</h3>
                     <p><button class="logout_logout" type="submit">COBA LAGI</button></p>
                 </form>
             </div>
@@ -290,7 +299,7 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PHome'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Selamat anjing anda <?php echo $nama_anjing;?> berhasil terdaftar</h3>
+                    <h3>Selamat! Anjing anda <?php echo $nama_anjing;?> berhasil terdaftar</h3>
                     <p><button class="logout_logout" type="submit">OK</button></p>
                 </form>
             </div>
@@ -302,7 +311,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PPlanner/tambah_kegiatan'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Mohon maaf, kegiatan yang sama sudah terdaftar untuk anjing anda pada waktu tersebut.</h3>
+                    <h3>Mohon maaf, kegiatan yang sama sudah terdaftar</h3>
+                    <h3 class="tulisan">untuk anjing anda pada waktu tersebut.</h3>
                     <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
                 </form>
             </div>
@@ -314,7 +324,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PPlanner/tambah_kegiatan'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Mohon maaf, start date dan end date tidak boleh sama.</h3>
+                    <h3>Mohon maaf, start date dan end date</h3>
+                    <h3 class="tulisan">tidak boleh sama.</h3>
                     <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
                 </form>
             </div>
@@ -328,7 +339,8 @@
                     <input type="hidden" name="id_invoice" value="<?php echo $id_invoice;?>">
                     <input type="hidden" name="total_harga" value="<?php echo $total_harga;?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Selamat, pesanan anda sedang di proses. Silahkan memasukkan data bukti transfer anda.</h3>
+                    <h3>Selamat, pesanan anda sedang di proses.</h3>
+                    <h3 class="tulisan">Silahkan memasukkan data bukti transfer anda.</h3>
                     <p><button class="logout_logout" type="submit">OK</button></p>
                 </form>
             </div>
@@ -340,7 +352,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PInvoice/pemesanan'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Selamat, pesanan anda sedang di proses. Barang anda akan dikirimkan dalam selang waktu 1x24 jam.</h3>
+                    <h3>Selamat, pesanan anda sedang di proses.</h3>
+                    <h3 class="tulisan">Barang anda akan dikirimkan dalam selang waktu 1x24 jam.</h3>
                     <p><button class="logout_logout" type="submit">Lihat Invoice Pesanan</button></p>
                 </form>
             </div>
@@ -352,7 +365,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PInvoice/pemesanan'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Terimakasih. Barang anda akan dikirimkan dalam selang waktu 1x24 jam.</h3>
+                    <h3>Terimakasih! </h3>
+                    <h3 class="tulisan">Barang anda akan dikirimkan dalam selang waktu 1x24 jam.</h3>
                     <p><button class="logout_logout" type="submit">OK</button></p>
                 </form>
             </div>
@@ -364,7 +378,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PShop/detail_barang_check'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Mohon maaf, jumlah barang yang anda masukkan melebihi jumlah barang yang tersedia.</h3>
+                    <h3>Mohon maaf, jumlah barang yang anda masukkan</h3>
+                    <h3 class="tulisan">melebihi jumlah barang yang tersedia.</h3>
                     <input name="id_barang" type="hidden" value="<?php echo $id_barang;?>">
                     <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
                 </form>
@@ -377,8 +392,9 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PAnjing/data_anjing'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Mohon maaf, Anjing dengan nama tersebut sudah terdaftar pada layanan kami di tanggal dan waktu yang sama.
-                    Silahkan dicoba untuk waktu yang berbeda.</h3>
+                    <h3>Mohon maaf, Anjing dengan nama tersebut sudah terdaftar</h3>
+                    <h3 class="tulisan">pada layanan kami di tanggal dan waktu yang sama.</h3>
+                    <h3 class="tulisan">Silahkan coba untuk waktu yang berbeda.</h3>
                     <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
                 </form>
             </div>
@@ -390,7 +406,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PAnjing/data_anjing'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Mohon maaf, Reservasi di jam dan tanggal segitu sudah penuh.</h3>
+                    <h3>Mohon maaf,</h3>
+                    <h3 class="tulisan">Reservasi di jam dan tanggal tersebut sudah penuh.</h3>
                     <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
                 </form>
             </div>
@@ -402,7 +419,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PPlanner/tambah_kegiatan'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Mohon maaf, Waktu selesai tidak dapat melebihi waktu mulai.</h3>
+                    <h3>Mohon maaf,</h3>
+                    <h3 class="tulisan">Waktu selesai tidak dapat melebihi waktu mulai.</h3>
                     <p><button class="logout_logout" type="submit">Coba Lagi</button></p>
                 </form>
             </div>
@@ -414,7 +432,8 @@
             <div class="logout_kanan">
                 <form method="POST" action="<?php echo base_url().'PReservasi/data_reservasi'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
-                    <h3>Terimakasih. Barang anda akan dikirimkan dalam selang waktu 1x24 jam.</h3>
+                    <h3>Terimakasih. Barang anda akan dikirimkan</h3>
+                    <h3 class="tulisan">dalam selang waktu 1x24 jam.</h3>
                     <p><button class="logout_logout" type="submit">OK</button></p>
                 </form>
             </div>

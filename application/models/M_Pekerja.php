@@ -5,16 +5,18 @@ class M_Pekerja extends CI_Model {
 
 	function ambilData()
 	{
-		return $this->db->query('select a.id_pengguna, a.email, a.nama_lengkap, a.tanggal_lahir,
+		return $this->db->query("select a.id_pengguna, a.email, a.nama_lengkap, a.tanggal_lahir,
 		a.jenis_kelamin, a.no_hp, a.status_delete, b.id_pekerja, b.id_jabatan, b.tanggal_masuk, 
 		b.alamat, c.nama_jabatan
 		FROM pengguna a JOIN pekerja b ON a.id_pengguna = b.id_pengguna 
-		JOIN jabatan c ON b.id_jabatan = c.id_jabatan');	
+		JOIN jabatan c ON b.id_jabatan = c.id_jabatan
+		WHERE a.status_delete = 'Aktif'");	
 	}
 
 	function ambilDataNamaPekerja(){
-		return $this->db->query('select a.nama_lengkap, b.id_pekerja, b.id_jabatan
-		FROM pengguna a JOIN pekerja b ON a.id_pengguna = b.id_pengguna');
+		return $this->db->query("select a.nama_lengkap, b.id_pekerja, b.id_jabatan
+		FROM pengguna a JOIN pekerja b ON a.id_pengguna = b.id_pengguna
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function cekEmail($table, $email){

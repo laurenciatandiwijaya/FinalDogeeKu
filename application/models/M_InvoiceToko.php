@@ -6,7 +6,8 @@ class M_InvoiceToko extends CI_Model {
 	function ambilData()
 	{
 		return $this->db->query("select id_invoice, tanggal, jam, metode_pembayaran, 
-		total, status_invoice FROM invoice WHERE id_invoice LIKE '%TK%' ");	
+		total, status_invoice FROM invoice 
+		WHERE id_invoice LIKE '%TK%' AND status_delete = 'Aktif'");	
 	}
 
 	function cekUrutan($tanggalKode){

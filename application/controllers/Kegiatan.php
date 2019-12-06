@@ -35,7 +35,8 @@ class Kegiatan extends CI_Controller {
 			'id_anjing' => $id_anjing,
 			'nama_kegiatan' => $nama_kegiatan,
 			'start_date' => $start_date,
-			'end_date' => $end_date
+			'end_date' => $end_date,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasil = $this->M_Kegiatan->cekKegiatan('kegiatan', $where);
@@ -109,7 +110,8 @@ class Kegiatan extends CI_Controller {
 				'id_anjing' => $id_anjingUbah,
 				'nama_kegiatan' => $nama_kegiatanUbah,
 				'start_date' => $tanggalMulaiUbah,
-				'end_date' => $tanggalSelesaiUbah
+				'end_date' => $tanggalSelesaiUbah,
+				'status_delete' => "Aktif"
 			);
 			
 			$hasil = $this->M_Kegiatan->cekKegiatan('kegiatan', $whereCek);

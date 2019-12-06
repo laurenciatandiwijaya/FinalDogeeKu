@@ -29,7 +29,7 @@
 					<div id="userbox" class="userbox">
 						<a href="#" data-toggle="dropdown">
 							<figure class="profile-picture">
-								<img src="<?php echo base_url()?>assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="<?php echo base_url()?>assets/images/!logged-user.jpg" />
+								<img src="<?php echo base_url()?>assets/images/usericon.png" alt="Joseph Doe" class="img-circle" data-lock-picture="<?php echo base_url()?>assets/images/!logged-user.jpg" />
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
 								<span class="name"><?php echo $this->session->userdata("nama"); ?></span>
@@ -57,11 +57,16 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'Login/tampilanEditProfilPekerja'?>"><i class="fa fa-user"></i>Edit Profil</a>
+									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'Login/tampilanEditProfilPekerja'?>">
+									<i class="fa fa-pencil"></i>Edit Profil</a>
+								</li>
+								<li>
+									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'Login/tampilanGantiPasswordPekerja'?>">
+									<i class="fa fa-user"></i>Ganti Password</a>
 								</li>
 								<li>
 									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'Login/coba_logout'?>">
-										<i class="fa fa-power-off"></i> Logout</a>
+									<i class="fa fa-power-off"></i> Logout</a>
 								</li>
 							</ul>
 						</div>

@@ -27,7 +27,8 @@ class KategoriBarang extends CI_Controller {
 		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_kategori_barang = $this->input->post('nama_kategori_barang');
 		$where = array(
-			'nama_kategori_barang' => $nama_kategori_barang
+			'nama_kategori_barang' => $nama_kategori_barang,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasil = $this->M_KategoriBarang->cekKategori('kategori_barang', $where);
@@ -80,7 +81,8 @@ class KategoriBarang extends CI_Controller {
 		$nama_kategori_barang = $nama_kategori_barangAsli;
 		if($nama_kategori_barangAsli != $nama_kategori_barangUbah){
 			$whereCek = array(
-				'nama_kategori_barang' => $nama_kategori_barangUbah
+				'nama_kategori_barang' => $nama_kategori_barangUbah,
+				'status_delete' => "Aktif"
 			);
 			
 			$hasil = $this->M_KategoriBarang->cekKategori('kategori_barang', $whereCek);

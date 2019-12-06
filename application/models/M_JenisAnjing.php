@@ -5,7 +5,7 @@ class M_JenisAnjing extends CI_Model {
 
 	function ambilData()
 	{
-		return $query=$this->db->get('jenis_anjing');	
+		return $query=$this->db->query("select * FROM jenis_anjing WHERE status_delete = 'Aktif'");
 	}
 
 	function cekJenisAnjing($table, $nama_jenis_anjing){

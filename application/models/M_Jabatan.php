@@ -5,7 +5,7 @@ class M_Jabatan extends CI_Model {
 
 	function ambilData()
 	{
-		return $query=$this->db->get('jabatan');	
+		return $query=$this->db->query("select * FROM jabatan WHERE status_delete = 'Aktif'");	
 	}
 
 	function cekJabatan($table, $nama_jabatan){

@@ -5,9 +5,10 @@ class M_DetailLayanan extends CI_Model {
 
 	function ambilData()
 	{
-		return $this->db->query('select a.id_detail_layanan, a.id_layanan, a.nama_detail_layanan,
-		a.deskripsi_layanan, a.harga, a.status_delete, b.nama_layanan FROM detail_layanan a JOIN layanan b ON
-		a.id_layanan = b.id_layanan');
+		return $this->db->query("select a.id_detail_layanan, a.id_layanan, a.nama_detail_layanan,
+		a.deskripsi_layanan, a.harga, a.status_delete, b.nama_layanan 
+		FROM detail_layanan a JOIN layanan b ON	a.id_layanan = b.id_layanan 
+		WHERE a.status_delete = 'Aktif'");
 	}
 
 	function cekDetailLayanan($table, $detail_layanan){

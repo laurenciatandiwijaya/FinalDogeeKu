@@ -27,7 +27,8 @@ class Jabatan extends CI_Controller {
 		$id_pengguna = $this->session->userdata("id_pengguna");
 		$nama_jabatan = $this->input->post('nama_jabatan');
 		$where = array(
-			'nama_jabatan' => $nama_jabatan
+			'nama_jabatan' => $nama_jabatan,
+			'status_delete' => "Aktif"
 		);
 		
 		$hasilJabatan = $this->M_Jabatan->cekJabatan('jabatan', $where);
@@ -82,7 +83,8 @@ class Jabatan extends CI_Controller {
 		$nama_jabatan = $nama_jabatanAsli;
 		if($nama_jabatanAsli != $nama_jabatanUbah){
 			$whereCek = array(
-				'nama_jabatan' => $nama_jabatanUbah
+				'nama_jabatan' => $nama_jabatanUbah,
+				'status_delete' => "Aktif"
 			);
 			
 			$hasilJabatan = $this->M_Jabatan->cekJabatan('jabatan', $whereCek);

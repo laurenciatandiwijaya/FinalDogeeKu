@@ -5,7 +5,7 @@ class M_TipePengguna extends CI_Model {
 
 	function ambilData()
 	{
-		return $query=$this->db->get('tipe_pengguna');	
+		return $query=$this->db->query("select * FROM tipe_pengguna WHERE status_delete = 'Aktif'");	
 	}
 
 	function cekTipePengguna($table, $nama_tipe_pengguna){
