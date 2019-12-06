@@ -184,7 +184,7 @@ class PInvoice extends CI_Controller {
       $data_invoice['detail_barang'] = $this->M_PInvoice->get_detailInvoiceBarang('detail_invoice_barang',$id_pelanggan)->result();
       
       foreach($data_invoice['invoice'] as $list_invoice){
-        if($list_invoice->waktu_add <= $waktu_sekarang){
+        if($list_invoice->waktu_add >= $waktu_sekarang){
           $idInvoice = $list_invoice->id_invoice;
           $this->M_PInvoice->update_invoice_status($idInvoice);
           $this->M_PInvoice->update_transfer_status($idInvoice);
