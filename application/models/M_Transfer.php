@@ -26,8 +26,8 @@ class M_Transfer extends CI_Model {
 	function tampilanTambahRecord(){
 		return $this->db->query("select a.id_invoice, c.nama_lengkap 
 		FROM invoice a JOIN pelanggan b ON a.id_pelanggan = b.id_pelanggan 
-		JOIN pengguna c ON b.id_pengguna = c.id_pengguna WHERE a.metode_pembayaran = 'Transfer' 
-		AND a.status_delete = 'Aktif'");
+		JOIN pengguna c ON b.id_pengguna = c.id_pengguna 
+		WHERE a.metode_pembayaran = 'Transfer' AND a.status_delete = 'Aktif'");
 	}
 
 	function tambahRecord($table,$data)

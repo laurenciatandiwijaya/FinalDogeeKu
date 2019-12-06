@@ -191,7 +191,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo base_url(). 'Pelanggan/tambahData' ?> ">
+						<a href="<?php echo base_url(). 'Pelanggan/tampilanTambahData' ?> ">
 							<i class="fa fa-user" aria-hidden="true"></i>
 							<span>Tambah Pelanggan</span>
 						</a>
