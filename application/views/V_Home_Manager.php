@@ -170,7 +170,7 @@
 														<h4 class="title">Total Pendapatan Hari Ini</h4>
 														<div class="info">
 															<strong class="amount"><?php 
-															foreach($pendapatan as $list){
+															foreach($pendapatanHarian as $list){
 																if($list->total_pendapatan == ""){
 																	echo "0";
 																}
@@ -182,6 +182,43 @@
 													</div>
 													<div class="summary-footer">
 														<a class="text-muted text-uppercase">(report)</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-lg-12 col-xl-6">
+							<div class="row">
+								<div class="col-md-12 col-lg-12 col-xl-6">
+									<section class="panel panel-featured-left panel-featured-primary">
+										<div class="panel-body">
+											<div class="widget-summary">
+												<div class="widget-summary-col widget-summary-col-icon">
+													<div class="summary-icon bg-primary">
+														<i class="fa fa-usd"></i>
+													</div>
+												</div>
+												<div class="widget-summary-col">
+													<div class="summary">
+														<h4 class="title">Total Pendapatan Bulan Ini</h4>
+														<div class="info">
+															<strong class="amount"><?php 
+															foreach($pendapatanBulanan as $list){
+																if($list->total_pendapatanBulanan == ""){
+																	echo "0";
+																}
+																else{
+																	echo $list->total_pendapatanBulanan;
+																}
+															}?></strong>
+														</div>
+													</div>
+													<div class="summary-footer">
+														<a class="text-muted text-uppercase">(view all)</a>
 													</div>
 												</div>
 											</div>

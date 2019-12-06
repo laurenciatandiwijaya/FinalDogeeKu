@@ -141,6 +141,9 @@
 												<option value="gram">gram</option>
 												<option value="mililiter">mililiter</option>
 												<option value="liter">liter</option>
+												<option value="liter">S</option>
+												<option value="liter">M</option>
+												<option value="liter">L</option>
 											</select>
 										</div>
 									</div>

@@ -190,6 +190,12 @@
 							<span>Konfirmasi Pengiriman</span>
 						</a>
 					</li>
+					<li>
+						<a href="<?php echo base_url(). 'Pelanggan/tambahData' ?> ">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<span>Tambah Pelanggan</span>
+						</a>
+					</li>
 				</ul>
 			<?php
 				}
