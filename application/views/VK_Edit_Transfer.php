@@ -84,18 +84,6 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-3 control-label">ID Invoice / Pelanggan<span class="required">*</span></label>
-										<div class="col-md-6">
-											<?php foreach($invoicePelanggan as $list){ 
-												if($listTransfer->id_invoice == $list->id_invoice){?>
-												<input type="text" name="id_invoice" value="<?php echo $listTransfer->id_invoice; ?>" 
-												class="form-control" readonly/>
-											<?php
-												}
-										 	}?>
-										</div>
-									</div>
-									<div class="form-group">
 										<label class="col-md-3 control-label">Nama Bank<span class="required">*</span></label>
 										<div class="col-md-6">
 											<input type="text" name="nama_bank" value="<?php echo $listTransfer->nama_bank; ?>" 

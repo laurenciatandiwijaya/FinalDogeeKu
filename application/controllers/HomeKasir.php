@@ -197,12 +197,22 @@ class HomeKasir extends CI_Controller {
 
 		$where = array('id_invoice'=> $id_invoice);
 
-		$data = array(
-			'status_pengiriman' => $status_pengiriman,
-			'user_edit' => $id_pengguna,
-			'waktu_edit' => $waktu_edit
-		);
-	
+		if($status_pengiriman == "Terkirim"){
+			$data = array(
+				'status_pengiriman' => $status_pengiriman,
+				'status_invoice' => "Lunas",
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_edit
+			);
+		}
+		else{		
+			$data = array(
+				'status_pengiriman' => $status_pengiriman,
+				'user_edit' => $id_pengguna,
+				'waktu_edit' => $waktu_edit
+			);
+		}
+
 		$this->M_InvoiceOnline->editRecord($where,'invoice',$data);
 		redirect('HomeKasir/tampilanPengiriman');
 	}

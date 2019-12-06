@@ -51,6 +51,7 @@ class PInvoice extends CI_Controller {
         'user_add' => $id_pengguna,
         'waktu_add' => $waktu_add,
         'status_invoice' => "Belum Lunas",
+        'status_pengiriman' => "Belum Dikirim",
         'status_delete' => "Aktif"
       );
 

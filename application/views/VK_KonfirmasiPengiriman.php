@@ -71,6 +71,7 @@
 										<tr>
 											<th width="25%">Action</th>
 											<th width="10%">ID Invoice</th>
+											<th width="10%">Status Invoice</th>
 											<th width="10%">Status Pengiriman</th>
 											<th width="10%">Nama Pelanggan</th>
 											<th width="10%">Tanggal</th>
@@ -92,6 +93,7 @@
 												</a>
 											</td>
 											<td><?php echo $list->id_invoice; ?></td>
+											<td><?php echo $list->status_invoice; ?></td>
 											<td><?php echo $list->status_pengiriman; ?></td>
 											<td><?php echo $list->nama_lengkap; ?></td>
 											<td><?php echo $list->tanggal; ?></td>
