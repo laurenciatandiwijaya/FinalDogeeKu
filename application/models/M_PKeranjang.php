@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_PKeranjang extends CI_Model {
     function get_datakeranjang($id_pelanggan){
-        return $this->db->query("SELECT keranjang.id_barang, barang.nama_barang, barang.harga, barang.warna, 
+        return $this->db->query("SELECT barang.foto, keranjang.id_barang, barang.nama_barang, barang.harga, barang.warna, 
         barang.ukuran, keranjang.jumlah_barang, keranjang.id_keranjang FROM barang,keranjang WHERE 
         keranjang.id_pelanggan='$id_pelanggan' AND keranjang.status_delete='Aktif' AND 
         keranjang.id_barang = barang.id_barang");

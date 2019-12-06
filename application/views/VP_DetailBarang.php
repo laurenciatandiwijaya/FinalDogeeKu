@@ -235,6 +235,10 @@
                             color: #FEFFE4;
                         }
 
+                        .img_barang{
+                            width:50%;
+                        }
+
 
         </style>
 
@@ -259,7 +263,7 @@
                             <table>
                                 <tr>
                                     <td rowspan="5"  id="detail_gambarBarang">
-                                        <img src="<?php echo base_url().$list->foto;?>">
+                                        <img class="img_barang" src="<?php echo base_url().$list->foto;?>">
                                         <input type="hidden"  id="detail_keteranganBarang" name="id_barang" value="<?php echo $list->id_barang;?>">
                                         <p  id="detail_keteranganBarang" name="keterangan" value="<?php echo $list->keterangan;?>"><?php echo $list->keterangan;?></p>
                                     </td>
@@ -305,34 +309,6 @@
                         </form>
                         <?php } ?>
                     </div>
-                </div>
-                <div id="S3">
-                <div class="judul">
-                    <p>Barang Sejenis</p>
-                </div>
-
-                <div class="konten">
-                            <!-- Shop -->
-                            <?php foreach($detailData_barangSejenis as $listA){?>
-                                <div class="flip-card">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front">
-                                        <img src="<?php echo base_url().$list->foto;?>" alt="" class="gambar_barang">
-                                        </div>
-                                        <div class="flip-card-back">
-                                            <div class="nama_produk"><a href="<?php echo base_url().'PShop/detail_barang/'.$list->id_barang;?> "><?php echo $list->nama_barang;?></a></div>
-                                            <div class="nama_kategori">In <a href="category.php">Category</a></div>
-                                            <div class="harga_produk"><span>Rp.<?php echo $list->harga;?></span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                        </div>
-                        <div class="button_keShop"><a href="<?php echo base_url()?>PShop">load more</a></div>
-
-      
-		    </div>
-
                 </div>
             </div>
     </div>
