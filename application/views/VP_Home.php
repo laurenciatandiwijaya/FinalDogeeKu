@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>DogeeKu</title>
+<title>Coba DogeeKu</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Little Closet template">
@@ -12,14 +12,11 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/animate.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/responsive.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
         ntegrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
-		<!--Ini WOW js-->
-		<link rel="stylesheet"  href="<?php echo base_url()?>assets/css/animate.css">
-		<script src="<?php echo base_url()?>assets/js/wow.js"></script>   
-    <style>
+  
+        <style>
             body{
                 background-color:#FEFFE4; 
                 height:100%;
@@ -257,8 +254,6 @@
     </style>
 </head>
 <body>
-
-<!-- Menu -->
 
 <?php include('Pside-bar.php')?>
 
