@@ -113,6 +113,10 @@
             .warna_shop{
                 color:#5A3921;
             }
+
+            .tulisan{
+                margin-top:-5%;
+            }
        
         
         </style>
@@ -135,7 +139,8 @@
                 <form method="POST" action="<?php echo base_url().'Login/login'?>">
                     <h1 class="tulisan_logout">KONFIRMASI</h1>
                     <h3><?php echo $this->session->userdata("email"); ?></h3>
-                    <h3>Maaf, fitur account hanya bisa digunakan ketika anda sudah melakukan login.</h3>
+                    <h3>Maaf, fitur account hanya bisa digunakan</h3><br>
+                    <h3 class="tulisan">ketika anda sudah melakukan login.</h3>
                     <p><button class="logout_logout" type="submit">LOGIN NOW</button></p>
                 </form>
             </div>
