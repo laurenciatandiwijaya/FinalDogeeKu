@@ -18,6 +18,7 @@ class PKeranjang extends CI_Controller {
           $id_pelanggan = $Data_Pelanggan['id_pelanggan'];
 
           $data_keranjang['keranjang'] = $this->M_PKeranjang->get_dataKeranjang($id_pelanggan)->result();
+          $data_keranjang['gambar'] = $this->M_PWishlist->get_dataGambar()->result();
           $this->load->view('VP_Keranjang',$data_keranjang);
       }
 

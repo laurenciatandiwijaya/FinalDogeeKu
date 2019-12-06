@@ -18,6 +18,7 @@ class PWishlist extends CI_Controller {
           $id_pelanggan = $Data_Pelanggan['id_pelanggan'];
 
           $data_wishlist['wishlist'] = $this->M_PWishlist->get_dataWishlist($id_pelanggan)->result();
+          $data_wishlist['gambar'] = $this->M_PWishlist->get_dataGambar()->result();
           $this->load->view('VP_Wishlist',$data_wishlist);
       }
 

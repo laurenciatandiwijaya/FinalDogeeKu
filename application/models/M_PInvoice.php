@@ -52,5 +52,13 @@ class M_PInvoice extends CI_Model {
         return $this->db->query("SELECT total FROM invoice WHERE id_invoice='$id' ");
     }
 
+    function update_invoice_status($id){
+        $this->db->query("UPDATE invoice SET status_invoice='Batal' WHERE id_invoice='$id'");
+    }
+
+    function update_transfer_status($id){
+        $this->db->query("UPDATE transfer SET status_transfer='Batal' WHERE id_invoice='$id' ");
+    }
+
 }
 ?>

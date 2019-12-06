@@ -12,10 +12,14 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/animate.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
         ntegrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
-  
+        <script src="js/wow.min.js"></script>
+              <script>
+              new WOW().init();
+              </script>
     <style>
             body{
                 background-color:#FEFFE4; 
@@ -61,11 +65,12 @@
 
 
                     .about{
-                        width:90%;
-                        text-align:center;
+                        width:60%;
                         background-color:#F77754;
                         border-radius:50px;
+                        margin-left:20%;
                     }
+
 
                     .S1kiri{
                         width:60%;
@@ -118,6 +123,99 @@
             width:90%;
         }
 
+        .gambar_barang{
+            width:100%;
+            height:100%;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 20%;
+            height: 50%;
+            perspective: 1000px;
+            display: inline-block;
+            margin: 2% 2% 2% 2%;
+            }
+
+            .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            }
+
+            .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+            }
+
+            .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            }
+
+            .flip-card-front {
+            background-color: #bbb;
+            color: black;
+            }
+
+            .flip-card-back {
+            background-color:#5A3921;
+            color:#FEFFE4;
+            transform: rotateY(180deg);
+            padding-top:20%;
+            }
+
+            .nama_produk{
+                color:#FEFFE4;
+                font-size:200%; 
+                width: 100%;
+                height:30%;
+            }
+
+            .nama_kategori{
+                color:#FEFFE4;
+                font-size:150%; 
+                width: 100%;
+                height:20%;
+                padding-top:5%;
+            }
+
+            .harga_produk{
+                color:#FEFFE4;
+                font-size:150%; 
+                width: 100%;
+                height:30%;
+            }
+
+            .button_keShop{
+                    background-color:#5A3921;
+                    color: #FEFFE4;
+                    width: 15%;
+                    height: 7%;
+                    font-size:110%;
+                    border:none;
+                    border-radius: 50px;
+                    padding: 0.5% 0.5% 0.5% 0.5%;
+                    cursor:pointer;
+                    text-align:center;
+                    margin-left:40%;
+                }
+
+
+                .button_keShop:hover{
+                    background-color:#F77754;
+                    color:#5A3921;
+                 }
+
+                 .button_keShop:link,  .button_keShop:visited,  .button_keShop:hover,  .button_keShop:active{
+                     color: #FEFFE4;
+                 }
+
         /* S5 */
         .table_operatingHour{
                     font-size:120%;
@@ -138,6 +236,25 @@
                     width:50%;
                     padding: 2% 2% 0% 0%;
                 }   
+
+                .button_contactUs{
+                    margin-top:2%;
+                    width:30%;
+                    height:10%;
+                    background-color:#FEFFE4;
+                    padding: 1%;
+                    border-radius:50px;
+                    
+                }
+
+                .button_contactUs:hover{
+                    background-color: #F77754;
+                }
+
+                .div_contactUs{
+                    display: inline-block;
+                    width:30%;
+                }
     </style>
 </head>
 <body>
@@ -158,7 +275,7 @@
 
 		<section class="home" id="S1">
             <div class="kontenS1">
-                <div class="welcome">Welcome to DogeeKu</div>
+                <div class="welcome wow zoomIn">Welcome to DogeeKu</div>
                 <div class="desc">Since 1999.</div>
             </div>
 		</section>
@@ -172,7 +289,7 @@
                 </div>
                  <div class="konten">
                         <table class="about">
-                            <tr>
+                            <tr class="aboutTr">
                                 <td class="S1kiri">
                                        DogeeKu berdiri sejak tahun 1999. DogeeKu awalnya didirikan karena
                                        melihat kebutuhan pemilik akan penyedia layanan untuk perawatan anjing yang lengkap.
@@ -227,39 +344,23 @@
             <div class="judul">
                 DogeeKu Shop
             </div>
-
-            <div class="konten" id="barang_shop">
-                    		<!-- Products -->
-                        <div class="row products_row">
-                            <!-- Product -->
-                            <?php foreach($data_barang as $list){?>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="product">
-                                        <div class="product_image"><img src="<?php echo base_url().$list->foto;?>" alt=""></div>
-                                        <div class="product_content">
-                                            <div class="product_info d-flex flex-row align-items-start justify-content-start">
-                                                <div>
-                                                    <div>
-                                                        <div class="product_name"><a href="<?php echo base_url().'PShop/detail_barang/'.$list->id_barang;?> "><?php echo $list->nama_barang;?></a></div>
-                                                        <div class="product_category">In <a href="category.php">Category</a></div>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-auto text-right">
-                                                    <div class="product_price text-right"><span>Rp.<?php echo $list->harga;?></span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                        </div>
-                        <div class="row load_more_row">
-                            <div class="col">
-                                <div class="button load_more ml-auto mr-auto"><a href="<?php echo base_url()?>PShop">load more</a></div>
+            <?php foreach($data_barang as $list){?>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                            <img src="<?php echo base_url().$list->foto;?>" alt="" class="gambar_barang">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="nama_produk"><a href="<?php echo base_url().'PShop/detail_barang/'.$list->id_barang;?> "><?php echo $list->nama_barang;?></a></div>
+                                <div class="nama_kategori">In <a href="<?php echo base_url().'PShop/lihat_kategoriBarang_Home/'.$list->id_kategori_barang;?>"><?php echo $list->nama_kategori_barang;?></a></div>
+                                <div class="harga_produk"><span>Rp.<?php echo $list->harga;?></span></div>
                             </div>
                         </div>
                     </div>
-		    </div>
+            <?php } ?>
+
+            <a href="<?php echo base_url()?>PShop"><button class="button_keShop">LOAD MORE</button></a>
+
         </section>
 
         <!-- Operating Hour -->
@@ -319,6 +420,51 @@
                 DogeeKu Contact Us
             </div>
             <div class="konten">
+                <div style="width:80%;margin:auto;background-color:#FEFFE4;border:10px solid #5A3921;border-radius:50px;padding:2%; ">
+                        <div >
+                            <table>
+                                <tr>
+                                    <td rowspan="3">
+                                        <img src="<?php echo base_url().'assets/img/petshop.jpg'?>">
+                                    </td>
+                                    <td style="font-size:200%;text-align:center;">DogeeKu</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Location: Jl. M. H. Thamrin Boulevard 1100 Lippo Village Tangerang 15811 - Indonesia
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Number: 085212345678
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="div_contactUs">
+                            <a>
+                                <button class="button_contactUs">
+                                <img src="<?php echo base_url().'assets/img/facebook.png'?>">
+                                </button>
+                            </a>
+                        </div>
+                        <div class="div_contactUs">
+                            <a>
+                                <button class="button_contactUs">
+                                <img src="<?php echo base_url().'assets/img/instagram.png'?>">
+                                </button>
+                            </a>
+                        </div>
+                        <div class="div_contactUs">
+                            <a>
+                                <button class="button_contactUs">
+                                <img src="<?php echo base_url().'assets/img/whatsapp.png'?>">
+                                </button>
+                            </a>
+                        </div>
+                
+                </div>
 
             </div>
         </section>

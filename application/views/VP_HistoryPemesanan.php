@@ -135,7 +135,7 @@
                   $counter=0;
                   foreach($invoice as $a){ ?>
 
-                  <?php if($a->status_invoice == "Lunas"){
+                  <?php if($a->status_invoice == "Lunas" || $a->status_invoice == "Batal"){
                       
                   ?>
                         <div class="div_belumLunas">

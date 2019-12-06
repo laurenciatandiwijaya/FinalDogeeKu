@@ -151,7 +151,7 @@
                   <?php 
                   $counter=0;
                   foreach($reservasi_klinik as $a){ ?>
-                    <?php if($a->status_invoice == "Lunas"){
+                    <?php if($a->status_invoice == "Lunas" || $a->status_invoice == "Batal"){
                       
                     ?>
                         <div class="div_belumLunas">
@@ -206,7 +206,7 @@
                 <?php 
                   $counter=0;
                   foreach($reservasi_salon as $salonA){ ?>
-                    <?php if($salonA->status_invoice == "Lunas"){
+                    <?php if($salonA->status_invoice == "Lunas" || $salonA->status_invoice == "Batal"){
                       
                     ?>
                         <div class="div_belumLunas">
@@ -261,7 +261,7 @@
                 <?php 
                   $counter=0;
                   foreach($reservasi_penitipan as $penitipanA){ ?>
-                    <?php if($penitipanA->status_invoice == "Lunas"){
+                    <?php if($penitipanA->status_invoice == "Lunas" || $penitipanA->status_invoice == "Batal"){
                       
                     ?>
                         <div class="div_belumLunas">

@@ -38,49 +38,91 @@
                     color: #5A3921;
                 }
 
-                body{
-                    background-color: #FEFFE4; 
-                }
+                .flip-card {
+            background-color: transparent;
+            width: 20%;
+            height: 50%;
+            perspective: 1000px;
+            display: inline-block;
+            margin: 2% 2% 2% 2%;
+            }
 
-                .shop{
-                    margin-top:10%;
-                }
+            .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            }
 
-                .judul{
+            .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+            }
+
+            .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            }
+
+            .flip-card-front {
+            background-color: #bbb;
+            color: black;
+            }
+
+            .flip-card-back {
+            background-color:#5A3921;
+            color:#FEFFE4;
+            transform: rotateY(180deg);
+            padding-top:20%;
+            }
+
+            .shop{
+                margin-top:10%;
+            }
+            .nama_produk{
+                color:#FEFFE4;
+                font-size:200%; 
+                width: 100%;
+                height:30%;
+            }
+
+            .nama_kategori{
+                color:#FEFFE4;
+                font-size:150%; 
+                width: 100%;
+                height:20%;
+                padding-top:5%;
+            }
+
+            .harga_produk{
+                color:#FEFFE4;
+                font-size:150%; 
+                width: 100%;
+                height:30%;
+            }
+
+            .judul{
                         font-size:200%;
                         margin-left:5%;
                         color:  #5A3921;
                         font-weight:bold;
                     }
+            
+            #announce{
+                width:60%;
+                background-color:#5A3921;
+                color: #FEFFE4;
+                margin:auto;
+                font-size:150%;
+                border-radius:50px;
+                text-align: center;
+                padding: 5% 5% 5% 5%;
+            }
 
-                .kategori{
-                    width:8%;
-                    height:8%;
-                    display: inline-block;
-                    margin-right:6%;
-                    margin-top:5%;
-                }
-                
-                .kategori a button{
-                    background-color: #FEFFE4; 
-                    border: 5px solid #5A3921;
-                    padding:10%;
-                    border-radius:50px;
-                }
-
-                .kategori a button:hover{
-                    background-color:  #F77754; 
-                    cursor:pointer;
-                }
- 
-
-                #kategori1, #kategori3, #kategori5, #kategori7{
-                    margin-left:10%;
-                }
-
-                #kategori2, #kategori4, #kategori6{
-                    margin-left:15%;
-                }
         </style>
 
 </head>
@@ -101,45 +143,28 @@
                         <div class="judul">
                             Kategori Barang
                         </div>
-                            <form method="POST" action="<?php echo base_url().'PShop/lihat_kategoriBarang'?>">
-                                <input type="hidden" name="pilih_kategori" id="pilih_kategori"  style="margin-left:100px;">
-                           
-                                <div class="kategori_barang">
-                                    <div class="kategori" id="kategori1">
-                                        <a class="cobadeh" value="fashion"><button> <img src="<?php echo base_url()?>assets/img/dog_fashion.png"></img></button></a>
-                                        Fashion
-                                    </div>
+                <?php 
+                     if($kategori_barang == null ){
+                        echo "<p id='announce'>Maaf Barang Untuk Kategori 
+                        ini telah terjual semuanya.</p>";
+                    }
+                    foreach($kategori_barang as $list){?>
 
-                                    <div  class="kategori" id="kategori3">
-                                        <a class="cobadeh"  value="kecantikan"><button><img src="<?php echo base_url()?>assets/img/dog_kecantikan.png"></img></button></a>
-                                        Kecantikan
-                                    </div>
-                                
-                                    <div  class="kategori" id="kategori5">
-                                        <a  class="cobadeh" value="kesehatan"><button><img src="<?php echo base_url()?>assets/img/dog_kesehatan.png"></img></button></a>
-                                        Kesehatan
-                                    </div>
-                                
-                                    <div  class="kategori" id="kategori7">
-                                        <a class="cobadeh" value="obat"><button ><img src="<?php echo base_url()?>assets/img/dog_obat.png"></img></button></a>
-                                        Obat
-                                    </div>
-                                </div>
-                                <div class="kategori_barang">
-                                    <div  class="kategori" id="kategori2">
-                                        <a class="cobadeh" value="food"><button><img src="<?php echo base_url()?>assets/img/dog_food.png"></img></button></a>
-                                        Food
-                                    </div>
-                                    <div  class="kategori" id="kategori4">
-                                        <a class="cobadeh" value="mainan"><button><img src="<?php echo base_url()?>assets/img/dog_mainan.png"></img></button></a>
-                                        Mainan
-                                    </div>
-                                    <div  class="kategori" id="kategori6">
-                                        <a class="cobadeh" value="aksesoris"><button><img src="<?php echo base_url()?>assets/img/dog_aksesoris.png"></img></button></a>
-                                        Aksesoris
-                                    </div>
-                                </div>
-                            </form>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                            <img src="<?php echo base_url().$list->foto;?>" alt="" class="gambar_barang">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="nama_produk"><a href="<?php echo base_url().'PShop/detail_barang/'.$list->id_barang;?> "><?php echo $list->nama_barang;?></a></div>
+                                <div class="nama_kategori"><?php echo $list->nama_kategori_barang;?></a></div>
+                                <div class="harga_produk"><span>Rp.<?php echo $list->harga;?></span></div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+
+
                 </div>
            
     </div>
