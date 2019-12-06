@@ -20,8 +20,7 @@ class M_Transfer extends CI_Model {
 		FROM transfer a JOIN invoice b ON a.id_invoice = b.id_invoice 
 		JOIN pelanggan c ON b.id_pelanggan = c.id_pelanggan 
 		JOIN pengguna d ON c.id_pengguna = d.id_pengguna
-		WHERE a.status_transfer = 'Menunggu' 
-		AND b.status_delete = 'Aktif'");
+		WHERE a.status_transfer = 'Menunggu' ");
 	}
 
 	function tampilanTambahRecord(){
