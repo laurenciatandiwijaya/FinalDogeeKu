@@ -120,7 +120,7 @@ class Login extends CI_Controller {
       $dataPass['pass']=$this->M_Login->cek_password($where)->result();
 
       foreach($dataPass['pass'] as $list){
-        if($list->password != $password_lama){
+        if($list->password != md5($password_lama)){
           $data['status_announce'] = "3";
           $this->load->view('VP_Announce',$data);
         }

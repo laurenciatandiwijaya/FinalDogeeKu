@@ -9,7 +9,7 @@ class M_InvoiceOnline extends CI_Model {
 		a.alamat, a.total, a.status_invoice, c.nama_lengkap 
 		FROM invoice a JOIN pelanggan b ON a.id_pelanggan = b.id_pelanggan 
 		JOIN pengguna c ON b.id_pengguna = c.id_pengguna 
-		WHERE NOT a.id_pelanggan = '0' AND WHERE a.status_delete = 'Aktif'");	
+		WHERE NOT a.id_pelanggan = '0' AND a.status_delete = 'Aktif'");	
 	}
 
 	function ambilDataLunas()
@@ -21,7 +21,7 @@ class M_InvoiceOnline extends CI_Model {
 		WHERE id_invoice LIKE '%OL%' AND a.status_invoice = 'Lunas' 
 		AND NOT a.status_pengiriman = 'Terkirim'
 		AND NOT a.status_pengiriman = 'Batal' 
-		AND WHERE a.status_delete = 'Aktif'");
+		AND a.status_delete = 'Aktif'");
 	}
 
 	function cekUrutan($tanggalKode){
