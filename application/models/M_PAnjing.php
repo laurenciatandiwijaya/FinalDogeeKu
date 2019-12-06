@@ -20,7 +20,7 @@ class M_PAnjing extends CI_Model {
     }
 
     function data_anjingku($pengguna){
-        return $this->db->query("SELECT anjing.id_anjing, jenis_anjing.nama_jenis_anjing,
+        return $this->db->query("SELECT anjing.foto,anjing.id_anjing, jenis_anjing.nama_jenis_anjing,
         anjing.nama_anjing, anjing.jenis_kelamin, anjing.berat_badan, anjing.tinggi,
         anjing.tanggal_lahir FROM anjing,jenis_anjing,pengguna,pelanggan WHERE anjing.id_pelanggan = pelanggan.id_pelanggan
         AND pelanggan.id_pengguna = pengguna.id_pengguna AND anjing.id_jenis_anjing = jenis_anjing.id_jenis_anjing
@@ -28,7 +28,7 @@ class M_PAnjing extends CI_Model {
     }
 
     function ambilAnjing_id($id_anjing){
-        return $this->db->query("SELECT anjing.id_anjing, jenis_anjing.nama_jenis_anjing,
+        return $this->db->query("SELECT anjing.foto,anjing.id_anjing, jenis_anjing.nama_jenis_anjing,
         anjing.nama_anjing, anjing.jenis_kelamin, anjing.berat_badan, anjing.tinggi,
         anjing.tanggal_lahir FROM anjing,jenis_anjing,pengguna,pelanggan WHERE anjing.id_pelanggan = pelanggan.id_pelanggan
         AND pelanggan.id_pengguna = pengguna.id_pengguna AND anjing.id_jenis_anjing = jenis_anjing.id_jenis_anjing

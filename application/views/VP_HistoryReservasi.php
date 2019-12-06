@@ -204,7 +204,6 @@
                 <?php } }?>
 
                 <?php 
-                  $counter=0;
                   foreach($reservasi_salon as $salonA){ ?>
                     <?php if($salonA->status_invoice == "Lunas" || $salonA->status_invoice == "Batal"){
                       
@@ -259,7 +258,7 @@
                 <?php } }?>
 
                 <?php 
-                  $counter=0;
+                  
                   foreach($reservasi_penitipan as $penitipanA){ ?>
                     <?php if($penitipanA->status_invoice == "Lunas" || $penitipanA->status_invoice == "Batal"){
                       

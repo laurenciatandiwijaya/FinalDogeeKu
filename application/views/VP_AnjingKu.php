@@ -95,7 +95,7 @@
                             <input type="hidden" name="id_anjing" value="<?php echo $a->id_anjing;?>">
                             <table>
                                 <tr>
-                                    <td width="60%" rowspan="5">Gambar ini</td>
+                                    <td width="60%" rowspan="5"><img class="gambar_anjing" src="<?php echo base_url().$a->foto;?>"></td>
                                     <td width="40%"><?php echo $a->nama_jenis_anjing;?></td>
                                 </tr>
                                 <tr>

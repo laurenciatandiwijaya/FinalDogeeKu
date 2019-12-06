@@ -52,6 +52,14 @@
 
             }
 
+            td input{
+                background-color: #FEFFE4;
+                border: 4px solid #5A3921;
+                padding: 1% 1% 1% 1%;
+                border-radius:50px;
+                width:70%;
+            }
+
     
     </style>
 </head>
@@ -69,7 +77,7 @@
 	<div class="super_container_inner">
         <div class="super_overlay"></div>
         <div id="form_konfirmasiReservasi">
-            <h3 id="title">Konfirmasi Reservasi Salon</h3>
+            <h3 id="title">Konfirmasi Reservasi Penitipan</h3>
             <form method="POST" action="<?php echo base_url().'PReservasi/coba_reservasiPenitipan3'?>">
                 <input type="hidden" name="id_anjing" value="<?php echo $id_anjing;?>" readonly>
                 <input type="hidden" name="id_pekerja" value="<?php echo $id_pekerja;?>" readonly>

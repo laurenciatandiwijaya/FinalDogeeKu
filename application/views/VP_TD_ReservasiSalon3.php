@@ -52,6 +52,14 @@
 
             }
 
+            td input{
+                background-color: #FEFFE4;
+                border: 4px solid #5A3921;
+                padding: 1% 1% 1% 1%;
+                border-radius:50px;
+                width:70%;
+            }
+
     
     </style>
 </head>

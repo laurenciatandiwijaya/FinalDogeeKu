@@ -127,7 +127,7 @@
                                 </div>
                                 <div class="kategori_barang">
                                     <div  class="kategori" id="kategori2">
-                                        <a class="cobadeh" value="food"><button><img src="<?php echo base_url()?>assets/img/dog_food.png"></img></button></a>
+                                        <a class="cobadeh" value="makanan"><button><img src="<?php echo base_url()?>assets/img/dog_food.png"></img></button></a>
                                         Food
                                     </div>
                                     <div  class="kategori" id="kategori4">

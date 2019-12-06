@@ -18,12 +18,39 @@ class PAnjing extends CI_Controller {
     }
 
     public function coba_tambahAnjing(){
+      $target_dir = "../FinalDogeeKu/assets/img/anjing/";
+		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$uploadOk = 1;
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		// Check if image file is a actual image or fake image
+		if(isset($_POST["submit"])) {
+			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+			if($check !== false) {
+				$uploadOk = 1;
+			} else {
+				$uploadOk = 0;
+			}
+		}
+		// Check if file already exists
+		if (file_exists($target_file)) {
+			$uploadOk = 0;
+		}
+		// Check file size
+		if ($_FILES["fileToUpload"]["size"] > 900000) {
+			$uploadOk = 0;
+		}
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
+			$uploadOk = 0;
+		}
+
       $nama_anjing = $this->input->post('nama_anjing');
       $id_jenis_anjing = $this->input->post('id_jenis_anjing');
       $jenis_kelamin = $this->input->post('jenis_kelamin');
       $berat_badan = $this->input->post('berat_badan');
       $tinggi_badan = $this->input->post('tinggi_badan');
       $tanggal_lahir = $this->input->post('tanggal_lahir');
+      
       date_default_timezone_set("Asia/Jakarta");
 			$waktu_add = date("Y-m-d H:i:s");
 
@@ -52,6 +79,8 @@ class PAnjing extends CI_Controller {
       }
 
       else{
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+
         $data_tambahAnjing = array(
           'id_jenis_anjing' => $id_jenis_anjing,
           'id_pelanggan' => $id_pelanggan,
@@ -60,6 +89,7 @@ class PAnjing extends CI_Controller {
           'berat_badan' => $berat_badan,
           'tinggi' => $tinggi_badan,
           'tanggal_lahir' => $tanggal_lahir,
+          'foto' => "/assets/img/anjing/".basename($_FILES["fileToUpload"]["name"]),
           'user_add' => $id_pelanggan,
           'waktu_add' => $waktu_add,
           'status_delete' => "Aktif"

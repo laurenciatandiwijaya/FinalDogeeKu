@@ -91,7 +91,7 @@
         <div class="super_overlay"></div>
         <div id="form_tambahAnjing">
                     <h3 id="title">Tambahkan Anjing Baru</h3>
-                    <form method="POST" action="<?php echo base_url().'PAnjing/coba_tambahAnjing'?>">
+                    <form method="POST" action="<?php echo base_url().'PAnjing/coba_tambahAnjing'?>" enctype="multipart/form-data">
                         <table id="table_tambahAnjing">
                             <tr>
                                 <td>Nama Anjing</td>
@@ -130,6 +130,10 @@
                                     <input id="datepicker" name="tanggal_lahir" type="date" required>
                                 </td>
                             </tr> 
+                            <tr>
+                                <td>Pilih Foto</td>
+                                <td><input type="file" name="fileToUpload" id="fileToUpload"></td>
+                            </tr>
                             <tr>
                                 <td></td>
                                 <td><button id="button_ok" type="submit">Daftarkan Sekarang</button></td>

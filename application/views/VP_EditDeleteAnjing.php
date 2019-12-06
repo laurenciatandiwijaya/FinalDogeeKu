@@ -77,17 +77,15 @@
                     <form method="POST">
                         <div class="div_anjing">
                             <p class="nama"><?php echo $a->nama_anjing;?></p>
-                            <input type="text" name="id_anjing" value="<?php echo $a->id_anjing;?>">
+                            <input type="hidden" name="id_anjing" value="<?php echo $a->id_anjing;?>">
                             <table>
                                 <tr>
-                                    <td width="60%" rowspan="6">Gambar ini</td>
-                                    <td>
-                                        <input name="nama_anjing" value="<?php echo $a->nama_anjing;?>">
+                                    <td width="60%">
+                                        <img src="<?php echo base_url().$a->foto;?>">
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td width="40%">
-                                        <select name="id_jenis_anjing">
+                                    <td>
+                                        Nama Anjing:<input name="nama_anjing" value="<?php echo $a->nama_anjing;?>"><br>
+                                        Jenis Anjing:<select name="id_jenis_anjing">
                                             <?php foreach($jenis_anjing as $list){?>
                                                 <option value="<?php echo $list->id_jenis_anjing?>"
                                                 <?php if($a->nama_jenis_anjing = $list->nama_jenis_anjing){
@@ -95,36 +93,19 @@
                                                     <?php echo $list->nama_jenis_anjing;?>
                                                 </option>
                                             <?php } ?>
-                                        </select>
-                                   </td>
-                                </tr>
-                                <tr>
-                                    <td width="40%">
-                                        <select name="jenis_kelamin">
+                                        </select><br>
+                                        Jenis Kelamin:<select name="jenis_kelamin">
                                             <option value="l" <?php if($a->jenis_kelamin =='l'){ echo "selected";} ?>>
                                                 Laki-laki
                                             </option>
                                             <option value="p" <?php if($a->jenis_kelamin =='p'){ echo "selected";} ?>>
                                                 Perempuan
                                             </option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="40%">
-                                        Berat: <input name="berat_badan" value="<?php echo $a->berat_badan;?>">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="40%">
-                                        Tinggi: <input name="tinggi" value="<?php echo $a->tinggi;?>">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="40%">
-                                        Tanggal Lahir: <input id="datepicker" name="tanggal_lahir" type="date" value="<?php echo $a->tanggal_lahir;?>">
-                                    </td>
-                                </tr>
+                                        </select><br>
+                                        Berat: <input name="berat_badan" value="<?php echo $a->berat_badan;?>"><br>
+                                        Tinggi: <input name="tinggi" value="<?php echo $a->tinggi;?>"> <br>
+                                        Tanggal Lahir: <input id="datepicker" name="tanggal_lahir"
+                                         type="date" value="<?php echo $a->tanggal_lahir;?>"><br>
                             </table>
 
                             <button type="submit" class="button_edit_reservasi" onclick="javascript:form.action='<?php echo base_url().'PAnjing/coba_edit'?>'">

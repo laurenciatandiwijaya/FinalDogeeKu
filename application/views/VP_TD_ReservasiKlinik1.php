@@ -68,7 +68,12 @@
                 background-color:#FEFFE4;
                 color: black;
                 font-weight:bold;
+            }
 
+            .keterangan{
+                background-color: #FEFFE4;
+                border: 2px solid #5A3921;
+                margin-top:2%;
             }
 
     
@@ -114,7 +119,7 @@
                             <tr>
                                 <td>Keterangan</td>
                                 <td>
-                                <textarea rows="4" cols="50" name="keterangan" required>
+                                <textarea class="keterangan" rows="4" cols="50" name="keterangan" required>
                                 </textarea>
                                 </td>
                             </tr>

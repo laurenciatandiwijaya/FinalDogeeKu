@@ -69,8 +69,7 @@ class ReportKlinik extends CI_Controller {
 			$id_detail_layanan[0] = 0;
 			$harga_total = 0;
 	
-			foreach($this->input->post('id_detail_layanan') as $id_detail_layananArr){
-				if($id_detail_layananArr != ""){
+			foreach($this->input->post('id_detail_lay{
 					$id_detail_layanan[$i] = $id_detail_layananArr; 
 	
 					$dataDetailLayanan = array(
