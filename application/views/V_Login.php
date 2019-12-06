@@ -150,8 +150,8 @@
             <div class="login_kanan">
                 <form method="POST" action="<?php echo base_url().'Login/coba_login'?>">
                     <h1 class="tulisan_login">LOGIN</h1>
-                    <p><input type="text" placeholder="Email" class="email_login" name="email"></p>
-                    <p><input type="password" placeholder="Password" class="password_login" name="password"></p>
+                    <p><input type="text" placeholder="Email" class="email_login" name="email" required></p>
+                    <p><input type="password" placeholder="Password" class="password_login" name="password" required></p>
                     <p><button class="login_login" type="submit">LOGIN  NOW</button></p>
                 </form>
             </div>

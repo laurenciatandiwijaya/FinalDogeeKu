@@ -16,7 +16,6 @@ class Login extends CI_Controller {
       else{
           $this->load->view('VP_KonfirmasiLogin');
       }
-     
     }
 
     public function coba_login(){

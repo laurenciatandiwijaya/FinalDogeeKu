@@ -173,6 +173,8 @@ class PInvoice extends CI_Controller {
       $email = $this->session->userdata('email');
       $Data_Pelanggan = $this->M_PInvoice->cari_idPelanggan($email)->row_array();
       $id_pelanggan = $Data_Pelanggan['id_pelanggan'];
+      date_default_timezone_set("Asia/Jakarta");
+      $waktu_sekarang = date("Y-m-d H:i:s");
 
       $data_idPelanggan =array(
         'id_pelanggan' => $id_pelanggan
@@ -180,6 +182,15 @@ class PInvoice extends CI_Controller {
 
       $data_invoice['invoice'] = $this->M_PInvoice->get_data_invoice_shop($id_pelanggan)->result();
       $data_invoice['detail_barang'] = $this->M_PInvoice->get_detailInvoiceBarang('detail_invoice_barang',$id_pelanggan)->result();
+      
+      foreach($data_invoice['invoice'] as $list_invoice){
+        if($list_invoice->waktu_add <= $waktu_sekarang){
+          $idInvoice = $list_invoice->id_invoice;
+          $this->M_PInvoice->update_invoice_status($idInvoice);
+          $this->M_PInvoice->update_transfer_status($idInvoice);
+        }
+      }
+      
       $this->load->view('VP_Pemesanan',$data_invoice);
     }
 
@@ -208,11 +219,9 @@ class PInvoice extends CI_Controller {
       $Data_Pelanggan = $this->M_PInvoice->cari_idPelanggan($email)->row_array();
       $id_pelanggan = $Data_Pelanggan['id_pelanggan'];
 
-      $data_idPelanggan =array(
-        'id_pelanggan' => $id_pelanggan
-      );
 
-      $data_invoice['invoice'] = $this->M_PInvoice->get_data('invoice',$data_idPelanggan)->result();
+
+      $data_invoice['invoice'] = $this->M_PInvoice->get_data_invoice_shop($id_pelanggan)->result();
       $data_invoice['detail_barang'] = $this->M_PInvoice->get_detailInvoiceBarang('detail_invoice_barang',$id_pelanggan)->result();
       $this->load->view('VP_HistoryPemesanan',$data_invoice);
     }

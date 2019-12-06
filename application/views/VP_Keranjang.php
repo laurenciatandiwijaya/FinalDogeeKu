@@ -175,7 +175,14 @@
                                     </tr>
                                 <?php foreach($keranjang as $list){?>
                                     <tr>
-                                        <td width="10%">Gambar</td>
+                                        <td width="10%">
+                                        <?php foreach($gambar as $list1){
+                                                if($list->id_barang == $list1->id_barang){    
+                                            ?>
+                                                <img src="<?php echo base_url().$list1->foto;?>">
+                                            
+                                            <?php }} ?>
+                                        </td>
                                         <td width="10%"><?php echo $list->nama_barang;?></td>
                                         <td width="10%"><?php echo $list->jumlah_barang;?></td>
                                         <td width="10%"><?php echo $list->warna;?></td>

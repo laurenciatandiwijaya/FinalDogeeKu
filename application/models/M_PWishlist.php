@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_PWishlist extends CI_Model {
     function get_dataWishlist($id_pelanggan){
-        return $this->db->query("SELECT barang.nama_barang, barang.harga, barang.warna, 
+        return $this->db->query("SELECT wishlist.id_barang, barang.nama_barang, barang.harga, barang.warna, 
         barang.ukuran, wishlist.jumlah_barang, wishlist.id_wishlist FROM barang,wishlist WHERE 
         wishlist.id_pelanggan='$id_pelanggan' AND wishlist.status_delete='Aktif' AND 
         wishlist.id_barang = barang.id_barang");
@@ -52,6 +52,10 @@ class M_PWishlist extends CI_Model {
     function coba_pindah($where,$data){
         $this->db->where($where);
         $this->db->update('wishlist',$data);
+    }
+
+    function get_dataGambar(){
+        return $this->db->query("SELECT * FROM barang");
     }
 
 }

@@ -120,26 +120,121 @@
                     width:50%;
                 }
 
-            .keranjang{
-               margin-top:10%;
-               color:#5A3921;
-               text-align:center;
-            }
+                    .keranjang{
+                    margin-top:10%;
+                    color:#5A3921;
+                    text-align:center;
+                    }
 
-            #judul{
-                color:#5A3921;
-                font-size:300%;
-                
-            }
+                    #judul{
+                        color:#5A3921;
+                        font-size:300%;
+                        
+                    }
 
-            p, td{
-                color:#5A3921;
-                font-size:160%;
-            }
+                    p, td{
+                        color:#5A3921;
+                        font-size:160%;
+                    }
 
-            #jumlah_barang{
-                font-size:50%;
-            }
+                    #jumlah_barang{
+                        font-size:50%;
+                    }
+
+                    .flip-card {
+                    background-color: transparent;
+                    width: 20%;
+                    height: 50%;
+                    perspective: 1000px;
+                    display: inline-block;
+                    margin: 2% 2% 2% 2%;
+                    }
+
+                    .flip-card-inner {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
+                    transition: transform 0.6s;
+                    transform-style: preserve-3d;
+                    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                    }
+
+                    .flip-card:hover .flip-card-inner {
+                    transform: rotateY(180deg);
+                    }
+
+                    .flip-card-front, .flip-card-back {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    backface-visibility: hidden;
+                    }
+
+                    .flip-card-front {
+                    background-color: #bbb;
+                    color: black;
+                    }
+
+                    .flip-card-back {
+                    background-color:#5A3921;
+                    color:#FEFFE4;
+                    transform: rotateY(180deg);
+                    padding-top:20%;
+                    }
+
+                    .shop{
+                        margin-top:10%;
+                    }
+                    .nama_produk{
+                        color:#FEFFE4;
+                        font-size:200%; 
+                        width: 100%;
+                        height:30%;
+                    }
+
+                    .nama_kategori{
+                        color:#FEFFE4;
+                        font-size:150%; 
+                        width: 100%;
+                        height:20%;
+                        padding-top:5%;
+                    }
+
+                    .harga_produk{
+                        color:#FEFFE4;
+                        font-size:150%; 
+                        width: 100%;
+                        height:30%;
+                    }
+
+                    #S3{
+                        height:100vh;
+                    }
+
+                    .button_keShop{
+                            background-color:#5A3921;
+                            color: #FEFFE4;
+                            width: 15%;
+                            height: 7%;
+                            font-size:110%;
+                            border:none;
+                            border-radius: 50px;
+                            padding: 0.5% 0.5% 0.5% 0.5%;
+                            cursor:pointer;
+                            text-align:center;
+                            margin-left:40%;
+                        }
+
+                    .button_keShop:hover{
+                            background-color:#F77754;
+                            color:#5A3921;
+                        }
+
+                        .button_keShop:link,  .button_keShop:visited,  .button_keShop:hover,  .button_keShop:active{
+                            color: #FEFFE4;
+                        }
+
 
         </style>
 
@@ -158,13 +253,13 @@
 	<div class="super_container_inner">
         <div class="super_overlay"></div>
         <div class="keranjang">
-                    <div class="detail_barang">
+            <div class="detail_barang">
                     <?php foreach($detailData_barang as $list){?>
                         <form method="POST">
                             <table>
                                 <tr>
                                     <td rowspan="5"  id="detail_gambarBarang">
-                                        xxxx
+                                        <img src="<?php echo base_url().$list->foto;?>">
                                         <input type="hidden"  id="detail_keteranganBarang" name="id_barang" value="<?php echo $list->id_barang;?>">
                                         <p  id="detail_keteranganBarang" name="keterangan" value="<?php echo $list->keterangan;?>"><?php echo $list->keterangan;?></p>
                                     </td>
@@ -218,38 +313,24 @@
 
                 <div class="konten">
                             <!-- Shop -->
-      
-            <div class="konten" id="barang_shop">
-                    		<!-- Products -->
-                        <div class="row products_row">
-                            <!-- Product -->
                             <?php foreach($detailData_barangSejenis as $listA){?>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="product">
-                                        <div class="product_image"><img src="<?php echo base_url()?>assets/images/product_1.jpg" alt=""></div>
-                                        <div class="product_content">
-                                            <div class="product_info d-flex flex-row align-items-start justify-content-start">
-                                                <div>
-                                                    <div>
-                                                        <div class="product_name"><a href="<?php echo base_url().'PShop/detail_barang/'.$listA->id_barang;?> "><?php echo $listA->nama_barang;?></a></div>
-                                                        <div class="product_category">In <a href="category.php">Category</a></div>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-auto text-right">
-                                                    <div class="product_price text-right"><span>Rp.<?php echo $listA->harga;?></span></div>
-                                                </div>
-                                            </div>
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                        <img src="<?php echo base_url().$list->foto;?>" alt="" class="gambar_barang">
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <div class="nama_produk"><a href="<?php echo base_url().'PShop/detail_barang/'.$list->id_barang;?> "><?php echo $list->nama_barang;?></a></div>
+                                            <div class="nama_kategori">In <a href="category.php">Category</a></div>
+                                            <div class="harga_produk"><span>Rp.<?php echo $list->harga;?></span></div>
                                         </div>
                                     </div>
                                 </div>
                             <?php } ?>
                         </div>
-                        <div class="row load_more_row">
-                            <div class="col">
-                                <div class="button load_more ml-auto mr-auto"><a href="<?php echo base_url()?>PShop">load more</a></div>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="button_keShop"><a href="<?php echo base_url()?>PShop">load more</a></div>
+
+      
 		    </div>
 
                 </div>

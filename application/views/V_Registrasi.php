@@ -167,7 +167,7 @@
                 <form method="POST" action="<?php echo base_url().'Login/coba_registrasi'?>">
                         <p><input type="text" name="email" placeholder="Email" class="input_register" required></p>
                         <p><input type="text" name="nama_lengkap" placeholder="Nama Lengkap" class="input_register" required></p>
-                        <p> <input id="datepicker" name="tanggal_lahir" type="date" required></p>
+                        <p> <input id="datepicker" name="tanggal_lahir" type="date" placeholder="Tanggal Lahir" required></p>
                         <p><input type="text" name="no_hp" placeholder="No Hp" class="input_register" required></p>
                         <p><select name="jenis_kelamin">
 											    <option value="L">Laki-Laki</option>
